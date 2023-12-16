@@ -5,9 +5,9 @@
         public LocationId From { get; set; }
         public string TargetSpecialPage { get; set; } = null;
         public LocationId Target { get; set; }
-        public int Top { get; set; }
-        public int Right { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public string Top { get; set; }
+        public string Left { get; set; }
+        public string Width { get; set; }
+        public string Height { get; set; }
     }
 }

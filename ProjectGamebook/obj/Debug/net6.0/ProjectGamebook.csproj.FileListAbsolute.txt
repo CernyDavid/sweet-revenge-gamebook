@@ -24,3 +24,5 @@ D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\refint\
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.pdb
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.genruntimeconfig.cache
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ref\ProjectGamebook.dll
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Utf8Json.dll
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.csproj.CopyComplete

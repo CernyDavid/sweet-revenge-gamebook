@@ -1,18 +1,8 @@
-html {
-  font-size: 14px;
+.location {
+    background-color: gold;
+    position: relative;
 }
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
+.location__main {
+    width: 360px;
+    height: 360px;
 }

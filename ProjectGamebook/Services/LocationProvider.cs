@@ -10,12 +10,16 @@ namespace ProjectGamebook.Services
     {
         private readonly List<Location> _locations = new()
         { 
-            new Location { Texts = new List<string> {"a", "b" } }
+            new Location { Texts = new List<string> {"a", "b", "c", "d" }, ImageUrl="~/imgs/bg1.jpg"},
+            new Location { Texts = new List<string> {"a", "b" }, ImageUrl="~/imgs/bg2.jpg"},
+            new Location { Texts = new List<string> {"a", "b" }, ImageUrl="~/imgs/bg3.jpg"}
+
         };
 
         private readonly List<Connection> _map = new()
         {
-            new Connection { From = LocationId.First, Target = LocationId.Second}
+            new Connection { From = LocationId.First, Target = LocationId.Second, Top="80px", Left="0", Width="120px", Height="220px"},
+            new Connection { From = LocationId.First, Target = LocationId.Third, Top="80px", Left="240px", Width="120px", Height="220px"}
         };
         public bool ExistLocation(LocationId id)
         {

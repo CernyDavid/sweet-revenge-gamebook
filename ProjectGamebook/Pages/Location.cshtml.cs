@@ -7,7 +7,6 @@ namespace ProjectGamebook.Pages
 {
     public class LocationModel : PageModel
     {
-    {
         private const string KEY = "SWEETREVENGE";
         private readonly ISessionStorage<GameState> _ss;
         private readonly ILocationProvider _lp;
@@ -15,8 +14,15 @@ namespace ProjectGamebook.Pages
         public Location Location { get; set; }
         public List<Connection> Connections { get; set; }
         public GameState GS { get; set; }
+        public int TextIndex { get; set; } = 0;
 
-        public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
+        public IActionResult OnPostChangeItem()
+        {
+            TextIndex++;
+            return Partial("_ItemPartial", this);
+        }
+
+            public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
             _ss = ss;
             _lp = lp;
