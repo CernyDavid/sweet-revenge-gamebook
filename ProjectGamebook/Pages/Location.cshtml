@@ -10,7 +10,7 @@
         <h2>Player stats</h2>
         <p>HP: @Model.GS.HP</p>
     </div>
-    <p id="locationText">@Model.Location.Texts[Model.TextIndex]</p>
+    <p id="locationText"></p>
     <button class="btn btnNext" id="btnNext">Next</button>
     <ul>
         @foreach (var c in Model.Connections)
@@ -31,11 +31,23 @@
 </div>
 
 <script>
+    var stringList = @Html.Raw(@Model.jsonString);
+    var currentIndex = 0;
+
+    function updateText() {
+        document.getElementById("locationText").innerText = stringList[currentIndex];
+    }
+
+    function changeButtonVisibility() {
+        document.getElementById("btnNext").style.display = (currentIndex === stringList.length - 1) ? "none" : "block";
+    }
+
     document.getElementById("btnNext").addEventListener("click", function () {
-        fetch('?handler=OnPostChangeItem', { method: 'POST' })
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById("locationText").innerHTML = html;
-            });
+        currentIndex = currentIndex + 1;
+        updateText();
+        changeButtonVisibility();
     });
+
+    updateText();
+    changeButtonVisibility();
 </script>

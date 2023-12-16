@@ -14,15 +14,9 @@ namespace ProjectGamebook.Pages
         public Location Location { get; set; }
         public List<Connection> Connections { get; set; }
         public GameState GS { get; set; }
-        public int TextIndex { get; set; } = 0;
+        public string jsonString;
 
-        public IActionResult OnPostChangeItem()
-        {
-            TextIndex++;
-            return Partial("_ItemPartial", this);
-        }
-
-            public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
+        public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
             _ss = ss;
             _lp = lp;
@@ -35,6 +29,7 @@ namespace ProjectGamebook.Pages
             GS.Location = id;
             _ss.Save(KEY, GS);
             Location = _lp.GetLocation(id);
+            jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Location.Texts);
             Connections = _lp.GetConnectionsFrom(id);
             return Page();
         }

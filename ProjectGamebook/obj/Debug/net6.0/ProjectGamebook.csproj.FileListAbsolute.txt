@@ -26,3 +26,4 @@ D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\Project
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ref\ProjectGamebook.dll
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Utf8Json.dll
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.csproj.CopyComplete
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Newtonsoft.Json.dll

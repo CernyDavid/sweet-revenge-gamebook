@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "9QkHFgaPNFm0JCSALtzdYckHr33w1MAdiytaxPJhxxar+NkZ3mH5zcXed6leCOZygSoQHrlO4rjqg5I2eL+PVw==",
+  "dgSpecHash": "r8JynGMZRotkQlWE36s1M7nYgoED9Gu6EVluB4Ny8Oaf0aCl7FvSWCVweYOZbbOpEcqK+s7qEKyMA8YJwtNtFQ==",
   "success": true,
   "projectFilePath": "D:\\škola\\weby\\GAMEBOOK\\ProjectGamebook\\ProjectGamebook\\ProjectGamebook.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\David\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
