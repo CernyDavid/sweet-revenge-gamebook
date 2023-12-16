@@ -1,0 +1,25 @@
+﻿@page
+@model ProjectGamebook.Pages.LocationModel
+@{
+}
+
+<div>
+    <h2>Player stats</h2>
+    <p>HP: @Model.GS.HP</p>
+</div>
+<ul>
+    @foreach (var c in Model.Connections)
+
+    {
+        <li>
+            @if (String.IsNullOrEmpty(c.TargetSpecialPage))
+            {
+                <a asp-page="Place" asp-route-id="@c.Target"></a>
+            }
+            else
+            {
+                <a asp-page="@c.TargetSpecialPage" asp-route-id="@c.Target"></a>
+            }
+        </li>
+    }
+</ul>
