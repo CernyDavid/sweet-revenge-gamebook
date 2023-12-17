@@ -19,7 +19,7 @@
             <li>
                 @if (String.IsNullOrEmpty(c.TargetSpecialPage))
                 {
-                    <a asp-page="Location" asp-route-id="@c.Target"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
+                    <a asp-page="Location" asp-route-id="@c.Target" asp-route-prevId="@c.From"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
                 }
                 else
                 {

@@ -22,16 +22,33 @@ namespace ProjectGamebook.Pages
             _lp = lp;
         }
 
-        public IActionResult OnGet(LocationId id)
+        public IActionResult OnGet(int id, int? prevId)
         {
-            GS = _ss.LoadOrCreate(KEY);
-            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
-            GS.Location = id;
-            _ss.Save(KEY, GS);
-            Location = _lp.GetLocation(id);
-            jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Location.Texts);
-            Connections = _lp.GetConnectionsFrom(id);
-            return Page();
+            try
+            {
+                _lp.IsNavigationLegitimate(prevId, id, GS);
+            }
+            catch (InvalidNavigationException ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToPage("/Error");
+            }
+            try
+            {
+                GS = _ss.LoadOrCreate(KEY);
+                if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
+                GS.Location = id;
+                _ss.Save(KEY, GS);
+                Location = _lp.GetLocation(id);
+                jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Location.Texts);
+                Connections = _lp.GetConnectionsFrom(id);
+                return Page();
+            }
+            catch (LocationNotFoundException ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToPage("/Error");
+            }
         }
     }
 }

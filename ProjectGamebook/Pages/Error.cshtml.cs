@@ -4,24 +4,13 @@ using System.Diagnostics;
 
 namespace ProjectGamebook.Pages
 {
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    [IgnoreAntiforgeryToken]
     public class ErrorModel : PageModel
     {
-        public string? RequestId { get; set; }
-
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
-        private readonly ILogger<ErrorModel> _logger;
-
-        public ErrorModel(ILogger<ErrorModel> logger)
-        {
-            _logger = logger;
-        }
+        public string ErrorMessage { get; set; } = "Unknown error";
 
         public void OnGet()
         {
-            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            ErrorMessage = (TempData["ErrorMessage"]?.ToString() == null) ? "Unknown error" : TempData["ErrorMessage"]?.ToString();
         }
     }
 }

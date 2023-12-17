@@ -8,10 +8,10 @@ namespace ProjectGamebook.Services
 {
     public interface ILocationProvider
     {
-        bool ExistLocation(LocationId id);
-        Location GetLocation(LocationId id);
-        bool IsNavigationLegitimate(LocationId from, LocationId to, GameState state);
-        List<Connection> GetConnectionsFrom(LocationId id);
-        List<Connection> GetConnectionsTo(LocationId id);
+        bool ExistLocation(int id);
+        Location GetLocation(int id);
+        bool IsNavigationLegitimate(int? from, int to, GameState state);
+        List<Connection> GetConnectionsFrom(int id);
+        List<Connection> GetConnectionsTo(int id);
     }
 }
