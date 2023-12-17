@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1K0Ecg/ygwM+x0kefj55I+jwASJk+IFd0SbNNVQaNBE=",
+  "Hash": "/UPSvqiurJp6caLukThU/49RZlVpO7ORRquBMS86vZ8=",
   "Source": "ProjectGamebook",
   "BasePath": "_content/ProjectGamebook",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\škola\\weby\\GAMEBOOK\\ProjectGamebook\\ProjectGamebook\\wwwroot\\imgs\\bachi.jpg",
+      "SourceId": "ProjectGamebook",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\škola\\weby\\GAMEBOOK\\ProjectGamebook\\ProjectGamebook\\wwwroot\\",
+      "BasePath": "_content/ProjectGamebook",
+      "RelativePath": "imgs/bachi.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\bachi.jpg"
+    },
+    {
+      "Identity": "D:\\škola\\weby\\GAMEBOOK\\ProjectGamebook\\ProjectGamebook\\wwwroot\\imgs\\bachi.png",
+      "SourceId": "ProjectGamebook",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\škola\\weby\\GAMEBOOK\\ProjectGamebook\\ProjectGamebook\\wwwroot\\",
+      "BasePath": "_content/ProjectGamebook",
+      "RelativePath": "imgs/bachi.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\bachi.png"
     },
     {
       "Identity": "D:\\škola\\weby\\GAMEBOOK\\ProjectGamebook\\ProjectGamebook\\wwwroot\\imgs\\bg1.jpg",

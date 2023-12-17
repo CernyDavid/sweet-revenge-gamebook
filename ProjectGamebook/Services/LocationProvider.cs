@@ -9,19 +9,35 @@ namespace ProjectGamebook.Services
 {
     public class LocationProvider : ILocationProvider
     {
-        private readonly List<Location> _locations = new()
+        private static readonly List<Location> _locations = new()
         { 
-            new Location { Texts = new List<string> {"a", "b", "c", "d" }, ImageUrl="~/imgs/bg1.jpg"},
-            new Location { Texts = new List<string> {"a" }, ImageUrl="~/imgs/bg2.jpg"},
-            new Location { Texts = new List<string> {"a", "b" }, ImageUrl="~/imgs/bg3.jpg"}
+            new Location { Texts = new List<string> {"This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, ImageUrl="~/imgs/bg1.jpg", IsFight = true, Content=
+                "<img src=\"/imgs/bachi.jpg\" width=200px >" +
+                "<button id=\"kill\">Kill him</button>"
+
+            },
+            new Location { Texts = new List<string> {"Signle text" }, ImageUrl="~/imgs/bg2.jpg"},
+            new Location { Texts = new List<string> {"First", "Second" }, ImageUrl="~/imgs/bg3.jpg"}
 
         };
 
         private readonly List<Connection> _map = new()
         {
-            new Connection { From = 0, Target = 1, Top="80px", Left="0", Width="120px", Height="220px"},
-            new Connection { From = 0, Target = 2, Top="80px", Left="240px", Width="120px", Height="220px"}
+            new Connection(0,1,"80px","0","120px","220px", IsFightFinished, null),
+            new Connection(0,2,"80px","240px","120px","220px", IsFightFinished, null),
+            new Connection(1,0,"80px","140px","80px","150px", null, null),
+            new Connection(2,0,"120px","155px","55px","80px", null, "GameEnd")
         };
+
+        public static bool IsFightFinished(int id)
+        {
+            if (_locations[id].IsFight)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public bool ExistLocation(int id)
         {
             return (_locations.Count > id);

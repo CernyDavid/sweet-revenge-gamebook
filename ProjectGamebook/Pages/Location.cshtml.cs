@@ -22,6 +22,13 @@ namespace ProjectGamebook.Pages
             _lp = lp;
         }
 
+        /*public IActionResult OnPostUpdateHp()
+        {
+            GS.HP -= 50;
+
+            return new JsonResult(GS.HP);
+        }*/
+
         public IActionResult OnGet(int id, int? prevId)
         {
             try

@@ -3,51 +3,115 @@
 @{
 }
 <div class="location">
-    <div class="location__main" style="background-image: url(@Url.Content(@Model.Location.ImageUrl)); background-size: 125%; background-position: center center">
-
+    <div class="location__main" style="background-image: url(@Url.Content(@Model.Location.ImageUrl)); background-size: 125%; background-position: center center; background-repeat: no-repeat">
+        <div style="width: 200px; height: 250px; display: block; position: absolute; top: 50px; left: 80px; text-align: center;" id="div">
+            @Html.Raw(Model.Location.Content)
+            <script>
+                @if (Model.Location.Content == null) {
+                    <text>
+                        document.getElementById("div").style.display = "none";
+                    </text>
+                }
+            </script>
+        </div>
     </div>
     <div>
         <h2>Player stats</h2>
-        <p>HP: @Model.GS.HP</p>
+        <p id="hp">HP: @Model.GS.HP</p>
     </div>
     <p id="locationText"></p>
     <button class="btn btnNext" id="btnNext">Next</button>
-    <ul>
+    <script>
+        let btnNextStyle;
+        let currentIndex = 0;
+        var stringList = @Html.Raw(@Model.jsonString);
+        function checkConnection(targetId, canBeEntered) {
+            let divStyle = window.getComputedStyle(document.getElementById("div")).getPropertyValue("display");
+
+            console.log(divStyle);
+            console.log(btnNextStyle);
+
+            let connectionElement = document.getElementById("connection_" + targetId);
+
+            if (connectionElement) {
+                connectionElement.style.display = (canBeEntered && btnNextStyle === "none" && divStyle === "none") ? "block" : "none";
+                console.log(canBeEntered);
+            }
+        }
+
+        function updateText() {
+            document.getElementById("locationText").innerText = stringList[currentIndex];
+            if (currentIndex === stringList.length - 1) {
+                changeButtonVisibility();
+            }
+        }
+
+        function changeButtonVisibility() {
+            document.getElementById("btnNext").style.display = "none";
+            btnNextStyle = "none";
+            @foreach (var c in Model.Connections)
+            {
+                    <text>
+                        checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
+                    </text>
+            }
+        }
+
+        document.getElementById("btnNext").addEventListener("click", function () {
+            currentIndex = currentIndex + 1;
+            updateText();
+        });
+
+        updateText();
+
+        let kill = document.getElementById("kill");
+
+        if (kill) {
+            kill.addEventListener("click", function () {
+                document.getElementById("div").style.display = "none";
+                @foreach (var c in Model.Connections)
+                {
+                    <text>
+                                checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
+                    </text>
+                }
+            });
+            /*jQuery(document).ready(function () {
+                $("#kill").on("click", function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Index?handler=UpdateHp",
+                        success: function (data) {
+                            $("#hp").text("HP: " + data);
+                        },
+                        error: function (error) {
+                            console.error("Error updating HP:", error);
+                        }
+                    });
+                });
+            });*/
+        }
+
+    </script>
+    <ul class="connections">
         @foreach (var c in Model.Connections)
 
         {
             <li>
                 @if (String.IsNullOrEmpty(c.TargetSpecialPage))
                 {
-                    <a asp-page="Location" asp-route-id="@c.Target" asp-route-prevId="@c.From"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
+                    <a id="connection_@c.Target" asp-page="Location" asp-route-id="@c.Target" asp-route-prevId="@c.From"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
                 }
                 else
                 {
-                    <a asp-page="@c.TargetSpecialPage" asp-route-id="@c.Target"></a>
+                    Console.WriteLine(c.TargetSpecialPage);
+                    <a id="connection_@c.Target" asp-page="@c.TargetSpecialPage"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
                 }
             </li>
+
+            <script>
+                checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
+            </script>
         }
     </ul>
 </div>
-
-<script>
-    var stringList = @Html.Raw(@Model.jsonString);
-    var currentIndex = 0;
-
-    function updateText() {
-        document.getElementById("locationText").innerText = stringList[currentIndex];
-    }
-
-    function changeButtonVisibility() {
-        document.getElementById("btnNext").style.display = (currentIndex === stringList.length - 1) ? "none" : "block";
-    }
-
-    document.getElementById("btnNext").addEventListener("click", function () {
-        currentIndex = currentIndex + 1;
-        updateText();
-        changeButtonVisibility();
-    });
-
-    updateText();
-    changeButtonVisibility();
-</script>
