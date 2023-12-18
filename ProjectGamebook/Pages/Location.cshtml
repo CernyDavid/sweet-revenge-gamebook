@@ -1,5 +1,6 @@
 ﻿@page
 @model ProjectGamebook.Pages.LocationModel
+@Html.AntiForgeryToken()
 @{
 }
 <div class="location">
@@ -76,22 +77,29 @@
                     </text>
                 }
             });
-            /*jQuery(document).ready(function () {
-                $("#kill").on("click", function () {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Index?handler=UpdateHp",
-                        success: function (data) {
-                            $("#hp").text("HP: " + data);
-                        },
-                        error: function (error) {
-                            console.error("Error updating HP:", error);
-                        }
-                    });
-                });
-            });*/
         }
 
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $("#kill").on("click", function () {
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    url: "Location?handler=UpdateHp",
+                    success: function (data) {
+                        $("#hp").text("HP: " + data);
+                    },
+                    error: function (error) {
+                        console.error("Error updating HP:", error);
+                    }
+                });
+            });
+        });
     </script>
     <ul class="connections">
         @foreach (var c in Model.Connections)

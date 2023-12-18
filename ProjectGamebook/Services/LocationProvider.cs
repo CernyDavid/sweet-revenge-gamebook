@@ -16,7 +16,7 @@ namespace ProjectGamebook.Services
                 "<button id=\"kill\">Kill him</button>"
 
             },
-            new Location { Texts = new List<string> {"Signle text" }, ImageUrl="~/imgs/bg2.jpg"},
+            new Location { Texts = new List<string> {"Single text" }, ImageUrl="~/imgs/bg2.jpg"},
             new Location { Texts = new List<string> {"First", "Second" }, ImageUrl="~/imgs/bg3.jpg"}
 
         };

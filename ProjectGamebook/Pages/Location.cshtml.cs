@@ -20,14 +20,16 @@ namespace ProjectGamebook.Pages
         {
             _ss = ss;
             _lp = lp;
+
+            GS = _ss.LoadOrCreate(KEY);
         }
 
-        /*public IActionResult OnPostUpdateHp()
+        public IActionResult OnPostUpdateHp()
         {
             GS.HP -= 50;
 
             return new JsonResult(GS.HP);
-        }*/
+        }
 
         public IActionResult OnGet(int id, int? prevId)
         {
