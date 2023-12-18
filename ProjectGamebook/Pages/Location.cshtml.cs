@@ -22,11 +22,13 @@ namespace ProjectGamebook.Pages
             _lp = lp;
 
             GS = _ss.LoadOrCreate(KEY);
+            _ss.Save(KEY, GS);
         }
 
         public IActionResult OnPostUpdateHp()
         {
             GS.HP -= 50;
+            _ss.Save(KEY, GS);
 
             return new JsonResult(GS.HP);
         }
