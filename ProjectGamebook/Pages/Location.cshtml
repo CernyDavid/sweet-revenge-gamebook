@@ -92,6 +92,9 @@
                     },
                     url: "Location?handler=UpdateHp",
                     success: function (data) {
+                        if (data == 0) {
+                            location.reload();
+                        }
                         $("#hp").text("HP: " + data);
                     },
                     error: function (error) {
@@ -108,7 +111,7 @@
             <li>
                 @if (String.IsNullOrEmpty(c.TargetSpecialPage))
                 {
-                    <a id="connection_@c.Target" asp-page="Location" asp-route-id="@c.Target" asp-route-prevId="@c.From"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
+                    <a id="connection_@c.Target" asp-page="Location" asp-route-id="@c.Target"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
                 }
                 else
                 {

@@ -33,22 +33,32 @@ namespace ProjectGamebook.Pages
             return new JsonResult(GS.HP);
         }
 
-        public IActionResult OnGet(int id, int? prevId)
+        public IActionResult OnGet(int id)
         {
-            try
+            if (GS.PreviousLocation == 666666)
             {
-                _lp.IsNavigationLegitimate(prevId, id, GS);
+                GS.HP = 100;
+                _ss.Save(KEY, GS);
+                _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
             }
-            catch (InvalidNavigationException ex)
+            else
             {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToPage("/Error");
+                if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
+                try
+                {
+                    _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
+                }
+                catch (InvalidNavigationException ex)
+                {
+                    TempData["ErrorMessage"] = ex.Message;
+                    return RedirectToPage("/Error");
+                }
             }
             try
             {
                 GS = _ss.LoadOrCreate(KEY);
-                if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
                 GS.Location = id;
+                GS.PreviousLocation = id;
                 _ss.Save(KEY, GS);
                 Location = _lp.GetLocation(id);
                 jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Location.Texts);
