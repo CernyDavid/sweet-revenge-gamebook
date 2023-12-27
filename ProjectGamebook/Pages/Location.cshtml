@@ -5,7 +5,7 @@
 }
 <div class="location">
     <div class="location__main" style="background-image: url(@Url.Content(@Model.Location.ImageUrl)); background-size: 125%; background-position: center center; background-repeat: no-repeat">
-        <div style="width: 200px; height: 250px; display: block; position: absolute; top: 50px; left: 80px; text-align: center;" id="div">
+        <div style="width: 320px; height: 320px; display: block; position: absolute; top: 20px; left: 20px; text-align: center; color: white;" id="div">
             @Html.Raw(Model.Location.Content)
             <script>
                 @if (Model.Location.Content == null) {
@@ -14,6 +14,12 @@
                     </text>
                 }
             </script>
+            @if (Model.Location.IsFight) {
+                <div class="button-container">
+                    <button id="kill">Hit</button>
+                    <button>Attempt critical</button>
+                </div>
+            }
         </div>
     </div>
     <div>

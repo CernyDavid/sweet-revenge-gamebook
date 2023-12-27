@@ -9,11 +9,11 @@ namespace ProjectGamebook.Services
 {
     public class LocationProvider : ILocationProvider
     {
+        private static Monster monster = new Monster(0, "Bachi", 50, 25, 50, "/imgs/bachi.jpg");
+
         private static readonly List<Location> _locations = new()
-        { 
-            new Location { Texts = new List<string> {"This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, ImageUrl="~/imgs/bg1.jpg", IsFight = true, Content=
-                "<img src=\"/imgs/bachi.jpg\" width=200px >" +
-                "<button id=\"kill\">Kill him</button>"
+        {
+            new Location { Texts = new List<string> {"This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, ImageUrl="~/imgs/bg1.jpg", IsFight = true, Monster = monster, Content = monster.ReturnMonster()
 
             },
             new Location { Texts = new List<string> {"Single text" }, ImageUrl="~/imgs/bg2.jpg"},

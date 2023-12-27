@@ -9,3 +9,9 @@
 .connections {
     list-style-type: none;
 }
+.button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+}
