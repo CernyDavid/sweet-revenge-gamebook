@@ -16,6 +16,8 @@ namespace ProjectGamebook.Pages
         public GameState GS { get; set; }
         public string jsonString;
 
+        public Weapon Weapon { get; set; } = new Weapon(0, "Weapon,", null, 25, 50);
+
         public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
             _ss = ss;
@@ -25,9 +27,16 @@ namespace ProjectGamebook.Pages
             _ss.Save(KEY, GS);
         }
 
-        public IActionResult OnPostUpdateHp()
+        public IActionResult OnPostHitMonster(int dmg)
         {
-            GS.HP -= 50;
+            //Location.Monster.HP -= dmg;
+
+            return new JsonResult(0);
+        }
+
+        public IActionResult OnPostUpdateHp(int dmg)
+        {
+            GS.HP -= dmg;
             _ss.Save(KEY, GS);
 
             return new JsonResult(GS.HP);
@@ -59,7 +68,9 @@ namespace ProjectGamebook.Pages
                 GS = _ss.LoadOrCreate(KEY);
                 GS.Location = id;
                 GS.PreviousLocation = id;
+                GS.EquippedWeapon = Weapon;
                 _ss.Save(KEY, GS);
+                Console.WriteLine(GS.PreviousLocation);
                 Location = _lp.GetLocation(id);
                 jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Location.Texts);
                 Connections = _lp.GetConnectionsFrom(id);

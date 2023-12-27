@@ -71,37 +71,58 @@
 
         updateText();
 
-        let kill = document.getElementById("kill");
-
-        if (kill) {
-            kill.addEventListener("click", function () {
-                document.getElementById("div").style.display = "none";
-                @foreach (var c in Model.Connections)
-                {
-                    <text>
-                                checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
-                    </text>
-                }
-            });
-        }
-
     </script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         jQuery(document).ready(function () {
             $("#kill").on("click", function () {
+                let dmg = 0;
+                @if (Model.Location.Monster != null) {
+                    <text>
+                        dmg = @Model.Location.Monster.Damage;
+                    </text>
+                };
+                let hitMonsterDmg = @Model.GS.EquippedWeapon.Damage;
+                console.log(dmg);
+
                 $.ajax({
                     type: "POST",
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("XSRF-TOKEN",
                             $('input:hidden[name="__RequestVerificationToken"]').val());
                     },
+                    data: { dmg: dmg },
                     url: "Location?handler=UpdateHp",
                     success: function (data) {
                         if (data == 0) {
                             location.reload();
                         }
                         $("#hp").text("HP: " + data);
+                    },
+                    error: function (error) {
+                        console.error("Error updating HP:", error);
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: { dmg: hitMonsterDmg },
+                    url: "Location?handler=HitMonster",
+                    success: function (data) {
+                        $("#monsterHP").text(data);
+                        if (data < 1) {
+                            document.getElementById("div").style.display = "none";
+                        }
+                        @foreach (var c in Model.Connections)
+                        {
+                            <text>
+                                checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
+                            </text>
+                        }
                     },
                     error: function (error) {
                         console.error("Error updating HP:", error);

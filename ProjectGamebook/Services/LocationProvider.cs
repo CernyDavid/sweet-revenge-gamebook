@@ -9,20 +9,13 @@ namespace ProjectGamebook.Services
 {
     public class LocationProvider : ILocationProvider
     {
-        private static Monster monster = new Monster(0, "Bachi", 50, 25, 50, "/imgs/bachi.jpg");
 
         private static readonly List<Location> _locations = new()
         {
-            new Location { Texts = new List<string> {"This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, ImageUrl="~/imgs/bg1.jpg", IsFight = true, Monster = monster, Content = monster.ReturnMonster()
-
-            },
-            new Location { Texts = new List<string> {"Single text" }, ImageUrl="~/imgs/bg2.jpg"},
-            new Location { Texts = new List<string> {"First", "Second" }, ImageUrl="~/imgs/bg3.jpg"},
-                        new Location { Texts = new List<string> {"This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, ImageUrl="~/imgs/bg1.jpg", IsFight = true, Content=
-                "<img src=\"/imgs/bachi.jpg\" width=200px >" +
-                "<button id=\"kill\">Kill him</button>"
-
-            }
+            new Location( new List<string> { "This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, true, new Monster(0, "Bachi", 50, 25, 50, "/imgs/bachi.jpg"), "~/imgs/bg1.jpg"),
+            new Location( new List<string> {"Single text" }, false, null, "~/imgs/bg2.jpg"),
+            new Location( new List<string> {"First", "Second" }, false, null, "~/imgs/bg3.jpg"),
+            new Location( new List<string> { "This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, true, new Monster(0, "Bachi", 50, 25, 50, "/imgs/bachi.jpg"), "~/imgs/bg1.jpg")
 
         };
 
