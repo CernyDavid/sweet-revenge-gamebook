@@ -16,12 +16,14 @@ namespace ProjectGamebook.Pages
         public GameState GS { get; set; }
         public string jsonString;
 
-        public Weapon Weapon { get; set; } = new Weapon(0, "Weapon,", null, 25, 50);
+        public Weapon Weapon { get; set; } = new Weapon(0, "Weapon,", null, 13, 50);
 
         public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
             _ss = ss;
             _lp = lp;
+
+            Location = _lp.GetLocation(0);
 
             GS = _ss.LoadOrCreate(KEY);
             _ss.Save(KEY, GS);
@@ -29,9 +31,15 @@ namespace ProjectGamebook.Pages
 
         public IActionResult OnPostHitMonster(int dmg)
         {
-            //Location.Monster.HP -= dmg;
+            if (Location.Monster != null)
+            {
+                Location.Monster.HP -= dmg;
+                Console.WriteLine("dmg" + dmg);
+                return new JsonResult(Location.Monster.HP);
+            }
 
-            return new JsonResult(0);
+            return BadRequest("Monster not found");
+
         }
 
         public IActionResult OnPostUpdateHp(int dmg)
@@ -50,9 +58,9 @@ namespace ProjectGamebook.Pages
                 _ss.Save(KEY, GS);
                 _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
             }
-            else
+            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
+            else if (GS.PreviousLocation != GS.Location)
             {
-                if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
                 try
                 {
                     _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);

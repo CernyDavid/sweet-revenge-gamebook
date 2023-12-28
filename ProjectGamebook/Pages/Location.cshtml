@@ -14,12 +14,13 @@
                     </text>
                 }
             </script>
-            @if (Model.Location.IsFight) {
-                <div class="button-container">
-                    <button id="kill">Hit</button>
-                    <button>Attempt critical</button>
-                </div>
-            }
+            <div id="buttons" class="button-container">
+                <button id="kill">Hit</button>
+                <button>Attempt critical</button>
+            </div>
+            <div class="fight-indicators-container">
+                <p id="hit-indicator" class="hit-indicator">Hit</p>
+            </div>
         </div>
     </div>
     <div>
@@ -56,12 +57,8 @@
         function changeButtonVisibility() {
             document.getElementById("btnNext").style.display = "none";
             btnNextStyle = "none";
-            @foreach (var c in Model.Connections)
-            {
-                    <text>
-                        checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
-                    </text>
-            }
+            @Model.Location.IsFight = true;
+            document.getElementById("buttons").style.display = "flex";
         }
 
         document.getElementById("btnNext").addEventListener("click", function () {
@@ -77,32 +74,14 @@
         jQuery(document).ready(function () {
             $("#kill").on("click", function () {
                 let dmg = 0;
-                @if (Model.Location.Monster != null) {
+                @if (Model.Location.Monster != null)
+                {
                     <text>
-                        dmg = @Model.Location.Monster.Damage;
+                                dmg = @Model.Location.Monster.Damage;
                     </text>
                 };
                 let hitMonsterDmg = @Model.GS.EquippedWeapon.Damage;
                 console.log(dmg);
-
-                $.ajax({
-                    type: "POST",
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader("XSRF-TOKEN",
-                            $('input:hidden[name="__RequestVerificationToken"]').val());
-                    },
-                    data: { dmg: dmg },
-                    url: "Location?handler=UpdateHp",
-                    success: function (data) {
-                        if (data == 0) {
-                            location.reload();
-                        }
-                        $("#hp").text("HP: " + data);
-                    },
-                    error: function (error) {
-                        console.error("Error updating HP:", error);
-                    }
-                });
 
                 $.ajax({
                     type: "POST",
@@ -123,12 +102,45 @@
                                 checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
                             </text>
                         }
+
+                        showHitIndicator();
+
+                            setTimeout(function () {
+                                $.ajax({
+                                    type: "POST",
+                                    beforeSend: function (xhr) {
+                                        xhr.setRequestHeader("XSRF-TOKEN",
+                                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                                    },
+                                    data: { dmg: dmg },
+                                    url: "Location?handler=UpdateHp",
+                                    success: function (data) {
+                                        if (data == 0) {
+                                            location.reload();
+                                        }
+                                        $("#hp").text("HP: " + data);
+                                    },
+                                    error: function (error) {
+                                        console.error("Error updating HP:", error);
+                                    }
+                                });
+                            }, 1000);
                     },
                     error: function (error) {
                         console.error("Error updating HP:", error);
                     }
                 });
             });
+
+            function showHitIndicator() {
+                const hit = document.getElementById("hit-indicator");
+
+                hit.style.display = "block";
+
+                setTimeout(function () {
+                    hit.style.display = "none";
+                }, 500);
+            }
         });
     </script>
     <ul class="connections">

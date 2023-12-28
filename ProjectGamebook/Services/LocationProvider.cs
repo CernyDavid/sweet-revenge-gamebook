@@ -12,7 +12,7 @@ namespace ProjectGamebook.Services
 
         private static readonly List<Location> _locations = new()
         {
-            new Location( new List<string> { "This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, true, new Monster(0, "Bachi", 50, 25, 50, "/imgs/bachi.jpg"), "~/imgs/bg1.jpg"),
+            new Location( new List<string> { "This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, false, new Monster(0, "Bachi", 50, 25, 50, "/imgs/bachi.jpg"), "~/imgs/bg1.jpg"),
             new Location( new List<string> {"Single text" }, false, null, "~/imgs/bg2.jpg"),
             new Location( new List<string> {"First", "Second" }, false, null, "~/imgs/bg3.jpg"),
             new Location( new List<string> { "This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, true, new Monster(0, "Bachi", 50, 25, 50, "/imgs/bachi.jpg"), "~/imgs/bg1.jpg")
