@@ -59,6 +59,12 @@
             btnNextStyle = "none";
             @Model.Location.IsFight = true;
             document.getElementById("buttons").style.display = "flex";
+            @foreach (var c in Model.Connections)
+            {
+                <text>
+                        checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
+                </text>
+            }
         }
 
         document.getElementById("btnNext").addEventListener("click", function () {
@@ -89,12 +95,16 @@
                         xhr.setRequestHeader("XSRF-TOKEN",
                             $('input:hidden[name="__RequestVerificationToken"]').val());
                     },
-                    data: { dmg: hitMonsterDmg },
+                    data: {
+                        dmg: hitMonsterDmg,
+                        id: @Model.GS.Location
+                    },
                     url: "Location?handler=HitMonster",
                     success: function (data) {
                         $("#monsterHP").text(data);
                         if (data < 1) {
                             document.getElementById("div").style.display = "none";
+                            @Model.Location.IsFight = true;
                         }
                         @foreach (var c in Model.Connections)
                         {
@@ -105,6 +115,7 @@
 
                         showHitIndicator();
 
+                        if (data > 0) {
                             setTimeout(function () {
                                 $.ajax({
                                     type: "POST",
@@ -125,6 +136,7 @@
                                     }
                                 });
                             }, 1000);
+                        }
                     },
                     error: function (error) {
                         console.error("Error updating HP:", error);

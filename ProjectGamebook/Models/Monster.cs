@@ -2,9 +2,8 @@
 {
     public class Monster
     {
-        public Monster(int id, string? name, int hP, int damage, int dlIncrease, string imageUrl)
+        public Monster( string? name, int hP, int damage, int dlIncrease, string imageUrl)
         {
-            Id = id;
             Name = name;
             HP = hP;
             Damage = damage;
@@ -12,7 +11,6 @@
             ImageUrl = imageUrl;
         }
 
-        public int Id { get; set; }
         public string? Name { get; set; }
         public int HP { get; set; }
         public int Damage { get; set; }

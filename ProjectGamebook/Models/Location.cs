@@ -2,7 +2,7 @@
 {
     public class Location
     {
-        public Location(List<string> texts, bool isFight, Monster? monster, string imageUrl)
+        public Location(List<string> texts, string imageUrl, Monster? monster = null, bool isFight = false)
         {
             Texts = texts;
             IsFight = isFight;

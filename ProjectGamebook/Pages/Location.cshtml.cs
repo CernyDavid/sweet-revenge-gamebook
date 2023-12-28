@@ -18,6 +18,8 @@ namespace ProjectGamebook.Pages
 
         public Weapon Weapon { get; set; } = new Weapon(0, "Weapon,", null, 13, 50);
 
+        public Dictionary<int, Monster> Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 50, 25, 0, "/imgs/bachi.png") } };
+
         public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
             _ss = ss;
@@ -29,12 +31,15 @@ namespace ProjectGamebook.Pages
             _ss.Save(KEY, GS);
         }
 
-        public IActionResult OnPostHitMonster(int dmg)
+        public IActionResult OnPostHitMonster(int dmg, int id)
         {
+
             if (Location.Monster != null)
             {
+                Console.WriteLine(Location.Monster.HP + "before");
                 Location.Monster.HP -= dmg;
                 Console.WriteLine("dmg" + dmg);
+                Console.WriteLine(Location.Monster.HP + "after");
                 return new JsonResult(Location.Monster.HP);
             }
 
@@ -80,6 +85,12 @@ namespace ProjectGamebook.Pages
                 _ss.Save(KEY, GS);
                 Console.WriteLine(GS.PreviousLocation);
                 Location = _lp.GetLocation(id);
+                if (Monsters.ContainsKey(id))
+                {
+                    Location.Monster = Monsters[id];
+                    Console.WriteLine(Location.Monster.Name + " " + Location.Monster.HP);
+                    Location.Content = Monsters[id].ReturnMonster();
+                }
                 jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Location.Texts);
                 Connections = _lp.GetConnectionsFrom(id);
                 return Page();
