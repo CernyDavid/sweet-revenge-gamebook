@@ -4,7 +4,7 @@ namespace ProjectGamebook.Models
 {
     public class Shield : Item
     {
-        public Shield(int id, string name, string imageUrl, int blockChance) : base(id, name, imageUrl)
+        public Shield(string name, string imageUrl, int blockChance) : base(name, imageUrl)
         {
             BlockChance = blockChance;
         }

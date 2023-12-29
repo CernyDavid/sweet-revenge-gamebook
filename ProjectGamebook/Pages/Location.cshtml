@@ -57,8 +57,12 @@
         function changeButtonVisibility() {
             document.getElementById("btnNext").style.display = "none";
             btnNextStyle = "none";
-            @Model.Location.IsFight = true;
-            document.getElementById("buttons").style.display = "flex";
+            @if (Model.Location.Monster != null) {
+                Model.Location.IsFight = true;
+                <text>
+                    document.getElementById("buttons").style.display = "flex";
+                </text>
+            }
             @foreach (var c in Model.Connections)
             {
                 <text>

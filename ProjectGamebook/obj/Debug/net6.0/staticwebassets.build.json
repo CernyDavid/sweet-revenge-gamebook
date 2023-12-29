@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/UPSvqiurJp6caLukThU/49RZlVpO7ORRquBMS86vZ8=",
+  "Hash": "nuoXv8tpjfhEwsuQd2ZhCoW7Tzu187gzr5QNCpqhNkg=",
   "Source": "ProjectGamebook",
   "BasePath": "_content/ProjectGamebook",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imgs\\bg3.jpg"
+    },
+    {
+      "Identity": "D:\\škola\\weby\\GAMEBOOK\\ProjectGamebook\\ProjectGamebook\\wwwroot\\imgs\\bsword.png",
+      "SourceId": "ProjectGamebook",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\škola\\weby\\GAMEBOOK\\ProjectGamebook\\ProjectGamebook\\wwwroot\\",
+      "BasePath": "_content/ProjectGamebook",
+      "RelativePath": "imgs/bsword.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\bsword.png"
     },
     {
       "Identity": "D:\\škola\\weby\\GAMEBOOK\\ProjectGamebook\\ProjectGamebook\\wwwroot\\js\\site.js",

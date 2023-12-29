@@ -17,9 +17,10 @@ namespace ProjectGamebook.Pages
         public GameState GS { get; set; }
         public string jsonString;
 
-        public Weapon Weapon { get; set; } = new Weapon(0, "Weapon,", null, 13, 50);
+        public Weapon Weapon { get; set; } = new Weapon("Fist", null, 13, 50);
 
         public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 50, 25, 0, "/imgs/bachi.png") } };
+        public static Dictionary<int, Item> Items = new Dictionary<int, Item> { {1, new Weapon("Sword", "/imgs/bsword.png", 20, 50) } };
 
         public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
@@ -78,6 +79,11 @@ namespace ProjectGamebook.Pages
                     Location.Monster = Monsters[id];
                     Console.WriteLine(Location.Monster.Name + " " + Location.Monster.HP);
                     Location.Content = Monsters[id].ReturnMonster();
+                }
+                if (Items.ContainsKey(id))
+                {
+                    Location.Item = Items[id];
+                    Location.Content = Items[id].ReturnItem();
                 }
                 jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Location.Texts);
                 Connections = _lp.GetConnectionsFrom(id);
