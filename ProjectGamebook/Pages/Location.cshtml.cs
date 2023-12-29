@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjectGamebook.Models;
 using ProjectGamebook.Services;
@@ -18,10 +19,11 @@ namespace ProjectGamebook.Pages
 
         public Weapon Weapon { get; set; } = new Weapon(0, "Weapon,", null, 13, 50);
 
-        public Dictionary<int, Monster> Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 50, 25, 0, "/imgs/bachi.png") } };
+        public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 50, 25, 0, "/imgs/bachi.png") } };
 
         public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
+
             _ss = ss;
             _lp = lp;
 
@@ -29,22 +31,6 @@ namespace ProjectGamebook.Pages
 
             GS = _ss.LoadOrCreate(KEY);
             _ss.Save(KEY, GS);
-        }
-
-        public IActionResult OnPostHitMonster(int dmg, int id)
-        {
-
-            if (Location.Monster != null)
-            {
-                Console.WriteLine(Location.Monster.HP + "before");
-                Location.Monster.HP -= dmg;
-                Console.WriteLine("dmg" + dmg);
-                Console.WriteLine(Location.Monster.HP + "after");
-                return new JsonResult(Location.Monster.HP);
-            }
-
-            return BadRequest("Monster not found");
-
         }
 
         public IActionResult OnPostUpdateHp(int dmg)
@@ -57,6 +43,8 @@ namespace ProjectGamebook.Pages
 
         public IActionResult OnGet(int id)
         {
+            Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 50, 25, 0, "/imgs/bachi.png") } };
+
             if (GS.PreviousLocation == 666666)
             {
                 GS.HP = 100;
@@ -100,6 +88,22 @@ namespace ProjectGamebook.Pages
                 TempData["ErrorMessage"] = ex.Message;
                 return RedirectToPage("/Error");
             }
+        }
+
+        public IActionResult OnPostHitMonster(int dmg, int id)
+        {
+            if (Monsters.ContainsKey(id))
+            {
+                Monsters[id].HP -= dmg;
+
+                if (Location.Monster != null)
+                {
+                    Location.Monster = Monsters[id];
+                    return new JsonResult(Location.Monster.HP);
+                }
+            }
+
+            return BadRequest("Monster not found");
         }
     }
 }

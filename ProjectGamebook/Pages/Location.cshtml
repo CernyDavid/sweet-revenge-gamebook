@@ -126,7 +126,7 @@
                                     data: { dmg: dmg },
                                     url: "Location?handler=UpdateHp",
                                     success: function (data) {
-                                        if (data == 0) {
+                                        if (data < 1) {
                                             location.reload();
                                         }
                                         $("#hp").text("HP: " + data);
