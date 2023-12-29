@@ -20,8 +20,20 @@
             </div>
             <div class="fight-indicators-container">
                 <p id="hit-indicator" class="hit-indicator">Hit</p>
+                <p id="block-indicator" class="block-indicator">You blocked</p>
             </div>
         </div>
+    </div>
+    <div class="inventory">
+        <div class="inventory-icon" onclick="toggleInv()">
+        </div>
+        <ul class="inventory__main">
+            <li id="inv-slot-1" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 0) {<img src="@Model.GS.Inventory.slots[0].ImageUrl" />}</li>
+            <li id="inv-slot-2" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 1) {<img src="@Model.GS.Inventory.slots[1].ImageUrl" />}</li>
+            <li id="inv-slot-3" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 2) {<img src="@Model.GS.Inventory.slots[2].ImageUrl" />}</li>
+            <li id="inv-slot-4" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 3) {<img src="@Model.GS.Inventory.slots[3].ImageUrl" />}</li>
+        </ul>
+
     </div>
     <div>
         <h2>Player stats</h2>
@@ -78,6 +90,11 @@
 
         updateText();
 
+        function toggleInv() {
+            const inv = document.querySelector(".inventory__main");
+            inv.style.display = inv.style.display === 'flex' ? 'none' : 'flex';
+        }
+
     </script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
@@ -119,28 +136,38 @@
 
                         showHitIndicator();
 
-                        if (data > 0) {
-                            setTimeout(function () {
-                                $.ajax({
-                                    type: "POST",
-                                    beforeSend: function (xhr) {
-                                        xhr.setRequestHeader("XSRF-TOKEN",
-                                            $('input:hidden[name="__RequestVerificationToken"]').val());
-                                    },
-                                    data: { dmg: dmg },
-                                    url: "Location?handler=UpdateHp",
-                                    success: function (data) {
-                                        if (data < 1) {
-                                            location.reload();
-                                        }
-                                        $("#hp").text("HP: " + data);
-                                    },
-                                    error: function (error) {
-                                        console.error("Error updating HP:", error);
-                                    }
-                                });
-                            }, 1000);
-                        }
+                        setTimeout(function () {
+                            if (data > 0) {
+                                let rand = Math.random();
+                                let chance = @Model.GS.EquippedShield.BlockChance;
+
+                                if (rand < chance / 100) {
+                                    setTimeout(function () {
+                                        $.ajax({
+                                            type: "POST",
+                                            beforeSend: function (xhr) {
+                                                xhr.setRequestHeader("XSRF-TOKEN",
+                                                    $('input:hidden[name="__RequestVerificationToken"]').val());
+                                            },
+                                            data: { dmg: dmg },
+                                            url: "Location?handler=UpdateHp",
+                                            success: function (data) {
+                                                if (data < 1) {
+                                                    location.reload();
+                                                }
+                                                $("#hp").text("HP: " + data);
+                                            },
+                                            error: function (error) {
+                                                console.error("Error updating HP:", error);
+                                            }
+                                        });
+                                    }, 1000);
+                                }
+                                else {
+                                    showBlockIndicator();
+                                }
+                            }
+                        }, 500);
                     },
                     error: function (error) {
                         console.error("Error updating HP:", error);
@@ -157,6 +184,67 @@
                     hit.style.display = "none";
                 }, 500);
             }
+
+            function showBlockIndicator() {
+                const block = document.getElementById("block-indicator");
+
+                block.style.display = "block";
+
+                setTimeout(function () {
+                    block.style.display = "none";
+                }, 500);
+            }
+
+            function HideItem() {
+                let item = document.getElementById("item")
+                item.style.display = "none";
+                document.getElementById("div").style.display = "none";
+            }
+            $("#item").on("click", function () {
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    url: "Location?handler=AddItem",
+                    success: function (data) {
+                        HideItem();
+                        @foreach (var c in Model.Connections)
+                        {
+                            <text>
+                                                    checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
+                            </text>
+                        }
+                        if (document.getElementById("inv-slot-1").childNodes.length === 0) {
+                            let img = document.createElement("img")
+                            img.src = data;
+                            document.getElementById("inv-slot-1").appendChild(img);
+                        }
+                        else if (document.getElementById("inv-slot-2").childNodes.length === 0) {
+                            console.log("test");
+                            let img = document.createElement("img")
+                            img.src = data;
+                            document.getElementById("inv-slot-2").appendChild(img);
+                        }
+                        else if (document.getElementById("inv-slot-3").childNodes.length === 0) {
+                            console.log("test");
+                            let img = document.createElement("img")
+                            img.src = data;
+                            document.getElementById("inv-slot-3").appendChild(img);
+                        }
+                        else if (document.getElementById("inv-slot-4").childNodes.length === 0) {
+                            console.log("test");
+                            let img = document.createElement("img")
+                            img.src = data;
+                            document.getElementById("inv-slot-4").appendChild(img);
+                        }
+                    },
+                    error: function (error) {
+                        console.error("Error updating HP:", error);
+                    }
+                });
+            });
         });
     </script>
     <ul class="connections">

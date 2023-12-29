@@ -2,7 +2,12 @@
 {
     public class Inventory
     {
-        public List<Item> slots { get; set; } = new List<Item> { };
+        public Inventory()
+        {
+            slots = new List<Item> { };
+        }
+
+        public List<Item> slots { get; set; }
 
         public void AddItem(Item item)
         {

@@ -15,10 +15,10 @@ namespace ProjectGamebook.Models
 
         public virtual string ReturnItem()
         {
-            return ("<div class=\"item\">" +
+            return ("<div id=\"item\">" +
             "<p>" + Name + "</p>" +
-                "</div>" +
-                "<img src=\"" + ImageUrl + "\" width=200px >");
+                "<img src=\"" + ImageUrl + "\" width=200px >" +
+                "</div>");
         }
     }
 }

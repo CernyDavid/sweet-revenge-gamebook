@@ -13,12 +13,12 @@
 
         public override string ReturnItem()
         {
-            return ("<div class=\"item\">" +
+            return ("<div id=\"item\">" +
                 "<p>" + Name + "</p>" +
                 "<p>" + "Damage: " + Damage + "</p>" +
                 "<p>" + "Critical Chance: " + CriticalChance + "</p>" +
-                "</div>" +
-                "<img src=\"" + ImageUrl + "\" width=200px >");
+                "<img src=\"" + ImageUrl + "\" width=200px >" +
+                "</div>");
         }
     }
 }

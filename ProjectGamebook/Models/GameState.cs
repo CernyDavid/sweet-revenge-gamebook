@@ -8,6 +8,6 @@
         public int DL { get; set; }
         public Weapon EquippedWeapon { get; set; }
         public Shield EquippedShield { get; set; }
-        public Inventory inventory { get; set; } = new Inventory();
+        public Inventory Inventory { get; set; } = new Inventory();
     }
 }

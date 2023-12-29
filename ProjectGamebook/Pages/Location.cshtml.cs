@@ -18,9 +18,10 @@ namespace ProjectGamebook.Pages
         public string jsonString;
 
         public Weapon Weapon { get; set; } = new Weapon("Fist", null, 13, 50);
+        public Shield Shield { get; set; } = new Shield("Your mom's fat ass", null, 50);
 
-        public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 50, 25, 0, "/imgs/bachi.png") } };
-        public static Dictionary<int, Item> Items = new Dictionary<int, Item> { {1, new Weapon("Sword", "/imgs/bsword.png", 20, 50) } };
+        public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 10, 25, 0, "/imgs/bachi.png") } };
+        public static Dictionary<int, Item> Items = new Dictionary<int, Item> { {1, new Weapon("Sword", "/imgs/bsword.png", 20, 50) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50) } };
 
         public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
@@ -44,10 +45,11 @@ namespace ProjectGamebook.Pages
 
         public IActionResult OnGet(int id)
         {
-            Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 50, 25, 0, "/imgs/bachi.png") } };
+            Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 10, 25, 0, "/imgs/bachi.png") } };
 
             if (GS.PreviousLocation == 666666)
             {
+                Items = new Dictionary<int, Item> { { 1, new Weapon("Sword", "/imgs/bsword.png", 20, 50) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50) } };
                 GS.HP = 100;
                 _ss.Save(KEY, GS);
                 _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
@@ -71,6 +73,7 @@ namespace ProjectGamebook.Pages
                 GS.Location = id;
                 GS.PreviousLocation = id;
                 GS.EquippedWeapon = Weapon;
+                GS.EquippedShield = Shield;
                 _ss.Save(KEY, GS);
                 Console.WriteLine(GS.PreviousLocation);
                 Location = _lp.GetLocation(id);
@@ -84,6 +87,11 @@ namespace ProjectGamebook.Pages
                 {
                     Location.Item = Items[id];
                     Location.Content = Items[id].ReturnItem();
+                    Console.WriteLine(Location.Item.Name);
+                }
+                for (int i = 0; i < GS.Inventory.slots.Count; i++)
+                {
+                    Console.WriteLine(GS.Inventory.slots[i].ImageUrl);
                 }
                 jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Location.Texts);
                 Connections = _lp.GetConnectionsFrom(id);
@@ -110,6 +118,18 @@ namespace ProjectGamebook.Pages
             }
 
             return BadRequest("Monster not found");
+        }
+
+        public IActionResult OnPostAddItem()
+        {
+            Location = _lp.GetLocation(GS.Location);
+
+            GS.Inventory.AddItem(Location.Item);
+            _ss.Save(KEY, GS);
+
+            Items.Remove(GS.Location);
+            Location.Content = null;
+            return new JsonResult(Location.Item.ImageUrl);
         }
     }
 }

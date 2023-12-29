@@ -26,3 +26,35 @@
     top: 100px;
     left: 80px;
 }
+
+.inventory-icon {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: orangered;
+}
+.inventory__item {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: antiquewhite;
+}
+
+.inventory__main {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 5px;
+}
+
+.inventory__item img {
+    width: 40px;
+    height: 40px;
+}
+
+.block-indicator {
+    color: lime;
+    font-size: 50px;
+    display: none;
+}
