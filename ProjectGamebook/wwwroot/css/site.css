@@ -58,3 +58,13 @@
     font-size: 50px;
     display: none;
 }
+.fail-indicator {
+    color: deepskyblue;
+    font-size: 80px;
+    display: none;
+}
+.crit-indicator {
+    color: crimson;
+    font-size: 50px;
+    display: none;
+}

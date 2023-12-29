@@ -16,11 +16,13 @@
             </script>
             <div id="buttons" class="button-container">
                 <button id="kill">Hit</button>
-                <button>Attempt critical</button>
+                <button id="critical">Attempt critical</button>
             </div>
             <div class="fight-indicators-container">
                 <p id="hit-indicator" class="hit-indicator">Hit</p>
                 <p id="block-indicator" class="block-indicator">You blocked</p>
+                <p id="fail-indicator" class="fail-indicator">Fail</p>
+                <p id="crit-indicator" class="crit-indicator">Critical hit</p>
             </div>
         </div>
     </div>
@@ -185,6 +187,26 @@
                 }, 500);
             }
 
+            function showCritIndicator() {
+                const crit = document.getElementById("crit-indicator");
+
+                crit.style.display = "block";
+
+                setTimeout(function () {
+                    crit.style.display = "none";
+                }, 500);
+            }
+
+            function showFailIndicator() {
+                const fail = document.getElementById("fail-indicator");
+
+                fail.style.display = "block";
+
+                setTimeout(function () {
+                    fail.style.display = "none";
+                }, 500);
+            }
+
             function showBlockIndicator() {
                 const block = document.getElementById("block-indicator");
 
@@ -244,6 +266,113 @@
                         console.error("Error updating HP:", error);
                     }
                 });
+            });
+
+            $("#critical").on("click", function () {
+                let dmg = 0;
+                @if (Model.Location.Monster != null)
+                {
+                    <text>
+                                dmg = @Model.Location.Monster.Damage;
+                    </text>
+                };
+                let hitMonsterDmg = @Model.GS.EquippedWeapon.Damage;
+                hitMonsterDmg = hitMonsterDmg * 2;
+
+                let rand = Math.random();
+                let chance = @Model.GS.EquippedWeapon.CriticalChance;
+
+                if (rand < chance / 100) {
+                    $.ajax({
+                        type: "POST",
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("XSRF-TOKEN",
+                                $('input:hidden[name="__RequestVerificationToken"]').val());
+                        },
+                        data: {
+                            dmg: hitMonsterDmg,
+                            id: @Model.GS.Location
+                                    },
+                        url: "Location?handler=HitMonster",
+                        success: function (data) {
+                            $("#monsterHP").text(data);
+                            if (data < 1) {
+                                document.getElementById("div").style.display = "none";
+                            @Model.Location.IsFight = true;
+                                                }
+                            @foreach (var c in Model.Connections)
+                            {
+                                <text>
+                                                        checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
+                                </text>
+                            }
+
+                            showCritIndicator();
+
+                            setTimeout(function () {
+                                if (data > 0) {
+                                    let rand = Math.random();
+                                    let chance = @Model.GS.EquippedShield.BlockChance;
+
+                                    if (rand < chance / 100) {
+                                        setTimeout(function () {
+                                            $.ajax({
+                                                type: "POST",
+                                                beforeSend: function (xhr) {
+                                                    xhr.setRequestHeader("XSRF-TOKEN",
+                                                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                                                },
+                                                data: { dmg: dmg },
+                                                url: "Location?handler=UpdateHp",
+                                                success: function (data) {
+                                                    if (data < 1) {
+                                                        location.reload();
+                                                    }
+                                                    $("#hp").text("HP: " + data);
+                                                },
+                                                error: function (error) {
+                                                    console.error("Error updating HP:", error);
+                                                }
+                                            });
+                                        }, 1000);
+                                    }
+                                    else {
+                                        showBlockIndicator();
+                                    }
+                                }
+                            }, 500);
+                        },
+                        error: function (error) {
+                            console.error("Error updating HP:", error);
+                        }
+                    });
+                }
+                else {
+                    showFailIndicator();
+
+                    setTimeout(function () {
+                        setTimeout(function () {
+                            $.ajax({
+                                type: "POST",
+                                beforeSend: function (xhr) {
+                                    xhr.setRequestHeader("XSRF-TOKEN",
+                                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                                },
+                                data: { dmg: dmg },
+                                url: "Location?handler=UpdateHp",
+                                success: function (data) {
+                                    if (data < 1) {
+                                        location.reload();
+                                    }
+                                    $("#hp").text("HP: " + data);
+                                },
+                                error: function (error) {
+                                    console.error("Error updating HP:", error);
+                                }
+                            });
+                        }, 1000);
+                    }, 500);
+                }
             });
         });
     </script>
