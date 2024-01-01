@@ -57,6 +57,7 @@
     <div>
         <h2>Player stats</h2>
         <p id="hp">HP: @Model.GS.HP</p>
+        <p id="dl">DL: @Model.GS.DL</p>
     </div>
     <div>
         <img src="@Model.GS.EquippedShield.EquippedImageUrl" />
@@ -124,14 +125,17 @@
         jQuery(document).ready(function () {
             $("#kill").on("click", function () {
                 let dmg = 0;
+                let dlIncrease = 0;
                 @if (Model.Location.Monster != null)
                 {
                     <text>
                                 dmg = @Model.Location.Monster.Damage;
+                                dlIncrease = @Model.Location.Monster.DLIncrease;
                     </text>
                 };
                 let hitMonsterDmg = @Model.GS.EquippedWeapon.Damage;
                 console.log(dmg);
+                console.log(dlIncrease);
 
                 $.ajax({
                     type: "POST",
@@ -172,13 +176,16 @@
                                                 xhr.setRequestHeader("XSRF-TOKEN",
                                                     $('input:hidden[name="__RequestVerificationToken"]').val());
                                             },
-                                            data: { dmg: dmg },
+                                            data: { dmg: dmg,
+                                                    dlIncrease: dlIncrease
+                                            },
                                             url: "Location?handler=UpdateHp",
                                             success: function (data) {
-                                                if (data < 1) {
+                                                if (data[0] < 1 || data[1] > 99) {
                                                     location.reload();
                                                 }
-                                                $("#hp").text("HP: " + data);
+                                                $("#hp").text("HP: " + data[0]);
+                                                $("#dl").text("DL: " + data[1]);
                                             },
                                             error: function (error) {
                                                 console.error("Error updating HP:", error);
@@ -294,10 +301,12 @@
 
             $("#critical").on("click", function () {
                 let dmg = 0;
+                let dlIncrease = 0;
                 @if (Model.Location.Monster != null)
                 {
                     <text>
                                 dmg = @Model.Location.Monster.Damage;
+                                dlIncrease = @Model.Location.Monster.DLIncrease;
                     </text>
                 };
                 let hitMonsterDmg = @Model.GS.EquippedWeapon.Damage;
@@ -340,24 +349,28 @@
 
                                     if (rand < chance / 100) {
                                         setTimeout(function () {
-                                            $.ajax({
-                                                type: "POST",
-                                                beforeSend: function (xhr) {
-                                                    xhr.setRequestHeader("XSRF-TOKEN",
-                                                        $('input:hidden[name="__RequestVerificationToken"]').val());
-                                                },
-                                                data: { dmg: dmg },
-                                                url: "Location?handler=UpdateHp",
-                                                success: function (data) {
-                                                    if (data < 1) {
-                                                        location.reload();
+                                                $.ajax({
+                                                    type: "POST",
+                                                    beforeSend: function (xhr) {
+                                                        xhr.setRequestHeader("XSRF-TOKEN",
+                                                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                                                    },
+                                                    data: {
+                                                        dmg: dmg,
+                                                        dlIncrease: dlIncrease
+                                                    },
+                                                    url: "Location?handler=UpdateHp",
+                                                    success: function (data) {
+                                                    if (data[0] < 1 || data[1] > 99) {
+                                                            location.reload();
+                                                        }
+                                                        $("#hp").text("HP: " + data[0]);
+                                                        $("#dl").text("DL: " + data[1]);
+                                                    },
+                                                    error: function (error) {
+                                                        console.error("Error updating HP:", error);
                                                     }
-                                                    $("#hp").text("HP: " + data);
-                                                },
-                                                error: function (error) {
-                                                    console.error("Error updating HP: ", error);
-                                                }
-                                            });
+                                                });
                                         }, 1000);
                                     }
                                     else {
@@ -382,16 +395,20 @@
                                     xhr.setRequestHeader("XSRF-TOKEN",
                                         $('input:hidden[name="__RequestVerificationToken"]').val());
                                 },
-                                data: { dmg: dmg },
+                                data: {
+                                    dmg: dmg,
+                                    dlIncrease: dlIncrease
+                                },
                                 url: "Location?handler=UpdateHp",
                                 success: function (data) {
-                                    if (data < 1) {
+                                    if (data[0] < 1 || data[1] > 99) {
                                         location.reload();
                                     }
-                                    $("#hp").text("HP: " + data);
+                                    $("#hp").text("HP: " + data[0]);
+                                    $("#dl").text("DL: " + data[1]);
                                 },
                                 error: function (error) {
-                                    console.error("Error updating HP: ", error);
+                                    console.error("Error updating HP:", error);
                                 }
                             });
                         }, 1000);

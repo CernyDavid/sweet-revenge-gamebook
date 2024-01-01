@@ -19,7 +19,7 @@ namespace ProjectGamebook.Pages
         public string jsonString;
 
         public Weapon StartingWeapon { get; set; } = new Weapon("Fist", null, 13, 50, null, 0);
-        public Shield StartingShield { get; set; } = new Shield("Your mom's fat ass", null, 50, null, 0);
+        public Shield StartingShield { get; set; } = new Shield("Your mom's fat ass", null, 25, null, 0);
 
         public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster>();
         public static Dictionary<int, Item> Items = new Dictionary<int, Item>();
@@ -36,12 +36,14 @@ namespace ProjectGamebook.Pages
             _ss.Save(KEY, GS);
         }
 
-        public IActionResult OnPostUpdateHp(int dmg)
+        public IActionResult OnPostUpdateHp(int dmg, int dlIncrease)
         {
             GS.HP -= dmg;
+            GS.DL += dlIncrease;
             _ss.Save(KEY, GS);
-
-            return new JsonResult(GS.HP);
+            Console.WriteLine(GS.DL);
+            int[] results = { GS.HP, GS.DL };
+            return new JsonResult(results);
         }
 
         public IActionResult OnGet(int id)
@@ -50,8 +52,9 @@ namespace ProjectGamebook.Pages
             if (GS.PreviousLocation == 666666)
             {
                 Items = new Dictionary<int, Item> { { 1, new Weapon("Sword", "/imgs/bsword.png", 20, 50, "/imgs/bsword.png", 1) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50, "/imgs/bachi.png", 4) } };
-                Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 20, 25, 0, "/imgs/bachi.png") } };
+                Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 20, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 20, 25, 25, "/imgs/bachi.png") } };
                 GS.HP = 100;
+                GS.DL = 0;
                 GS.Inventory = new Inventory();
                 GS.EquippedWeapon = StartingWeapon;
                 GS.EquippedShield = StartingShield;
