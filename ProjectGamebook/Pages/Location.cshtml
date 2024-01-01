@@ -35,11 +35,32 @@
             <li id="inv-slot-3" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 2) {<img src="@Model.GS.Inventory.slots[2].ImageUrl" />}</li>
             <li id="inv-slot-4" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 3) {<img src="@Model.GS.Inventory.slots[3].ImageUrl" />}</li>
         </ul>
-
+        <ul class="inventory__item-options">
+            <li id="item-options-1" class="item-options">
+                <button id="use">Use</button>
+                <button id="drop">Drop</button>
+            </li>
+            <li id="item-options-2" class="item-options">
+                <button id="use">Use</button>
+                <button id="drop">Drop</button>
+            </li>
+            <li id="item-options-3" class="item-options">
+                <button id="use">Use</button>
+                <button id="drop">Drop</button>
+            </li>
+            <li id="item-options-4" class="item-options">
+                <button id="use">Use</button>
+                <button id="drop">Drop</button>
+            </li>
+        </ul>
     </div>
     <div>
         <h2>Player stats</h2>
         <p id="hp">HP: @Model.GS.HP</p>
+    </div>
+    <div>
+        <img src="@Model.GS.EquippedShield.EquippedImageUrl" />
+        <img src="@Model.GS.EquippedWeapon.EquippedImageUrl" />
     </div>
     <p id="locationText"></p>
     <button class="btn btnNext" id="btnNext">Next</button>
@@ -231,39 +252,42 @@
                     },
                     url: "Location?handler=AddItem",
                     success: function (data) {
-                        HideItem();
-                        @foreach (var c in Model.Connections)
-                        {
-                            <text>
-                                                    checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
-                            </text>
-                        }
                         if (document.getElementById("inv-slot-1").childNodes.length === 0) {
                             let img = document.createElement("img")
                             img.src = data;
                             document.getElementById("inv-slot-1").appendChild(img);
+                            HideItem();
                         }
                         else if (document.getElementById("inv-slot-2").childNodes.length === 0) {
                             console.log("test");
                             let img = document.createElement("img")
                             img.src = data;
                             document.getElementById("inv-slot-2").appendChild(img);
+                            HideItem();
                         }
                         else if (document.getElementById("inv-slot-3").childNodes.length === 0) {
                             console.log("test");
                             let img = document.createElement("img")
                             img.src = data;
                             document.getElementById("inv-slot-3").appendChild(img);
+                            HideItem();
                         }
                         else if (document.getElementById("inv-slot-4").childNodes.length === 0) {
                             console.log("test");
                             let img = document.createElement("img")
                             img.src = data;
                             document.getElementById("inv-slot-4").appendChild(img);
+                            HideItem();
+                        }
+                                                @foreach (var c in Model.Connections)
+                        {
+                            <text>
+                                                    checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
+                            </text>
                         }
                     },
                     error: function (error) {
-                        console.error("Error updating HP:", error);
+                        console.error("Error adding item: ", error);
                     }
                 });
             });
@@ -331,7 +355,7 @@
                                                     $("#hp").text("HP: " + data);
                                                 },
                                                 error: function (error) {
-                                                    console.error("Error updating HP:", error);
+                                                    console.error("Error updating HP: ", error);
                                                 }
                                             });
                                         }, 1000);
@@ -343,7 +367,7 @@
                             }, 500);
                         },
                         error: function (error) {
-                            console.error("Error updating HP:", error);
+                            console.error("Error hitting monster: ", error);
                         }
                     });
                 }
@@ -367,13 +391,53 @@
                                     $("#hp").text("HP: " + data);
                                 },
                                 error: function (error) {
-                                    console.error("Error updating HP:", error);
+                                    console.error("Error updating HP: ", error);
                                 }
                             });
                         }, 1000);
                     }, 500);
                 }
             });
+
+            var slots = document.querySelectorAll(".inventory__item");
+
+            slots.forEach(function (slot, index) {
+                slot.addEventListener("click", function () {
+                    var itemOptions = document.getElementById("item-options-" + (index + 1));
+                    if (itemOptions) {
+                        if (document.getElementById("inv-slot-" + (index + 1)).childNodes.length !== 0) {
+                            itemOptions.style.display = itemOptions.style.display === "flex" ? "none" : "flex";
+                        }
+                    }
+                });
+            });
+
+            var useButtons = document.querySelectorAll(".item-options #use");
+            useButtons.forEach(function (useButton, index) {
+                useButton.addEventListener("click", function () {
+                    useItem(index);
+                });
+            });
+
+            function useItem(itemIndex) {
+                console.log(itemIndex);
+
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: { i: itemIndex },
+                    url: "Location?handler=UseItem",
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        console.error("Error using item: ", error);
+                    }
+                });
+            }
         });
     </script>
     <ul class="connections">

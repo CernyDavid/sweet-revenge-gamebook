@@ -4,7 +4,7 @@
     {
         public Inventory()
         {
-            slots = new List<Item> { };
+            slots = new List<Item>();
         }
 
         public List<Item> slots { get; set; }
@@ -15,8 +15,8 @@
             {
                 slots.Add(item);
             }
-
         }
+
         public void RemoveItem(int i)
         {
             if (i >= 0 && i < slots.Count)

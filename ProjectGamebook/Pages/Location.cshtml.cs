@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Diagnostics;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 using ProjectGamebook.Models;
 using ProjectGamebook.Services;
 
@@ -17,11 +18,11 @@ namespace ProjectGamebook.Pages
         public GameState GS { get; set; }
         public string jsonString;
 
-        public Weapon Weapon { get; set; } = new Weapon("Fist", null, 13, 50);
-        public Shield Shield { get; set; } = new Shield("Your mom's fat ass", null, 50);
+        public Weapon StartingWeapon { get; set; } = new Weapon("Fist", null, 13, 50, null, 0);
+        public Shield StartingShield { get; set; } = new Shield("Your mom's fat ass", null, 50, null, 0);
 
-        public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 10, 25, 0, "/imgs/bachi.png") } };
-        public static Dictionary<int, Item> Items = new Dictionary<int, Item> { {1, new Weapon("Sword", "/imgs/bsword.png", 20, 50) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50) } };
+        public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster>();
+        public static Dictionary<int, Item> Items = new Dictionary<int, Item>();
 
         public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
@@ -45,35 +46,33 @@ namespace ProjectGamebook.Pages
 
         public IActionResult OnGet(int id)
         {
-            Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 10, 25, 0, "/imgs/bachi.png") } };
 
             if (GS.PreviousLocation == 666666)
             {
-                Items = new Dictionary<int, Item> { { 1, new Weapon("Sword", "/imgs/bsword.png", 20, 50) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50) } };
+                Items = new Dictionary<int, Item> { { 1, new Weapon("Sword", "/imgs/bsword.png", 20, 50, "/imgs/bsword.png", 1) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50, "/imgs/bachi.png", 4) } };
+                Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 0, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 20, 25, 0, "/imgs/bachi.png") } };
                 GS.HP = 100;
+                GS.Inventory = new Inventory();
+                GS.EquippedWeapon = StartingWeapon;
+                GS.EquippedShield = StartingShield;
                 _ss.Save(KEY, GS);
                 _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
             }
             if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
-            else if (GS.PreviousLocation != GS.Location)
+            try
             {
-                try
-                {
-                    _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
-                }
-                catch (InvalidNavigationException ex)
-                {
-                    TempData["ErrorMessage"] = ex.Message;
-                    return RedirectToPage("/Error");
-                }
+                _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
+            }
+            catch (InvalidNavigationException ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToPage("/Error");
             }
             try
             {
                 GS = _ss.LoadOrCreate(KEY);
                 GS.Location = id;
                 GS.PreviousLocation = id;
-                GS.EquippedWeapon = Weapon;
-                GS.EquippedShield = Shield;
                 _ss.Save(KEY, GS);
                 Console.WriteLine(GS.PreviousLocation);
                 Location = _lp.GetLocation(id);
@@ -87,7 +86,6 @@ namespace ProjectGamebook.Pages
                 {
                     Location.Item = Items[id];
                     Location.Content = Items[id].ReturnItem();
-                    Console.WriteLine(Location.Item.Name);
                 }
                 for (int i = 0; i < GS.Inventory.slots.Count; i++)
                 {
@@ -130,6 +128,20 @@ namespace ProjectGamebook.Pages
             Items.Remove(GS.Location);
             Location.Content = null;
             return new JsonResult(Location.Item.ImageUrl);
+        }
+
+        public IActionResult OnPostUseItem(int i)
+        {
+            /*if (GS.Inventory.slots[i] is Weapon)
+            {
+                GS.EquippedWeapon = (Weapon)GS.Inventory.slots[i];
+                Console.WriteLine(GS.EquippedWeapon.EquippedImageUrl);
+                GS.Inventory.RemoveItem(i);
+                _ss.Save(KEY, GS);
+
+                return new JsonResult(GS.EquippedWeapon.EquippedImageUrl);
+            }*/
+            return new JsonResult("not successful");
         }
     }
 }

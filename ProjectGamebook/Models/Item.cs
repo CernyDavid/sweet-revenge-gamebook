@@ -4,12 +4,14 @@ namespace ProjectGamebook.Models
 {
     public class Item
     {
-        public Item(string name, string imageUrl)
+        public Item(string name, string imageUrl, int id)
         {
             Name = name;
             ImageUrl = imageUrl;
+            Id = id;
         }
 
+        public int Id { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
 

@@ -44,7 +44,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    display: none;
     gap: 5px;
 }
 
@@ -67,4 +67,15 @@
     color: crimson;
     font-size: 50px;
     display: none;
+}
+.inventory__item-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 5px;
+}
+.item-options {
+    display: none;
+    flex-direction: column;
 }

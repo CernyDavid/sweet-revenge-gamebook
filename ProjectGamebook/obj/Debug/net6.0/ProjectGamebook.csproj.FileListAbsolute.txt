@@ -24,7 +24,6 @@ D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\refint\
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.pdb
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.genruntimeconfig.cache
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ref\ProjectGamebook.dll
-D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Utf8Json.dll
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.csproj.CopyComplete
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\david.cerny.021\Source\Repos\2023-p3a-web-gamebook-cerny-vrbensky\ProjectGamebook\bin\Debug\net6.0\appsettings.Development.json
@@ -61,3 +60,7 @@ C:\Users\david.cerny.021\Source\Repos\2023-p3a-web-gamebook-cerny-vrbensky\Proje
 C:\Users\david.cerny.021\Source\Repos\2023-p3a-web-gamebook-cerny-vrbensky\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.pdb
 C:\Users\david.cerny.021\Source\Repos\2023-p3a-web-gamebook-cerny-vrbensky\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.genruntimeconfig.cache
 C:\Users\david.cerny.021\Source\Repos\2023-p3a-web-gamebook-cerny-vrbensky\ProjectGamebook\obj\Debug\net6.0\ref\ProjectGamebook.dll
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Utf8Json.dll
