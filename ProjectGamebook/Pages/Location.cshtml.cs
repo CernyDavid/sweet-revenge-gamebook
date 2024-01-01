@@ -22,7 +22,8 @@ namespace ProjectGamebook.Pages
         public Shield StartingShield { get; set; } = new Shield("Your mom's fat ass", null, 25, null, 0);
 
         public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster>();
-        public static Dictionary<int, Item> Items = new Dictionary<int, Item>();
+        public static Dictionary<int, Weapon> Weapons = new Dictionary<int, Weapon>();
+        public static Dictionary<int, Shield> Shields = new Dictionary<int, Shield>();
 
         public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
@@ -51,8 +52,9 @@ namespace ProjectGamebook.Pages
 
             if (GS.PreviousLocation == 666666)
             {
-                Items = new Dictionary<int, Item> { { 1, new Weapon("Sword", "/imgs/bsword.png", 20, 50, "/imgs/bsword.png", 1) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50, "/imgs/bachi.png", 4) } };
+                Weapons = new Dictionary<int, Weapon> { { 1, new Weapon("Sword", "/imgs/bsword.png", 20, 50, "/imgs/bsword.png", 1) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50, "/imgs/bachi.png", 4) } };
                 Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 20, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 20, 25, 25, "/imgs/bachi.png") } };
+                Shields = new Dictionary<int, Shield> { {5, new Shield("Bachi Shield", "/imgs/bachi.png", 50, "/imgs/bachi.png", 5) } };
                 GS.HP = 100;
                 GS.DL = 0;
                 GS.Inventory = new Inventory();
@@ -85,14 +87,20 @@ namespace ProjectGamebook.Pages
                     Console.WriteLine(Location.Monster.Name + " " + Location.Monster.HP);
                     Location.Content = Monsters[id].ReturnMonster();
                 }
-                if (Items.ContainsKey(id))
+                if (Weapons.ContainsKey(id))
                 {
-                    Location.Item = Items[id];
-                    Location.Content = Items[id].ReturnItem();
+                    Location.Item = Weapons[id];
+                    Location.Content = Weapons[id].ReturnItem();
                 }
-                for (int i = 0; i < GS.Inventory.slots.Count; i++)
+                if (Shields.ContainsKey(id))
                 {
-                    Console.WriteLine(GS.Inventory.slots[i].ImageUrl);
+                    Location.Item = Shields[id];
+                    Location.Content = Shields[id].ReturnItem();
+                }
+                for (int i = 0; i < GS.Inventory.Ids.Count; i++)
+                {
+                    Console.WriteLine(GS.Inventory.Ids[i] + "id");
+                    Console.WriteLine(GS.Inventory.Items[i] + "item");
                 }
                 jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Location.Texts);
                 Connections = _lp.GetConnectionsFrom(id);
@@ -125,25 +133,35 @@ namespace ProjectGamebook.Pages
         {
             Location = _lp.GetLocation(GS.Location);
 
+            GS.Inventory.AddId(Location.Item.Id);
             GS.Inventory.AddItem(Location.Item);
             _ss.Save(KEY, GS);
 
-            Items.Remove(GS.Location);
-            Location.Content = null;
             return new JsonResult(Location.Item.ImageUrl);
         }
 
         public IActionResult OnPostUseItem(int i)
         {
-            /*if (GS.Inventory.slots[i] is Weapon)
+            if (Weapons.ContainsKey(GS.Inventory.Ids[i]))
             {
-                GS.EquippedWeapon = (Weapon)GS.Inventory.slots[i];
-                Console.WriteLine(GS.EquippedWeapon.EquippedImageUrl);
+                GS.EquippedWeapon = Weapons[GS.Inventory.Ids[i]];
                 GS.Inventory.RemoveItem(i);
+                GS.Inventory.RemoveId(i);
                 _ss.Save(KEY, GS);
+                string[] results = { "weapon", GS.EquippedWeapon.ImageUrl, GS.EquippedWeapon.Damage.ToString(), GS.EquippedWeapon.CriticalChance.ToString() }; 
 
-                return new JsonResult(GS.EquippedWeapon.EquippedImageUrl);
-            }*/
+                return new JsonResult(results);
+            }
+            if (Shields.ContainsKey(GS.Inventory.Ids[i]))
+            {
+                GS.EquippedShield = Shields[GS.Inventory.Ids[i]];
+                GS.Inventory.RemoveItem(i);
+                GS.Inventory.RemoveId(i);
+                _ss.Save(KEY, GS);
+                string[] results = { "shield", GS.EquippedShield.ImageUrl, GS.EquippedShield.BlockChance.ToString() };
+
+                return new JsonResult(results);
+            }
             return new JsonResult("not successful");
         }
     }

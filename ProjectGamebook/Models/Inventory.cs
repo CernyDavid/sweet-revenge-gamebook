@@ -4,24 +4,42 @@
     {
         public Inventory()
         {
-            slots = new List<Item>();
+            Ids = new List<int>();
+            Items = new List<Item>();
         }
 
-        public List<Item> slots { get; set; }
+        public List<int> Ids { get; set; }
+        public List<Item> Items { get; set; }
+
+        public void AddId(int item)
+        {
+            if (Ids.Count < 4)
+            {
+                Ids.Add(item);
+            }
+        }
+
+        public void RemoveId(int i)
+        {
+            if (i >= 0 && i < Ids.Count)
+            {
+                Ids.RemoveAt(i);
+            }
+        }
 
         public void AddItem(Item item)
         {
-            if (slots.Count < 4)
+            if (Items.Count < 4)
             {
-                slots.Add(item);
+                Items.Add(item);
             }
         }
 
         public void RemoveItem(int i)
         {
-            if (i >= 0 && i < slots.Count)
+            if (i >= 0 && i < Items.Count)
             {
-                slots.RemoveAt(i);
+                Items.RemoveAt(i);
             }
         }
     }

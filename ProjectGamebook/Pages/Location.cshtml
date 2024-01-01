@@ -30,10 +30,10 @@
         <div class="inventory-icon" onclick="toggleInv()">
         </div>
         <ul class="inventory__main">
-            <li id="inv-slot-1" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 0) {<img src="@Model.GS.Inventory.slots[0].ImageUrl" />}</li>
-            <li id="inv-slot-2" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 1) {<img src="@Model.GS.Inventory.slots[1].ImageUrl" />}</li>
-            <li id="inv-slot-3" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 2) {<img src="@Model.GS.Inventory.slots[2].ImageUrl" />}</li>
-            <li id="inv-slot-4" class="inventory__item">@if (Model.GS.Inventory.slots.Count > 3) {<img src="@Model.GS.Inventory.slots[3].ImageUrl" />}</li>
+            <li id="inv-slot-1" class="inventory__item">@if (Model.GS.Inventory.Items.Count > 0) {<img src="@Model.GS.Inventory.Items[0].ImageUrl" />}</li>
+            <li id="inv-slot-2" class="inventory__item">@if (Model.GS.Inventory.Items.Count > 1) {<img src="@Model.GS.Inventory.Items[1].ImageUrl" />}</li>
+            <li id="inv-slot-3" class="inventory__item">@if (Model.GS.Inventory.Items.Count > 2) {<img src="@Model.GS.Inventory.Items[2].ImageUrl" />}</li>
+            <li id="inv-slot-4" class="inventory__item">@if (Model.GS.Inventory.Items.Count > 3) {<img src="@Model.GS.Inventory.Items[3].ImageUrl" />}</li>
         </ul>
         <ul class="inventory__item-options">
             <li id="item-options-1" class="item-options">
@@ -60,8 +60,8 @@
         <p id="dl">DL: @Model.GS.DL</p>
     </div>
     <div>
-        <img src="@Model.GS.EquippedShield.EquippedImageUrl" />
-        <img src="@Model.GS.EquippedWeapon.EquippedImageUrl" />
+        <img class="equipped" id="shield" src="@Model.GS.EquippedShield.EquippedImageUrl" />
+        <img class="equipped" id="weapon" src="@Model.GS.EquippedWeapon.EquippedImageUrl" />
     </div>
     <p id="locationText"></p>
     <button class="btn btnNext" id="btnNext">Next</button>
@@ -123,19 +123,19 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         jQuery(document).ready(function () {
+            let dmg = 0;
+            let dlIncrease = 0;
+            @if (Model.Location.Monster != null)
+            {
+                <text>
+                            dmg = @Model.Location.Monster.Damage;
+                            dlIncrease = @Model.Location.Monster.DLIncrease;
+                </text>
+            };
+            let hitMonsterDmg = @Model.GS.EquippedWeapon.Damage;
+            let critChance = @Model.GS.EquippedWeapon.CriticalChance;
+            let blockChance = @Model.GS.EquippedShield.BlockChance;
             $("#kill").on("click", function () {
-                let dmg = 0;
-                let dlIncrease = 0;
-                @if (Model.Location.Monster != null)
-                {
-                    <text>
-                                dmg = @Model.Location.Monster.Damage;
-                                dlIncrease = @Model.Location.Monster.DLIncrease;
-                    </text>
-                };
-                let hitMonsterDmg = @Model.GS.EquippedWeapon.Damage;
-                console.log(dmg);
-                console.log(dlIncrease);
 
                 $.ajax({
                     type: "POST",
@@ -166,9 +166,8 @@
                         setTimeout(function () {
                             if (data > 0) {
                                 let rand = Math.random();
-                                let chance = @Model.GS.EquippedShield.BlockChance;
 
-                                if (rand < chance / 100) {
+                                if (rand < blockChance / 100) {
                                     setTimeout(function () {
                                         $.ajax({
                                             type: "POST",
@@ -300,22 +299,11 @@
             });
 
             $("#critical").on("click", function () {
-                let dmg = 0;
-                let dlIncrease = 0;
-                @if (Model.Location.Monster != null)
-                {
-                    <text>
-                                dmg = @Model.Location.Monster.Damage;
-                                dlIncrease = @Model.Location.Monster.DLIncrease;
-                    </text>
-                };
-                let hitMonsterDmg = @Model.GS.EquippedWeapon.Damage;
                 hitMonsterDmg = hitMonsterDmg * 2;
 
                 let rand = Math.random();
-                let chance = @Model.GS.EquippedWeapon.CriticalChance;
 
-                if (rand < chance / 100) {
+                if (rand < critChance / 100) {
                     $.ajax({
                         type: "POST",
                         beforeSend: function (xhr) {
@@ -345,9 +333,8 @@
                             setTimeout(function () {
                                 if (data > 0) {
                                     let rand = Math.random();
-                                    let chance = @Model.GS.EquippedShield.BlockChance;
 
-                                    if (rand < chance / 100) {
+                                    if (rand < blockChance / 100) {
                                         setTimeout(function () {
                                                 $.ajax({
                                                     type: "POST",
@@ -420,19 +407,25 @@
 
             slots.forEach(function (slot, index) {
                 slot.addEventListener("click", function () {
-                    var itemOptions = document.getElementById("item-options-" + (index + 1));
-                    if (itemOptions) {
-                        if (document.getElementById("inv-slot-" + (index + 1)).childNodes.length !== 0) {
-                            itemOptions.style.display = itemOptions.style.display === "flex" ? "none" : "flex";
-                        }
+                    if (document.getElementById("inv-slot-" + (index + 1)).childNodes.length !== 0) {
+                        toggleItemOptions(index);
                     }
                 });
             });
+
+            function toggleItemOptions(index) {
+                var itemOptions = document.getElementById("item-options-" + (index + 1));
+                if (itemOptions) {
+                    itemOptions.style.display = itemOptions.style.display === "flex" ? "none" : "flex";
+                }
+            }
 
             var useButtons = document.querySelectorAll(".item-options #use");
             useButtons.forEach(function (useButton, index) {
                 useButton.addEventListener("click", function () {
                     useItem(index);
+                    document.getElementById("inv-slot-" + (index + 1)).removeChild(document.getElementById("inv-slot-" + (index + 1)).children[0]);
+                    toggleItemOptions(index);
                 });
             });
 
@@ -448,7 +441,17 @@
                     data: { i: itemIndex },
                     url: "Location?handler=UseItem",
                     success: function (data) {
-                        console.log(data);
+                        if (data[0] === "weapon") {
+                            document.getElementById("weapon").src = data[1];
+                            hitMonsterDmg = parseInt(data[2]);
+                            console.log("dmg" + hitMonsterDmg);
+                            critChance = parseInt(data[3]);
+                        }
+                        if (data[0] === "shield") {
+                            document.getElementById("shield").src = data[1];
+                            blockChance = parseInt(data[2]);
+                        }
+
                     },
                     error: function (error) {
                         console.error("Error using item: ", error);

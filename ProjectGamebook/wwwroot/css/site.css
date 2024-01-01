@@ -79,3 +79,7 @@
     display: none;
     flex-direction: column;
 }
+.equipped {
+    width: 80px;
+    height: 80px;
+}
