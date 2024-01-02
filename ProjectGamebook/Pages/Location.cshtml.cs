@@ -24,6 +24,8 @@ namespace ProjectGamebook.Pages
         public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster>();
         public static Dictionary<int, Weapon> Weapons = new Dictionary<int, Weapon>();
         public static Dictionary<int, Shield> Shields = new Dictionary<int, Shield>();
+        public static Dictionary<int, SaltyConsumable> Salties = new Dictionary<int, SaltyConsumable>();
+        public static Dictionary<int, SweetConsumable> Sweets = new Dictionary<int, SweetConsumable>();
 
         public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
         {
@@ -55,6 +57,8 @@ namespace ProjectGamebook.Pages
                 Weapons = new Dictionary<int, Weapon> { { 1, new Weapon("Sword", "/imgs/bsword.png", 20, 50, "/imgs/bsword.png", 1) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50, "/imgs/bachi.png", 4) } };
                 Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 20, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 20, 25, 25, "/imgs/bachi.png") } };
                 Shields = new Dictionary<int, Shield> { {5, new Shield("Bachi Shield", "/imgs/bachi.png", 50, "/imgs/bachi.png", 5) } };
+                Salties = new Dictionary<int, SaltyConsumable> { {6, new SaltyConsumable(10, "Salty Bachi", "/imgs/bachi.png", 6) } };
+                Sweets = new Dictionary<int, SweetConsumable> { {7, new SweetConsumable(10, "Sweet Bachi", "/imgs/bachi.jpg", 7) } };
                 GS.HP = 100;
                 GS.DL = 0;
                 GS.Inventory = new Inventory();
@@ -96,6 +100,16 @@ namespace ProjectGamebook.Pages
                 {
                     Location.Item = Shields[id];
                     Location.Content = Shields[id].ReturnItem();
+                }
+                if (Sweets.ContainsKey(id))
+                {
+                    Location.Item = Sweets[id];
+                    Location.Content = Sweets[id].ReturnItem();
+                }
+                if (Salties.ContainsKey(id))
+                {
+                    Location.Item = Salties[id];
+                    Location.Content = Salties[id].ReturnItem();
                 }
                 for (int i = 0; i < GS.Inventory.Ids.Count; i++)
                 {
@@ -162,7 +176,36 @@ namespace ProjectGamebook.Pages
 
                 return new JsonResult(results);
             }
+            if (Sweets.ContainsKey(GS.Inventory.Ids[i]))
+            {
+                GS.HP += Sweets[GS.Inventory.Ids[i]].HPIncrease;
+                GS.DL += Sweets[GS.Inventory.Ids[i]].DLIncrease;
+                GS.Inventory.RemoveItem(i);
+                GS.Inventory.RemoveId(i);
+                _ss.Save(KEY, GS);
+                string[] results = { "sweet", GS.HP.ToString(), GS.DL.ToString() };
+
+                return new JsonResult(results);
+            }
+            if (Salties.ContainsKey(GS.Inventory.Ids[i]))
+            {
+                GS.DL -= Salties[GS.Inventory.Ids[i]].DLDecrease;
+                GS.Inventory.RemoveItem(i);
+                GS.Inventory.RemoveId(i);
+                _ss.Save(KEY, GS);
+                string[] results = { "salty", GS.DL.ToString() };
+
+                return new JsonResult(results);
+            }
             return new JsonResult("not successful");
+        }
+
+        public IActionResult OnPostDropItem(int i)
+        {
+            GS.Inventory.RemoveItem(i);
+            GS.Inventory.RemoveId(i);
+            _ss.Save(KEY, GS);
+            return new JsonResult("Successfully removed");
         }
     }
 }

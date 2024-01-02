@@ -428,6 +428,14 @@
                     toggleItemOptions(index);
                 });
             });
+            var dropButtons = document.querySelectorAll(".item-options #drop");
+            dropButtons.forEach(function (useButton, index) {
+                useButton.addEventListener("click", function () {
+                    dropItem(index);
+                    document.getElementById("inv-slot-" + (index + 1)).removeChild(document.getElementById("inv-slot-" + (index + 1)).children[0]);
+                    toggleItemOptions(index);
+                });
+            });
 
             function useItem(itemIndex) {
                 console.log(itemIndex);
@@ -451,10 +459,36 @@
                             document.getElementById("shield").src = data[1];
                             blockChance = parseInt(data[2]);
                         }
+                        if (data[0] === "sweet") {
+                            $("#hp").text("HP: " + data[1]);
+                            $("#dl").text("DL: " + data[2]);
+                        }
+                        if (data[0] === "salty") {
+                            $("#dl").text("DL: " + data[1]);
+                        }
 
                     },
                     error: function (error) {
                         console.error("Error using item: ", error);
+                    }
+                });
+            }
+            function dropItem(itemIndex) {
+                console.log(itemIndex);
+
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: { i: itemIndex },
+                    url: "Location?handler=DropItem",
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        console.error("Error dropping item: ", error);
                     }
                 });
             }
