@@ -10,16 +10,16 @@ namespace ProjectGamebook.Services
     public class LocationProvider : ILocationProvider
     {
 
-        private static readonly List<Location> _locations = new()
+        private static readonly Dictionary<int, Location> _locations = new()
         {
-            new Location( texts: new List<string> { "This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, isFight: false, imageUrl: "~/imgs/bg1.jpg"),
-            new Location( new List<string> {"Text", "New text" }, "~/imgs/bg2.jpg"),
-            new Location( new List<string> {"First", "Second" }, "~/imgs/bg3.jpg"),
-            new Location( new List<string> { "This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, "~/imgs/bg2.jpg"),
-            new Location( new List<string> { "Text" }, "~/imgs/bg3.jpg"),
-            new Location( new List<string> { "Text" }, "~/imgs/bg3.jpg"),
-            new Location( new List<string> { "Text" }, "~/imgs/bg3.jpg"),
-            new Location( new List<string> { "Text" }, "~/imgs/bg3.jpg")
+            {0, new Location( texts: new List<string> { "This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, isFight: false, imageUrl: "~/imgs/bg1.jpg") },
+            {1, new Location( new List<string> {"Text", "New text" }, "~/imgs/bg2.jpg") },
+            {2, new Location( new List<string> {"First", "Second" }, "~/imgs/bg3.jpg") },
+            {3, new Location( new List<string> { "This is a text", "Here's another text", "Another text, can you believe it?", "Finally the final text" }, "~/imgs/bg2.jpg") },
+            {4, new Location( new List<string> { "Text" }, "~/imgs/bg3.jpg") },
+            {5, new Location( new List<string> { "Text" }, "~/imgs/bg3.jpg") },
+            {6, new Location( new List<string> { "Text" }, "~/imgs/bg3.jpg") },
+            {7, new Location( new List<string> { "Text" }, "~/imgs/bg3.jpg") }
 
         };
 

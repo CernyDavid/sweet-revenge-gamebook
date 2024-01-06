@@ -180,6 +180,10 @@ namespace ProjectGamebook.Pages
             {
                 GS.HP += Sweets[GS.Inventory.Ids[i]].HPIncrease;
                 GS.DL += Sweets[GS.Inventory.Ids[i]].DLIncrease;
+                if (GS.HP > 100)
+                {
+                    GS.HP = 100;
+                }
                 GS.Inventory.RemoveItem(i);
                 GS.Inventory.RemoveId(i);
                 _ss.Save(KEY, GS);
@@ -190,6 +194,10 @@ namespace ProjectGamebook.Pages
             if (Salties.ContainsKey(GS.Inventory.Ids[i]))
             {
                 GS.DL -= Salties[GS.Inventory.Ids[i]].DLDecrease;
+                if (GS.DL < 0)
+                {
+                    GS.DL = 0;
+                }
                 GS.Inventory.RemoveItem(i);
                 GS.Inventory.RemoveId(i);
                 _ss.Save(KEY, GS);

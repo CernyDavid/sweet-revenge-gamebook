@@ -64,3 +64,9 @@ D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Microso
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\Utf8Json.dll
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.sourcelink.json
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\staticwebassets\msbuild.ProjectGamebook.Microsoft.AspNetCore.StaticWebAssets.props
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\staticwebassets\msbuild.build.ProjectGamebook.props
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.ProjectGamebook.props
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.ProjectGamebook.props
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\obj\Debug\net6.0\staticwebassets.pack.json
