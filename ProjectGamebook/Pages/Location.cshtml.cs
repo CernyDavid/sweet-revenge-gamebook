@@ -54,11 +54,12 @@ namespace ProjectGamebook.Pages
 
             if (GS.PreviousLocation == 666666)
             {
-                Weapons = new Dictionary<int, Weapon> { { 1, new Weapon("Sword", "/imgs/bsword.png", 20, 50, "/imgs/bsword.png", 1) }, { 4, new Weapon("Pocket Bachi", "/imgs/bachi.png", 50, 50, "/imgs/bachi.png", 4) } };
-                Monsters = new Dictionary<int, Monster> { { 0, new Monster("ThiccBachi", 30, 25, 20, "/imgs/bachi.jpg") }, { 3, new Monster("Bachi", 20, 25, 25, "/imgs/bachi.png") } };
-                Shields = new Dictionary<int, Shield> { {5, new Shield("Bachi Shield", "/imgs/bachi.png", 50, "/imgs/bachi.png", 5) } };
-                Salties = new Dictionary<int, SaltyConsumable> { {6, new SaltyConsumable(10, "Salty Bachi", "/imgs/bachi.png", 6) } };
-                Sweets = new Dictionary<int, SweetConsumable> { {7, new SweetConsumable(10, "Sweet Bachi", "/imgs/bachi.jpg", 7) } };
+                Weapons = new Dictionary<int, Weapon> { { 2, new Weapon("Baguette Sword", "/imgs/weapons/baguette.png", 20, 50, "/imgs/weapons/baguette_equipped.png", 2) }, { 5, new Weapon("Baguette Sword", "/imgs/weapons/baguette.png", 20, 50, "/imgs/weapons/baguette_equipped.png", 5) }, { 30, new Weapon("Cheesy Dagger with a cheesy name", "/imgs/weapons/cheese.png", 25, 60, "/imgs/weapons/cheese_equipped.png", 30) } };
+                Monsters = new Dictionary<int, Monster> { { 0, new Monster("Donut Infantryman", 20, 10, 10, "/imgs/enemies/donut.png") }, { 3, new Monster("Donut Infantryman", 20, 25, 25, "/imgs/enemies/donut.png") }, { 4, new Monster("Donut Infantryman", 20, 25, 25, "/imgs/enemies/donut.png") },
+                { 9, new Monster("Candy Knight", 40, 25, 25, "/imgs/enemies/candy.png") }, { 10, new Monster("Candy Knight", 40, 25, 25, "/imgs/enemies/candy.png") }};
+                Shields = new Dictionary<int, Shield> { {6, new Shield("Cookie Shield", "/imgs/shields/cookie.png", 50, "/imgs/shields/cookie_equipped.png", 6) } };
+                Salties = new Dictionary<int, SaltyConsumable> { {8, new SaltyConsumable(10, "Slice of half-baked toast", "/imgs/consumables/toast.png", 8) }, { 11, new SaltyConsumable(10, "Slice of half-baked toast", "/imgs/consumables/toast.png", 11) } };
+                Sweets = new Dictionary<int, SweetConsumable> { {18, new SweetConsumable(12, "Sweet Bachi", "/imgs/bachi.jpg", 18) } };
                 GS.HP = 100;
                 GS.DL = 0;
                 GS.Inventory = new Inventory();

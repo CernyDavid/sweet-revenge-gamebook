@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/ChocoBossFight.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hvY29Cb3NzRmlnaHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

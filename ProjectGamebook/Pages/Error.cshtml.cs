@@ -20,6 +20,7 @@ namespace ProjectGamebook.Pages
 
             GS = _ss.LoadOrCreate(KEY);
             GS.PreviousLocation = 666666;
+            GS.Location = 0;
             _ss.Save(KEY, GS);
         }
 

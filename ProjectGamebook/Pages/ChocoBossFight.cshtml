@@ -1,0 +1,287 @@
+﻿@page
+@model ProjectGamebook.Pages.ChocoBossFightModel
+@Html.AntiForgeryToken()
+@{
+}
+
+<div class="location">
+    <div class="location__main bossfight--choco"; background-size: 125%; background-position: center center; background-repeat: no-repeat">
+        <div style="width: 320px; height: 320px; display: block; position: absolute; top: 20px; left: 20px; text-align: center; color: white;" id="div">
+            @Html.Raw(Model.GS.Boss.ReturnMonster())
+            <div id="buttons" class="button-container">
+                <button id="kill">Hit</button>
+                <button id="critical">Attempt critical</button>
+            </div>
+            <div class="fight-indicators-container">
+                <p id="hit-indicator" class="hit-indicator">Hit</p>
+                <p id="block-indicator" class="block-indicator">You blocked</p>
+                <p id="fail-indicator" class="fail-indicator">Fail</p>
+                <p id="crit-indicator" class="crit-indicator">Critical hit</p>
+            </div>
+        </div>
+    </div>
+    <div class="inventory">
+        <div class="inventory-icon">
+    </div>
+    <div>
+        <h2>Player stats</h2>
+        <p id="hp">HP: @Model.GS.HP</p>
+        <p id="dl">DL: @Model.GS.DL</p>
+    </div>
+    <div>
+        <img class="equipped" id="shield" src="@Model.GS.EquippedShield.ImageUrl" />
+        <img class="equipped" id="weapon" src="@Model.GS.EquippedWeapon.ImageUrl" />
+    </div>
+    <p id="locationText"></p>
+    <button class="btn btnNext" id="btnNext">Next</button>
+    <script>
+        let btnNextStyle;
+        let currentIndex = 0;
+        var stringList = @Html.Raw(@Model.jsonString);
+        function checkConnection(targetId, canBeEntered) {
+            let divStyle = window.getComputedStyle(document.getElementById("div")).getPropertyValue("display");
+
+            console.log(divStyle);
+            console.log(btnNextStyle);
+
+            let connectionElement = document.getElementById("connection_" + targetId);
+
+            if (connectionElement) {
+                connectionElement.style.display = (canBeEntered && btnNextStyle === "none" && divStyle === "none") ? "block" : "none";
+                console.log(canBeEntered);
+            }
+        }
+
+        function updateText() {
+            document.getElementById("locationText").innerText = stringList[currentIndex];
+            if (currentIndex === stringList.length - 1) {
+                changeButtonVisibility();
+            }
+        }
+
+        function changeButtonVisibility() {
+            document.getElementById("btnNext").style.display = "none";
+            btnNextStyle = "none";
+            document.getElementById("buttons").style.display = "flex";
+        }
+
+        document.getElementById("btnNext").addEventListener("click", function () {
+            currentIndex = currentIndex + 1;
+            updateText();
+        });
+
+        updateText();
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            let dmg = @Model.GS.Boss.Damage;
+            let dlIncrease = @Model.GS.Boss.DLIncrease;
+
+            let hitMonsterDmg = @Model.GS.EquippedWeapon.Damage;
+            let critChance = @Model.GS.EquippedWeapon.CriticalChance;
+            let blockChance = @Model.GS.EquippedShield.BlockChance;
+            $("#kill").on("click", function () {
+
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: {
+                        dmg: hitMonsterDmg
+                    },
+                    url: "ChocoBossFight?handler=HitMonster",
+                    success: function (data) {
+                        $("#monsterHP").text(data);
+                        if (data < 1) {
+                            location.reload();
+                        }
+
+                        showHitIndicator();
+
+                        setTimeout(function () {
+                            if (data > 0) {
+                                let rand = Math.random();
+
+                                if (rand < blockChance / 100) {
+                                    setTimeout(function () {
+                                        $.ajax({
+                                            type: "POST",
+                                            beforeSend: function (xhr) {
+                                                xhr.setRequestHeader("XSRF-TOKEN",
+                                                    $('input:hidden[name="__RequestVerificationToken"]').val());
+                                            },
+                                            data: {
+                                                dmg: dmg,
+                                                dlIncrease: dlIncrease
+                                            },
+                                                url: "ChocoBossFight?handler=UpdateHp",
+                                            success: function (data) {
+                                                if (data[0] < 1 || data[1] > 99) {
+                                                    location.reload();
+                                                }
+                                                $("#hp").text("HP: " + data[0]);
+                                                $("#dl").text("DL: " + data[1]);
+                                            },
+                                            error: function (error) {
+                                                console.error("Error updating HP:", error);
+                                            }
+                                        });
+                                    }, 1000);
+                                }
+                                else {
+                                    showBlockIndicator();
+                                }
+                            }
+                        }, 500);
+                    },
+                    error: function (error) {
+                        console.error("Error hitting monster:", error);
+                    }
+                });
+            });
+
+            function showHitIndicator() {
+                const hit = document.getElementById("hit-indicator");
+
+                hit.style.display = "block";
+
+                setTimeout(function () {
+                    hit.style.display = "none";
+                }, 500);
+            }
+
+            function showCritIndicator() {
+                const crit = document.getElementById("crit-indicator");
+
+                crit.style.display = "block";
+
+                setTimeout(function () {
+                    crit.style.display = "none";
+                }, 500);
+            }
+
+            function showFailIndicator() {
+                const fail = document.getElementById("fail-indicator");
+
+                fail.style.display = "block";
+
+                setTimeout(function () {
+                    fail.style.display = "none";
+                }, 500);
+            }
+
+            function showBlockIndicator() {
+                const block = document.getElementById("block-indicator");
+
+                block.style.display = "block";
+
+                setTimeout(function () {
+                    block.style.display = "none";
+                }, 500);
+            }
+
+            $("#critical").on("click", function () {
+                hitMonsterDmg = hitMonsterDmg * 2;
+
+                let rand = Math.random();
+
+                if (rand < critChance / 100) {
+                    $.ajax({
+                        type: "POST",
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("XSRF-TOKEN",
+                                $('input:hidden[name="__RequestVerificationToken"]').val());
+                        },
+                        data: {
+                            dmg: hitMonsterDmg,
+                                            },
+                            url: "ChocoBossFight?handler=HitMonster",
+                        success: function (data) {
+                            $("#monsterHP").text(data);
+                            if (data < 1) {
+                                location.reload();
+                            }
+
+
+                            showCritIndicator();
+
+                            setTimeout(function () {
+                                if (data > 0) {
+                                    let rand = Math.random();
+
+                                    if (rand < blockChance / 100) {
+                                        setTimeout(function () {
+                                            $.ajax({
+                                                type: "POST",
+                                                beforeSend: function (xhr) {
+                                                    xhr.setRequestHeader("XSRF-TOKEN",
+                                                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                                                },
+                                                data: {
+                                                    dmg: dmg,
+                                                    dlIncrease: dlIncrease
+                                                },
+                                                    url: "ChocoBossFight?handler=UpdateHp",
+                                                success: function (data) {
+                                                    if (data[0] < 1 || data[1] > 99) {
+                                                        location.reload();
+                                                    }
+                                                    $("#hp").text("HP: " + data[0]);
+                                                    $("#dl").text("DL: " + data[1]);
+                                                },
+                                                error: function (error) {
+                                                    console.error("Error updating HP:", error);
+                                                }
+                                            });
+                                        }, 1000);
+                                    }
+                                    else {
+                                        showBlockIndicator();
+                                    }
+                                }
+                            }, 500);
+                        },
+                        error: function (error) {
+                            console.error("Error hitting monster: ", error);
+                        }
+                    });
+                }
+                else {
+                    showFailIndicator();
+
+                    setTimeout(function () {
+                        setTimeout(function () {
+                            $.ajax({
+                                type: "POST",
+                                beforeSend: function (xhr) {
+                                    xhr.setRequestHeader("XSRF-TOKEN",
+                                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                                },
+                                data: {
+                                    dmg: dmg,
+                                    dlIncrease: dlIncrease
+                                },
+                                    url: "ChocoBossFight?handler=UpdateHp",
+                                success: function (data) {
+                                    if (data[0] < 1 || data[1] > 99) {
+                                        location.reload();
+                                    }
+                                    $("#hp").text("HP: " + data[0]);
+                                    $("#dl").text("DL: " + data[1]);
+                                },
+                                error: function (error) {
+                                    console.error("Error updating HP:", error);
+                                }
+                            });
+                        }, 1000);
+                    }, 500);
+                }
+            });
+
+        });
+    </script>
+</div>

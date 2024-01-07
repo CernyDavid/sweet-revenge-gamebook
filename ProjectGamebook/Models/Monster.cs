@@ -18,7 +18,7 @@
 
         public string ImageUrl { get; set; }
 
-        public string ReturnMonster()
+        public virtual string ReturnMonster()
         {
             return ("<div>" +
                 "<p>" + Name + "</p>" +

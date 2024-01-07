@@ -9,5 +9,6 @@
         public Weapon EquippedWeapon { get; set; }
         public Shield EquippedShield { get; set; }
         public Inventory Inventory { get; set; } = new Inventory();
+        public Boss? Boss { get; set; }
     }
 }
