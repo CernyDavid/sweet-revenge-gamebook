@@ -7,14 +7,18 @@ namespace ProjectGamebook.Pages
 {
     public class GameEndModel : PageModel
     {
-        private const string KEY = "SWEETREVENGE";
+        private string KEY;
         private readonly ISessionStorage<GameState> _ss;
+        private readonly IConfiguration _config;
 
         public GameState GS { get; set; }
 
-        public GameEndModel(ISessionStorage<GameState> ss)
+        public GameEndModel(ISessionStorage<GameState> ss, IConfiguration config)
         {
+            _config = config;
             _ss = ss;
+
+            KEY = _config["SessionKey"];
 
             GS = _ss.LoadOrCreate(KEY);
             GS.PreviousLocation = 666666;

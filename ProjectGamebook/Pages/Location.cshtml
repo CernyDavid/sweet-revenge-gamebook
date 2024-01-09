@@ -362,6 +362,7 @@
                                                         }
                                                         $("#hp").text("HP: " + data[0]);
                                                         $("#dl").text("DL: " + data[1]);
+                                                        hitMonsterDmg = hitMonsterDmg / 2;
                                                     },
                                                     error: function (error) {
                                                         console.error("Error updating HP:", error);
@@ -402,6 +403,7 @@
                                     }
                                     $("#hp").text("HP: " + data[0]);
                                     $("#dl").text("DL: " + data[1]);
+                                    hitMonsterDmg = hitMonsterDmg / 2;
                                 },
                                 error: function (error) {
                                     console.error("Error updating HP:", error);

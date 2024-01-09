@@ -7,9 +7,10 @@ namespace ProjectGamebook.Pages
 {
     public class ChocoBossFightModel : PageModel
     {
-        private const string KEY = "SWEETREVENGE";
+        private string KEY;
         private readonly ISessionStorage<GameState> _ss;
         private readonly ILocationProvider _lp;
+        private readonly IConfiguration _config;
 
         public GameState GS { get; set; }
         public string jsonString;
@@ -18,11 +19,13 @@ namespace ProjectGamebook.Pages
 
         Boss Chocolate { get; set; } = new Boss("The #1 racist jokes victim", "Mr. Brown", 50, 30, 40, "/imgs/enemies/choco.png");
 
-        public ChocoBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp)
+        public ChocoBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
-
+            _config = config;
             _ss = ss;
             _lp = lp;
+
+            KEY = _config["SessionKey"];
 
             GS = _ss.LoadOrCreate(KEY);
             if (GS.Boss == null)

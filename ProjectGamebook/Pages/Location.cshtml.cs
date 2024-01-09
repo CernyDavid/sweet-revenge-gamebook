@@ -9,9 +9,10 @@ namespace ProjectGamebook.Pages
 {
     public class LocationModel : PageModel
     {
-        private const string KEY = "SWEETREVENGE";
+        private string KEY;
         private readonly ISessionStorage<GameState> _ss;
         private readonly ILocationProvider _lp;
+        private readonly IConfiguration _config;
 
         public Location Location { get; set; }
         public List<Connection> Connections { get; set; }
@@ -27,11 +28,13 @@ namespace ProjectGamebook.Pages
         public static Dictionary<int, SaltyConsumable> Salties = new Dictionary<int, SaltyConsumable>();
         public static Dictionary<int, SweetConsumable> Sweets = new Dictionary<int, SweetConsumable>();
 
-        public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp)
+        public LocationModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
-
+            _config = config;
             _ss = ss;
             _lp = lp;
+
+            KEY = _config["SessionKey"];
 
             Location = _lp.GetLocation(0);
 
