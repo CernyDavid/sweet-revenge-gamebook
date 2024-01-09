@@ -62,12 +62,17 @@
             </div>
         </ul>
     </div>
-    <div>
-        <h2>Player stats</h2>
-        <p id="hp">HP: @Model.GS.HP</p>
-        <p id="dl">DL: @Model.GS.DL</p>
+    <div class="stats">
+        <div class="stats__item">
+            <p id="hp">HP: @Model.GS.HP</p>
+            <progress id="hp-prog" max="100" value="@Model.GS.HP"></progress>
+        </div>
+        <div class="stats__item">
+            <p id="dl">DL: @Model.GS.DL</p>
+            <progress id="dl-prog" max="100" value="@Model.GS.DL"></progress>
+        </div>
     </div>
-    <div>
+    <div class="equipped-items">
         <img class="equipped" id="shield" src="@Model.GS.EquippedShield.ImageUrl" />
         <img class="equipped" id="weapon" src="@Model.GS.EquippedWeapon.ImageUrl" />
     </div>
@@ -192,7 +197,9 @@
                                                     location.reload();
                                                 }
                                                 $("#hp").text("HP: " + data[0]);
+                                                document.getElementById("hp-prog").value = data[0];
                                                 $("#dl").text("DL: " + data[1]);
+                                                document.getElementById("dl-prog").value = data[1];
                                             },
                                             error: function (error) {
                                                 console.error("Error updating HP:", error);
@@ -360,8 +367,10 @@
                                                     if (data[0] < 1 || data[1] > 99) {
                                                             location.reload();
                                                         }
-                                                        $("#hp").text("HP: " + data[0]);
-                                                        $("#dl").text("DL: " + data[1]);
+                                                    $("#hp").text("HP: " + data[0]);
+                                                    document.getElementById("hp-prog").value = data[0];
+                                                    $("#dl").text("DL: " + data[1]);
+                                                    document.getElementById("dl-prog").value = data[1];
                                                         hitMonsterDmg = hitMonsterDmg / 2;
                                                     },
                                                     error: function (error) {
@@ -401,8 +410,10 @@
                                     if (data[0] < 1 || data[1] > 99) {
                                         location.reload();
                                     }
-                                    $("#hp").text("HP: " + data[0]);
-                                    $("#dl").text("DL: " + data[1]);
+                                $("#hp").text("HP: " + data[0]);
+                                document.getElementById("hp-prog").value = data[0];
+                                $("#dl").text("DL: " + data[1]);
+                                document.getElementById("dl-prog").value = data[1];
                                     hitMonsterDmg = hitMonsterDmg / 2;
                                 },
                                 error: function (error) {
@@ -472,10 +483,13 @@
                         }
                         if (data[0] === "sweet") {
                             $("#hp").text("HP: " + data[1]);
+                            document.getElementById("hp-prog").value = data[1];
                             $("#dl").text("DL: " + data[2]);
+                            document.getElementById("dl-prog").value = data[2];
                         }
                         if (data[0] === "salty") {
                             $("#dl").text("DL: " + data[1]);
+                            document.getElementById("dl-prog").value = data[1];
                         }
 
                     },
