@@ -66,18 +66,20 @@ namespace ProjectGamebook.Pages
                 GS.EquippedWeapon = StartingWeapon;
                 GS.EquippedShield = StartingShield;
                 _ss.Save(KEY, GS);
-                _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
+            }
+            else
+            {
+                try
+                {
+                    _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
+                }
+                catch (InvalidNavigationException ex)
+                {
+                    TempData["ErrorMessage"] = ex.Message;
+                    return RedirectToPage("/Error");
+                }
             }
             if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
-            try
-            {
-                _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
-            }
-            catch (InvalidNavigationException ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToPage("/Error");
-            }
             try
             {
                 GS = _ss.LoadOrCreate(KEY);

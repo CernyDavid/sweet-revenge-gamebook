@@ -86,3 +86,7 @@
 .bossfight--choco {
     background-image: url(/imgs/bg1.jpg);
 }
+.inventory__item-options-container {
+    width: 50px;
+    height: 100px;
+}

@@ -36,22 +36,30 @@
             <li id="inv-slot-4" class="inventory__item">@if (Model.GS.Inventory.Items.Count > 3) {<img src="@Model.GS.Inventory.Items[3].ImageUrl" />}</li>
         </ul>
         <ul class="inventory__item-options">
-            <li id="item-options-1" class="item-options">
-                <button id="use">Use</button>
-                <button id="drop">Drop</button>
-            </li>
-            <li id="item-options-2" class="item-options">
-                <button id="use">Use</button>
-                <button id="drop">Drop</button>
-            </li>
-            <li id="item-options-3" class="item-options">
-                <button id="use">Use</button>
-                <button id="drop">Drop</button>
-            </li>
-            <li id="item-options-4" class="item-options">
-                <button id="use">Use</button>
-                <button id="drop">Drop</button>
-            </li>
+            <div class="inventory__item-options-container">
+                <li id="item-options-1" class="item-options">
+                    <button id="use">Use</button>
+                    <button id="drop">Drop</button>
+                </li>
+            </div>
+            <div class="inventory__item-options-container">
+                <li id="item-options-2" class="item-options">
+                    <button id="use">Use</button>
+                    <button id="drop">Drop</button>
+                </li>
+            </div>
+            <div class="inventory__item-options-container">
+                <li id="item-options-3" class="item-options">
+                    <button id="use">Use</button>
+                    <button id="drop">Drop</button>
+                </li>
+            </div>
+            <div class="inventory__item-options-container">
+                <li id="item-options-4" class="item-options">
+                    <button id="use">Use</button>
+                    <button id="drop">Drop</button>
+                </li>
+            </div>
         </ul>
     </div>
     <div>
@@ -250,6 +258,7 @@
                 document.getElementById("div").style.display = "none";
             }
             $("#item").on("click", function () {
+
                 $.ajax({
                     type: "POST",
                     beforeSend: function (xhr) {
