@@ -10,12 +10,15 @@
 
         public override string ReturnMonster()
         {
-            return ("<div>" +
+            return (
+                "<div class=\"monster\">" +
+                "<div class=\"monster__tag\">" +
                 "<p>" + Name + "</p>" +
                 "<p>" + Description + "</p>" +
                 "<p id=\"monsterHP\">" + HP + "</p>" +
                 "</div>" +
-                "<img src=\"" + ImageUrl + "\" width=200px >");
+                "<img class=\"monster__img\" src=\"" + ImageUrl + "\">" +
+                "</div>");
         }
     }
 }

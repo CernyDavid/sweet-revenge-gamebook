@@ -16,10 +16,12 @@ namespace ProjectGamebook.Models
 
         public override string ReturnItem()
         {
-            return ("<div id=\"item\">" +
-            "<p>" + Name + "</p>" +
+            return ("<div class=\"item\" id=\"item\">" +
+                "<div class=\"item__tag\">" +
+                "<p>" + Name + "</p>" +
                 "<p>" + "Block Chance: " + BlockChance + "</p>" +
-                "<img src=\"" + ImageUrl + "\" width=200px >" +
+                "</div>" +
+                "<img class=\"item__img\" src=\"" + ImageUrl + "\">" +
                 "</div>");
         }
     }

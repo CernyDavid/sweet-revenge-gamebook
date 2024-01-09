@@ -5,6 +5,9 @@
 .location__main {
     width: 360px;
     height: 360px;
+    background-size: 125%;
+    background-position: center center;
+    background-repeat: no-repeat
 }
 .connections {
     list-style-type: none;
@@ -32,6 +35,9 @@
     width: 50px;
     height: 50px;
     background-color: orangered;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 .inventory__item {
     display: block;
@@ -46,6 +52,9 @@
     margin: 0;
     display: none;
     gap: 5px;
+    position: absolute;
+    top: 0px;
+    right: 55px;
 }
 
 .inventory__item img {
@@ -88,5 +97,75 @@
 }
 .inventory__item-options-container {
     width: 50px;
+    height: 100px;
+}
+.inventory {
+    display: flex;
+    flex-direction: row-reverse;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+}
+.inventory__item-options {
+    position: absolute;
+    top: 55px;
+    right: 55px;
+}
+.stats {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    margin-left: -105px;
+}
+.stats__item {
+    width: 100px;
+}
+.stats__item p {
+    color: white;
+    margin: 0px;
+}
+.stats__item progress {
+    width: 100px;
+}
+.monster__img, .item__img {
+    width: 150px;
+}
+.monster, .item {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    margin-left: -75px;
+}
+.monster__tag p, .item__tag p {
+    margin: 0px;
+}
+.content {
+    width: 320px;
+    height: 320px;
+    display: block;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    text-align: center;
+    color: white;
+}
+.equipped-items {
+    display: flex;
+    gap: 40px;
+    padding: 24px 8px;
+    justify-content: center;
+}
+.equipped-items__item {
+    
+}
+.equipped-items__item p {
+    margin: 0px;
+    text-align: center;
+}
+.equipped {
+    margin-top: 16px;
+    width: 100px;
     height: 100px;
 }

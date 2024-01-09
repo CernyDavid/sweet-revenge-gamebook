@@ -4,8 +4,8 @@
 @{
 }
 <div class="location">
-    <div class="location__main" style="background-image: url(@Url.Content(@Model.Location.ImageUrl)); background-size: 125%; background-position: center center; background-repeat: no-repeat">
-        <div style="width: 320px; height: 320px; display: block; position: absolute; top: 20px; left: 20px; text-align: center; color: white;" id="div">
+    <div class="location__main" style="background-image: url(@Url.Content(@Model.Location.ImageUrl));">
+        <div class="content" id="div">
             @Html.Raw(Model.Location.Content)
             <script>
                 @if (Model.Location.Content == null) {
@@ -14,10 +14,6 @@
                     </text>
                 }
             </script>
-            <div id="buttons" class="button-container">
-                <button id="kill">Hit</button>
-                <button id="critical">Attempt critical</button>
-            </div>
             <div class="fight-indicators-container">
                 <p id="hit-indicator" class="hit-indicator">Hit</p>
                 <p id="block-indicator" class="block-indicator">You blocked</p>
@@ -73,11 +69,25 @@
         </div>
     </div>
     <div class="equipped-items">
-        <img class="equipped" id="shield" src="@Model.GS.EquippedShield.ImageUrl" />
-        <img class="equipped" id="weapon" src="@Model.GS.EquippedWeapon.ImageUrl" />
+        <div class="equipped-items__item">
+            <p>Shield</p>
+		    <img class="equipped" id="shield" src="@Model.GS.EquippedShield.ImageUrl" />
+        </div>
+        <div class="equipped-items__item">
+            <p>Weapon</p>
+		    <img class="equipped" id="weapon" src="@Model.GS.EquippedWeapon.ImageUrl" />
+        </div>
+        
     </div>
-    <p id="locationText"></p>
-    <button class="btn btnNext" id="btnNext">Next</button>
+    <div class="textbox">
+	    <p id="locationText"></p>
+	    <button class="btn btnNext" id="btnNext">Next</button>
+        <div id="buttons" class="button-container">
+            <button class="btn" id="kill">Hit</button>
+            <button class="btn" id="critical">Attempt critical</button>
+        </div>
+    </div>
+
     <script>
         let btnNextStyle;
         let currentIndex = 0;
