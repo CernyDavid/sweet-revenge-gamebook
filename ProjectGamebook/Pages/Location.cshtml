@@ -34,26 +34,26 @@
         <ul class="inventory__item-options">
             <div class="inventory__item-options-container">
                 <li id="item-options-1" class="item-options">
-                    <button id="use">Use</button>
-                    <button id="drop">Drop</button>
+                    <button class="btn btnUse" id="use">Use</button>
+                    <button class="btn btnDrop" id="drop">Drop</button>
                 </li>
             </div>
             <div class="inventory__item-options-container">
                 <li id="item-options-2" class="item-options">
-                    <button id="use">Use</button>
-                    <button id="drop">Drop</button>
+                    <button class="btn btnUse" id="use">Use</button>
+                    <button class="btn btnDrop" id="drop">Drop</button>
                 </li>
             </div>
             <div class="inventory__item-options-container">
                 <li id="item-options-3" class="item-options">
-                    <button id="use">Use</button>
-                    <button id="drop">Drop</button>
+                    <button class="btn btnUse" id="use">Use</button>
+                    <button class="btn btnDrop" id="drop">Drop</button>
                 </li>
             </div>
             <div class="inventory__item-options-container">
                 <li id="item-options-4" class="item-options">
-                    <button id="use">Use</button>
-                    <button id="drop">Drop</button>
+                    <button class="btn btnUse" id="use">Use</button>
+                    <button class="btn btnDrop" id="drop">Drop</button>
                 </li>
             </div>
         </ul>
@@ -69,22 +69,22 @@
         </div>
     </div>
     <div class="equipped-items">
-        <div class="equipped-items__item">
+        <div class="equipped-items__item-shield">
             <p>Shield</p>
 		    <img class="equipped" id="shield" src="@Model.GS.EquippedShield.ImageUrl" />
         </div>
-        <div class="equipped-items__item">
+        <div class="equipped-items__item-weapon">
             <p>Weapon</p>
 		    <img class="equipped" id="weapon" src="@Model.GS.EquippedWeapon.ImageUrl" />
         </div>
         
     </div>
     <div class="textbox">
-	    <p id="locationText"></p>
+	    <p class="locationText" id="locationText"></p>
 	    <button class="btn btnNext" id="btnNext">Next</button>
         <div id="buttons" class="button-container">
-            <button class="btn" id="kill">Hit</button>
-            <button class="btn" id="critical">Attempt critical</button>
+            <button class="btn btnKill" id="kill">Hit</button>
+            <button class="btn btnCrit" id="critical">Attempt critical</button>
         </div>
     </div>
 

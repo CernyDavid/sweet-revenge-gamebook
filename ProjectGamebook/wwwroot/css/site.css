@@ -1,6 +1,6 @@
 .location {
-    background-color: gold;
     position: relative;
+    background-image: url('../imgs/gold_better.jpg');
 }
 .location__main {
     width: 360px;
@@ -34,16 +34,21 @@
     display: block;
     width: 50px;
     height: 50px;
-    background-color: orangered;
+    background-color: #947C26;
     position: absolute;
     top: 0px;
     right: 0px;
+    border: 2px solid #EACC60;
+    border-radius: 5px;
 }
 .inventory__item {
     display: block;
     width: 50px;
     height: 50px;
     background-color: antiquewhite;
+    border: 2px solid #947C26;
+    border-radius: 5px;
+    background-color: #EACC60;
 }
 
 .inventory__main {
@@ -103,7 +108,7 @@
     display: flex;
     flex-direction: row-reverse;
     position: absolute;
-    top: 50px;
+    top: 60px;
     right: 20px;
 }
 .inventory__item-options {
@@ -118,6 +123,9 @@
     top: 5px;
     left: 50%;
     margin-left: -105px;
+    background-color: rgba(208,179,136, 0.8);
+    border: 1px solid rgba(234,204,96, 0.8);
+    border-radius: 3px;
 }
 .stats__item {
     width: 100px;
@@ -140,6 +148,8 @@
 }
 .monster__tag p, .item__tag p {
     margin: 0px;
+    background-color: rgba(0,0,0,0.5);
+    border: 1px solid rgba(208,179,136, 0.8);
 }
 .content {
     width: 320px;
@@ -153,13 +163,29 @@
 }
 .equipped-items {
     display: flex;
-    gap: 40px;
     padding: 24px 8px;
     justify-content: center;
+
 }
-.equipped-items__item {
-    
+.equipped-items__item-shield {
+    text-align: center;
+    padding-right: 20px;
+    border: 1px solid #EACC60;
+    border-radius: 10px 0px 0px 10px;
+    border-style: solid none solid solid;
+    background-color: #E8E9C2;
 }
+
+.equipped-items__item-weapon {
+    text-align: center;
+    height:165px;
+    padding-left: 20px;
+    border: 1px #EACC60;
+    border-style:solid solid solid none;
+    border-radius: 0px 10px 10px 0px;
+    background-color: #E8E9C2;
+}
+
 .equipped-items__item p {
     margin: 0px;
     text-align: center;
@@ -168,4 +194,57 @@
     margin-top: 16px;
     width: 100px;
     height: 100px;
+}
+
+/*----------------------------------------------------------------------------------------*/
+
+p {
+    font-family: Arial;
+}
+
+.btn {
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
+    padding: 7px;
+}
+
+.btnNext {
+    position: relative;
+    left: 250px;
+    border: 2px solid #947C26;
+    background-color: #EACC60;
+    color: #947C26;
+}
+
+.btnKill {
+    border: 2px solid #ff6161;
+    background-color: #ff6161;
+    color: darkred;
+}
+
+.btnCrit {
+    border: 2px solid red;
+    background-image: linear-gradient(to right, red, #ff6161);
+}
+
+.btnUse {
+    background-color: rgba(234,204,96, 0.8);
+    border: 1px solid rgba(208,179,136, 0.8);
+    border-radius: 5px;
+}
+
+.btnDrop {
+    background-color: rgba(208,179,136, 0.8);
+    border: 1px solid rgba(234,204,96, 0.8);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.locationText {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #EACC60;
+    border-radius: 5px;
+    background-color: #E8E9C2;
 }
