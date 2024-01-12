@@ -153,7 +153,6 @@ namespace ProjectGamebook.Pages
         {
             Location = _lp.GetLocation(GS.Location);
 
-            GS.Inventory.AddId(Location.Item.Id);
             GS.Inventory.AddItem(Location.Item);
             _ss.Save(KEY, GS);
 
@@ -166,7 +165,6 @@ namespace ProjectGamebook.Pages
             {
                 GS.EquippedWeapon = Weapons[GS.Inventory.Ids[i]];
                 GS.Inventory.RemoveItem(i);
-                GS.Inventory.RemoveId(i);
                 _ss.Save(KEY, GS);
                 string[] results = { "weapon", GS.EquippedWeapon.ImageUrl, GS.EquippedWeapon.Damage.ToString(), GS.EquippedWeapon.CriticalChance.ToString() }; 
 
@@ -176,7 +174,6 @@ namespace ProjectGamebook.Pages
             {
                 GS.EquippedShield = Shields[GS.Inventory.Ids[i]];
                 GS.Inventory.RemoveItem(i);
-                GS.Inventory.RemoveId(i);
                 _ss.Save(KEY, GS);
                 string[] results = { "shield", GS.EquippedShield.ImageUrl, GS.EquippedShield.BlockChance.ToString() };
 
@@ -191,7 +188,6 @@ namespace ProjectGamebook.Pages
                     GS.HP = 100;
                 }
                 GS.Inventory.RemoveItem(i);
-                GS.Inventory.RemoveId(i);
                 _ss.Save(KEY, GS);
                 string[] results = { "sweet", GS.HP.ToString(), GS.DL.ToString() };
 
@@ -205,7 +201,6 @@ namespace ProjectGamebook.Pages
                     GS.DL = 0;
                 }
                 GS.Inventory.RemoveItem(i);
-                GS.Inventory.RemoveId(i);
                 _ss.Save(KEY, GS);
                 string[] results = { "salty", GS.DL.ToString() };
 
@@ -217,7 +212,6 @@ namespace ProjectGamebook.Pages
         public IActionResult OnPostDropItem(int i)
         {
             GS.Inventory.RemoveItem(i);
-            GS.Inventory.RemoveId(i);
             _ss.Save(KEY, GS);
             return new JsonResult("Successfully removed");
         }

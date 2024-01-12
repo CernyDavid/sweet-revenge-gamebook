@@ -26,10 +26,10 @@
         <div class="inventory-icon" onclick="toggleInv()">
         </div>
         <ul class="inventory__main">
-            <li id="inv-slot-1" class="inventory__item">@if (Model.GS.Inventory.Items.Count > 0) {<img src="@Model.GS.Inventory.Items[0].ImageUrl" />}</li>
-            <li id="inv-slot-2" class="inventory__item">@if (Model.GS.Inventory.Items.Count > 1) {<img src="@Model.GS.Inventory.Items[1].ImageUrl" />}</li>
-            <li id="inv-slot-3" class="inventory__item">@if (Model.GS.Inventory.Items.Count > 2) {<img src="@Model.GS.Inventory.Items[2].ImageUrl" />}</li>
-            <li id="inv-slot-4" class="inventory__item">@if (Model.GS.Inventory.Items.Count > 3) {<img src="@Model.GS.Inventory.Items[3].ImageUrl" />}</li>
+            <li id="inv-slot-1" class="inventory__item"><img id="inv-item-1" src="@Model.GS.Inventory.Items[0].ImageUrl" /></li>
+            <li id="inv-slot-2" class="inventory__item"><img id="inv-item-2" src="@Model.GS.Inventory.Items[1].ImageUrl" /></li>
+            <li id="inv-slot-3" class="inventory__item"><img id="inv-item-3" src="@Model.GS.Inventory.Items[2].ImageUrl" /></li>
+            <li id="inv-slot-4" class="inventory__item"><img id="inv-item-4" src="@Model.GS.Inventory.Items[3].ImageUrl" /></li>
         </ul>
         <ul class="inventory__item-options">
             <div class="inventory__item-options-container">
@@ -89,6 +89,13 @@
     </div>
 
     <script>
+        [...document.querySelectorAll("img")].forEach(img => {
+            if (!img.hasAttribute("src")) {
+                console.log("img test");
+                img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            }
+        })
+
         let btnNextStyle;
         let currentIndex = 0;
         var stringList = @Html.Raw(@Model.jsonString);
@@ -284,33 +291,35 @@
                     },
                     url: "Location?handler=AddItem",
                     success: function (data) {
-                        if (document.getElementById("inv-slot-1").childNodes.length === 0) {
-                            let img = document.createElement("img")
-                            img.src = data;
-                            document.getElementById("inv-slot-1").appendChild(img);
-                            HideItem();
+                        @if (Model.GS.Inventory.Ids[0] == 333)
+                        {
+                            <text>
+                                document.getElementById("inv-item-1").src = data;
+                                HideItem();
+                            </text>
                         }
-                        else if (document.getElementById("inv-slot-2").childNodes.length === 0) {
-                            console.log("test");
-                            let img = document.createElement("img")
-                            img.src = data;
-                            document.getElementById("inv-slot-2").appendChild(img);
-                            HideItem();
+                        else if (Model.GS.Inventory.Ids[1] == 333)
+                        {
+                            <text>
+                                document.getElementById("inv-item-2").src = data;
+                                HideItem();
+                            </text>
                         }
-                        else if (document.getElementById("inv-slot-3").childNodes.length === 0) {
-                            console.log("test");
-                            let img = document.createElement("img")
-                            img.src = data;
-                            document.getElementById("inv-slot-3").appendChild(img);
-                            HideItem();
+                        else if (Model.GS.Inventory.Ids[2] == 333)
+                        {
+                            <text>
+                                document.getElementById("inv-item-3").src = data;
+                                HideItem();
+                            </text>
                         }
-                        else if (document.getElementById("inv-slot-4").childNodes.length === 0) {
-                            console.log("test");
-                            let img = document.createElement("img")
-                            img.src = data;
-                            document.getElementById("inv-slot-4").appendChild(img);
-                            HideItem();
+                        else if (Model.GS.Inventory.Ids[3] == 333)
+                        {
+                            <text>
+                                document.getElementById("inv-item-4").src = data;
+                                HideItem();
+                            </text>
                         }
+
                                                 @foreach (var c in Model.Connections)
                         {
                             <text>
