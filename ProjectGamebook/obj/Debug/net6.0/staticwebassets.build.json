@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "a79UeO6nAXhTOX8GaPv4ox3AUcoqoZ1ER1RBE9DAnUc=",
+  "Hash": "wt48cQqSqBlP+SSFAyyhW8nkcX2UY7cZgpcLBJOhhnM=",
   "Source": "ProjectGamebook",
   "BasePath": "_content/ProjectGamebook",
   "Mode": "Default",
@@ -644,6 +644,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imgs\\gold_better.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Source\\Repos\\2023-p3a-web-gamebook-cerny-vrbensky\\ProjectGamebook\\wwwroot\\imgs\\inventory_icon.svg",
+      "SourceId": "ProjectGamebook",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Source\\Repos\\2023-p3a-web-gamebook-cerny-vrbensky\\ProjectGamebook\\wwwroot\\",
+      "BasePath": "_content/ProjectGamebook",
+      "RelativePath": "imgs/inventory_icon.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\inventory_icon.svg"
     },
     {
       "Identity": "C:\\Users\\HP\\Source\\Repos\\2023-p3a-web-gamebook-cerny-vrbensky\\ProjectGamebook\\wwwroot\\imgs\\shields\\cookie.png",

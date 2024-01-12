@@ -1,3 +1,13 @@
+.prologue__background {
+    background-image: url('../imgs/gold_better.jpg');
+    overflow: hidden;
+    height: 100vw;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+}
+
 .location {
     position: relative;
     background-image: url('../imgs/gold_better.jpg');
@@ -327,6 +337,10 @@ p {
         position: relative;
         top: 20px;
         right: 20px;
+    }
+
+    .prologue__textbox {
+        top: 20%;
     }
 }
 
