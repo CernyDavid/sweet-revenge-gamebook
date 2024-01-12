@@ -1,11 +1,11 @@
 .prologue__background {
+    position: relative;
     background-image: url('../imgs/gold_better.jpg');
-    overflow: hidden;
     height: 100vw;
-    background-size: cover;
+    background-size: 125%;
     background-position: center center;
     background-repeat: no-repeat;
-
+    overflow: hidden;
 }
 
 .location {
@@ -264,6 +264,9 @@ p {
     display: none;
 }
 
+.btn__prologue-next {
+    max-width: 70px;
+}
 
 @media (min-width: 960px) {
     .location__main {
