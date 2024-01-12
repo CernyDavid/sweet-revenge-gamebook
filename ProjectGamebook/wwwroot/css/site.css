@@ -36,12 +36,13 @@
     display: block;
     width: 50px;
     height: 50px;
-    background-color: #947C26;
+    background: #947C26;
     position: absolute;
     top: 0px;
     right: 0px;
     border: 2px solid #EACC60;
     border-radius: 5px;
+    background-image: url('../imgs/inventory_icon.svg');
 }
 .inventory__item {
     display: block;
@@ -156,7 +157,7 @@
 .monster__tag p, .item__tag p {
     margin: 0px;
     background-color: rgba(0,0,0,0.5);
-    border: 1px solid rgba(208,179,136, 0.8);
+    /*border: 1px solid rgba(208,179,136, 0.8);*/
 }
 .monster__tag, .item__tag {
     max-width: 180px;
@@ -249,9 +250,10 @@ p {
     font-size: 20px;
 }
 
-.equipped--desktop {
+.equipped-desktop {
     display: none;
 }
+
 
 @media (min-width: 960px) {
     .location__main {
@@ -288,4 +290,44 @@ p {
         bottom: -10%;
         right: -10%;
     }
+
+    .stats {
+        flex-direction: column;
+        top: 5%;
+        left: 10%;
+        width: 250px;
+    }
+
+    .stats__item {
+        font-size: 1.5rem;
+    }
+
+    .stats__item progress {
+        width: 240px;
+    }
+
+    .inventory-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .inventory__item {
+        width: 70px;
+        height: 70px;
+    }
+
+    .inventory__main {
+        top: 0px;
+        right: 75px;
+    }
+
+    .inventory__item-options-container {
+        width: 70px;
+        height: 120px;
+        position: relative;
+        top: 20px;
+        right: 20px;
+    }
 }
+
+
