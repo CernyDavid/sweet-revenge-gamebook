@@ -29,20 +29,20 @@ namespace ProjectGamebook.Services
 
         private readonly List<Connection> _map = new()
         {
-            new Connection(0,1,"160px","140px","80px","150px", IsFightFinished, null),
-            new Connection(1,2,"100px","0","120px","220px", null, null),
-            new Connection(1,3,"100px","240px","120px","220px", null, null),
-            new Connection(2,4,"160px","130px","100px","150px", null, null),
-            new Connection(3,5,"160px","140px","80px","150px", IsFightFinished, null),
-            new Connection(5,6,"160px","130px","100px","150px", null, null),
-            new Connection(4,6,"160px","140px","80px","150px", null, null),
-            new Connection(6,7,"160px","130px","100px","150px", null, null),
-            new Connection(7,8,"100px","0","120px","220px", null, null),
-            new Connection(7,9,"100px","240px","120px","220px", null, null),
-            new Connection(9,11,"160px","130px","100px","150px", IsFightFinished, null),
-            new Connection(8,10,"160px","140px","80px","150px", null, null),
-            new Connection(10,30,"160px","130px","100px","150px", null, "ChocoBossFight"),
-            new Connection(11,30,"160px","140px","80px","150px", null, "ChocoBossFight")
+            new Connection(0,1,"40%","35%","30%","50%", IsFightFinished, null),
+            new Connection(1,2,"10%","0","30%","80%", null, null),
+            new Connection(1,3,"10%","70%","30%","80%", null, null),
+            new Connection(2,4,"50%","40%","20%","40%", null, null),
+            new Connection(3,5,"40%","35%","30%","50%", IsFightFinished, null),
+            new Connection(5,6,"50%","40%","20%","40%", null, null),
+            new Connection(4,6,"40%","35%","30%","50%", null, null),
+            new Connection(6,7,"50%","40%","20%","40%", null, null),
+            new Connection(7,8,"10%","0","30%","80%", null, null),
+            new Connection(7,9,"10%","70%","30%","80%", null, null),
+            new Connection(9,11,"50%","40%","20%","40%", IsFightFinished, null),
+            new Connection(8,10,"40%","35%","30%","50%", null, null),
+            new Connection(10,30,"50%","40%","20%","40%", null, "ChocoBossFight"),
+            new Connection(11,30,"40%","35%","30%","50%", null, "ChocoBossFight")
 
         };
 

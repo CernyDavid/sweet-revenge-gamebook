@@ -15,7 +15,7 @@
                 "<div class=\"monster__tag\">" +
                 "<p>" + Name + "</p>" +
                 "<p>" + Description + "</p>" +
-                "<p id=\"monsterHP\">" + HP + "</p>" +
+                "<p id=\"monsterHP\">" + "HP: " + HP + "</p>" +
                 "</div>" +
                 "<img class=\"monster__img\" src=\"" + ImageUrl + "\">" +
                 "</div>");

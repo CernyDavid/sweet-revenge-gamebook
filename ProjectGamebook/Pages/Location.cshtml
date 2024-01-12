@@ -21,6 +21,44 @@
                 <p id="crit-indicator" class="crit-indicator">Critical hit</p>
             </div>
         </div>
+        <script>
+            let btnNextStyle;
+            let currentIndex = 0;
+            var stringList = @Html.Raw(@Model.jsonString);
+            function checkConnection(targetId, canBeEntered) {
+                let divStyle = window.getComputedStyle(document.getElementById("div")).getPropertyValue("display");
+
+                console.log(divStyle);
+                console.log(btnNextStyle);
+
+                let connectionElement = document.getElementById("connection_" + targetId);
+
+                if (connectionElement) {
+                    connectionElement.style.display = (canBeEntered && btnNextStyle === "none" && divStyle === "none") ? "block" : "none";
+                    console.log(canBeEntered);
+                }
+            }
+        </script>
+        <ul class="connections">
+            @foreach (var c in Model.Connections)
+            {
+                <li>
+                    @if (String.IsNullOrEmpty(c.TargetSpecialPage))
+                    {
+                        <a id="connection_@c.Target" asp-page="Location" asp-route-id="@c.Target"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
+                    }
+                    else
+                    {
+                        Console.WriteLine(c.TargetSpecialPage);
+                        <a id="connection_@c.Target" asp-page="@c.TargetSpecialPage"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
+                    }
+                </li>
+
+                <script>
+                    checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
+                </script>
+            }
+        </ul>
     </div>
     <div class="inventory">
         <div class="inventory-icon" onclick="toggleInv()">
@@ -79,6 +117,8 @@
         </div>
         
     </div>
+    <img class="equipped-desktop equipped-desktop--shield" id="shield-desktop" src="@Model.GS.EquippedShield.EquippedImageUrl" />
+    <img class="equipped-desktop equipped-desktop--weapon" id="weapon-desktop" src="@Model.GS.EquippedWeapon.EquippedImageUrl" />
     <div class="textbox">
 	    <p class="textbox__main-text" id="locationText"></p>
 	    <button class="btn btn--next" id="btnNext">Next</button>
@@ -89,29 +129,6 @@
     </div>
 
     <script>
-        [...document.querySelectorAll("img")].forEach(img => {
-            if (!img.hasAttribute("src")) {
-                console.log("img test");
-                img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-            }
-        })
-
-        let btnNextStyle;
-        let currentIndex = 0;
-        var stringList = @Html.Raw(@Model.jsonString);
-        function checkConnection(targetId, canBeEntered) {
-            let divStyle = window.getComputedStyle(document.getElementById("div")).getPropertyValue("display");
-
-            console.log(divStyle);
-            console.log(btnNextStyle);
-
-            let connectionElement = document.getElementById("connection_" + targetId);
-
-            if (connectionElement) {
-                connectionElement.style.display = (canBeEntered && btnNextStyle === "none" && divStyle === "none") ? "block" : "none";
-                console.log(canBeEntered);
-            }
-        }
 
         function updateText() {
             document.getElementById("locationText").innerText = stringList[currentIndex];
@@ -179,7 +196,7 @@
                     },
                     url: "Location?handler=HitMonster",
                     success: function (data) {
-                        $("#monsterHP").text(data);
+                        $("#monsterHP").text("HP: " + data);
                         if (data < 1) {
                             document.getElementById("div").style.display = "none";
                             @Model.Location.IsFight = true;
@@ -351,7 +368,7 @@
                                     },
                         url: "Location?handler=HitMonster",
                         success: function (data) {
-                            $("#monsterHP").text(data);
+                            $("#monsterHP").text("HP: " + data);
                             if (data < 1) {
                                 document.getElementById("div").style.display = "none";
                             @Model.Location.IsFight = true;
@@ -400,6 +417,7 @@
                                     }
                                     else {
                                         showBlockIndicator();
+                                    hitMonsterDmg = hitMonsterDmg / 2;
                                     }
                                 }
                             }, 500);
@@ -492,12 +510,14 @@
                     success: function (data) {
                         if (data[0] === "weapon") {
                             document.getElementById("weapon").src = data[1];
+                            document.getElementById("weapon-desktop").src = data[4];
                             hitMonsterDmg = parseInt(data[2]);
                             console.log("dmg" + hitMonsterDmg);
                             critChance = parseInt(data[3]);
                         }
                         if (data[0] === "shield") {
                             document.getElementById("shield").src = data[1];
+                            document.getElementById("shield-desktop").src = data[3];
                             blockChance = parseInt(data[2]);
                         }
                         if (data[0] === "sweet") {
@@ -538,25 +558,4 @@
             }
         });
     </script>
-    <ul class="connections">
-        @foreach (var c in Model.Connections)
-
-        {
-            <li>
-                @if (String.IsNullOrEmpty(c.TargetSpecialPage))
-                {
-                    <a id="connection_@c.Target" asp-page="Location" asp-route-id="@c.Target"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
-                }
-                else
-                {
-                    Console.WriteLine(c.TargetSpecialPage);
-                    <a id="connection_@c.Target" asp-page="@c.TargetSpecialPage"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
-                }
-            </li>
-
-            <script>
-                checkConnection('@c.Target', '@c.CanBeUsed.ToString().ToLower()');
-            </script>
-        }
-    </ul>
 </div>
