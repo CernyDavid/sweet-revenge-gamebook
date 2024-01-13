@@ -1,13 +1,3 @@
-.prologue__background {
-    position: relative;
-    background-image: url('../imgs/gold_better.jpg');
-    height: 100vw;
-    background-size: 125%;
-    background-position: center center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-}
-
 .location {
     position: relative;
     background-image: url('../imgs/gold_better.jpg');
@@ -220,7 +210,6 @@ p {
     text-align: center;
     padding: 8px 16px;
     border-radius: 10px;
-    display: block;
 }
 
 .btn--next {
@@ -228,6 +217,7 @@ p {
     border: 2px solid #947C26;
     background-color: #EACC60;
     color: #947C26;
+    display: block;
 }
 
 .btn--kill {
@@ -264,11 +254,37 @@ p {
     display: none;
 }
 
-.btn__prologue-next {
-    max-width: 70px;
+.narration {
+    background-image: url('../imgs/gold_better.jpg');
+    background-size: 100%;
+    background-position: center center;
+    background-repeat: repeat;
+    overflow: hidden;
+    height: 100vh;
+    padding: 16px;
+}
+.narration__textbox {
+    background-color: #E8E9C2;
+    height: 100%;
+    border-radius: 8px;
+    padding: 24px;
+}
+.narration__textbox p {
+    margin-bottom: 4px;
+}
+
+.btn--narration {
+    display: inline-block;
+}
+.narration__buttons-container {
+    text-align: center;
 }
 
 @media (min-width: 960px) {
+    .narration {
+        background-size: 25%;
+        padding: 40px;
+    }
     .location__main {
         height: 100vh;
         background-size: cover;
@@ -342,9 +358,7 @@ p {
         right: 20px;
     }
 
-    .prologue__textbox {
-        top: 20%;
-    }
+
 }
 
 
