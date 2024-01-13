@@ -1,0 +1,101 @@
+[
+  {
+    "Id": 0,
+    "Texts": [
+      "This is it. The Labyrinth Castle.",
+      "Looks like some monster came to welcome you. Get rid of it before it's too late.",
+      "(You have two ways of attacking. Regular attacks are sure to hit and deal a regular amount of damage. You can also attempt a critical hit. Critical hit won't always succeed but deals great damage if it lands.)"
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg2.jpeg"
+  },
+  {
+    "Id": 1,
+    "Texts": [
+      "You may be wondering, why is it called the Labyrinth Castle? Well, you see, this place is like a labyrinth.",
+      "You have two paths ahead of you. There is no map available, so just trust your gut and choose. Which way will you go?"
+    ],
+    "ImageUrl": "~/imgs/bgs/two_door_bg1.jpeg"
+  },
+  {
+    "Id": 2,
+    "Texts": [
+      "What is the best way to kill monsters made of sweets? Using something salty, of course.",
+      "Luckily for you, you found a very salty and very deadly weapon. Pick it up and continue."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg1.jpeg"
+  },
+  {
+    "Id": 3,
+    "Texts": [ "Oh, a monster. You know what to do." ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg2.jpeg"
+  },
+  {
+    "Id": 4,
+    "Texts": [ "Oh, a monster. You know what to do." ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg2.jpeg"
+  },
+  {
+    "Id": 5,
+    "Texts": [
+      "What is the best way to kill monsters made of sweets? Using something salty, of course.",
+      "Luckily for you, you found a very salty and very deadly weapon. Pick it up and continue."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg1.jpeg"
+  },
+  {
+    "Id": 6,
+    "Texts": [
+      "You found a shield.",
+      "You know what shields are for, right? Surely you don’t expect me to explain basic stuff like that to you, right?"
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg1.jpeg"
+  },
+  {
+    "Id": 7,
+    "Texts": [
+      "Getting hit by the sweet monsters increases your diabetes level. Make sure it never fills up, because you sure don't want to die.",
+      "Now, which door will you choose?"
+    ],
+    "ImageUrl": "~/imgs/bgs/two_door_bg1.jpeg"
+  },
+  {
+    "Id": 8,
+    "Texts": [
+      "Would you look at that! Food!",
+      "Eating something salty will lower your diabetes level a bit. Try it out."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg2.jpeg"
+  },
+  {
+    "Id": 9,
+    "Texts": [
+      "This fucker really thinks he stands a chance, huh?",
+      "Show him who’s the boss here."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg1.jpeg"
+  },
+  {
+    "Id": 10,
+    "Texts": [
+      "This fucker really thinks he stands a chance, huh?",
+      "Show him who’s the boss here."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg1.jpeg"
+  },
+  {
+    "Id": 11,
+    "Texts": [
+      "Would you look at that! Food!",
+      "Eating something salty will lower your diabetes level a bit. Try it out."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg2.jpeg"
+  },
+  {
+    "Id": 30,
+    "Texts": [
+      "Well, you sure ain’t a pushover. But neither are they, so don’t let it get to your head, ‘kay?",
+      "Also, you got a new weapon. Isn’t that great?"
+    ],
+    "ImageUrl": "~/imgs/bg1.jpg"
+  }
+]

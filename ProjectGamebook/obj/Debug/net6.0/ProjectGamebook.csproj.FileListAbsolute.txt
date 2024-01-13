@@ -110,3 +110,5 @@ C:\Users\HP\Source\Repos\2023-p3a-web-gamebook-cerny-vrbensky\ProjectGamebook\ob
 C:\Users\HP\Source\Repos\2023-p3a-web-gamebook-cerny-vrbensky\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.pdb
 C:\Users\HP\Source\Repos\2023-p3a-web-gamebook-cerny-vrbensky\ProjectGamebook\obj\Debug\net6.0\ProjectGamebook.genruntimeconfig.cache
 C:\Users\HP\Source\Repos\2023-p3a-web-gamebook-cerny-vrbensky\ProjectGamebook\obj\Debug\net6.0\ref\ProjectGamebook.dll
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\locations.json
+D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook\bin\Debug\net6.0\connections.json

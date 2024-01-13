@@ -1,0 +1,142 @@
+[
+  {
+    "From": 0,
+    "To": 1,
+    "Top": "40%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 1,
+    "To": 2,
+    "Top": "10%",
+    "Left": "0",
+    "Width": "30%",
+    "Height": "80%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 1,
+    "To": 3,
+    "Top": "10%",
+    "Left": "70%",
+    "Width": "30%",
+    "Height": "80%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 2,
+    "To": 4,
+    "Top": "50%",
+    "Left": "40%",
+    "Width": "20%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 3,
+    "To": 5,
+    "Top": "40%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 5,
+    "To": 6,
+    "Top": "50%",
+    "Left": "40%",
+    "Width": "20%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 4,
+    "To": 6,
+    "Top": "40%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 6,
+    "To": 7,
+    "Top": "50%",
+    "Left": "40%",
+    "Width": "20%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 7,
+    "To": 8,
+    "Top": "10%",
+    "Left": "0",
+    "Width": "30%",
+    "Height": "80%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 7,
+    "To": 9,
+    "Top": "10%",
+    "Left": "70%",
+    "Width": "30%",
+    "Height": "80%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 9,
+    "To": 11,
+    "Top": "50%",
+    "Left": "40%",
+    "Width": "20%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 8,
+    "To": 10,
+    "Top": "40%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 10,
+    "To": 30,
+    "Top": "50%",
+    "Left": "40%",
+    "Width": "20%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": "ChocoBossFight"
+  },
+  {
+    "From": 11,
+    "To": 30,
+    "Top": "40%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": "ChocoBossFight"
+  }
+]
