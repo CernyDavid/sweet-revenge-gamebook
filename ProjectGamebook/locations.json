@@ -209,5 +209,57 @@
       "The only thing that’s left of him is this fancy weapon."
     ],
     "ImageUrl": "~/imgs/bgs/boss34.jpg"
+  },
+  {
+    "Id": 23,
+    "Texts": [
+      "See that guy over there? That’s one of the emperor’s royal guards.",
+      "Get rid of him real quick. If you can, that is."
+    ],
+    "ImageUrl": "~/imgs/bgs/two_door_bg4.jpg"
+  },
+  {
+    "Id": 24,
+    "Texts": [
+      "I have nothing to say. Just do your thing."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg6.jpg"
+  },
+  {
+    "Id": 27,
+    "Texts": [
+      "I have nothing to say. Just do your thing."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg6.jpg"
+  },
+  {
+    "Id": 25,
+    "Texts": [
+      "Another royal guard.",
+      "But that just means the emperor is weak if he relies so much on his guards, right?"
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg7.jpg"
+  },
+  {
+    "Id": 26,
+    "Texts": [
+      "Another royal guard.",
+      "But that just means the emperor is weak if he relies so much on his guards, right?"
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg7.jpg"
+  },
+  {
+    "Id": 28,
+    "Texts": [
+      "There is no end to them, is there?"
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg6.jpg"
+  },
+  {
+    "Id": 29,
+    "Texts": [
+      "Those idiots really left such a powerful weapon just lying on the floor here, huh? Well, that works in your favor."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg7.jpg"
   }
 ]

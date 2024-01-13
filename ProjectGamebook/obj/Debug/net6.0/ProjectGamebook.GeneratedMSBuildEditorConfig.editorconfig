@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\škola\weby\GAMEBOOK\ProjectGamebook\ProjectGamebook
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/BeforeBoss.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmVmb3JlQm9zcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/CakeBossFight.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FrZUJvc3NGaWdodC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/FourthFloor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm91cnRoRmxvb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/GameEnd.cshtml]
@@ -60,6 +68,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/Lore3.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9yZTMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/Lore4.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9yZTQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/škola/weby/GAMEBOOK/ProjectGamebook/ProjectGamebook/Pages/MarshmallowBossFight.cshtml]

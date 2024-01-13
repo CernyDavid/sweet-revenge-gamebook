@@ -291,7 +291,7 @@
   },
   {
     "From": 21,
-    "To": 22,
+    "To": 33,
     "Top": "45%",
     "Left": "35%",
     "Width": "30%",
@@ -308,5 +308,97 @@
     "Height": "40%",
     "Condition": null,
     "SpecialPage": null
+  },
+  {
+    "From": 22,
+    "To": 23,
+    "Top": "50%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": "FourthFloor"
+  },
+  {
+    "From": 23,
+    "To": 24,
+    "Top": "40%",
+    "Left": "0",
+    "Width": "30%",
+    "Height": "60%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 23,
+    "To": 25,
+    "Top": "40%",
+    "Left": "70%",
+    "Width": "30%",
+    "Height": "60%",
+    "Condition": null,
+    "SpecialPage": "Lore4"
+  },
+  {
+    "From": 24,
+    "To": 26,
+    "Top": "30%",
+    "Left": "42%",
+    "Width": "20%",
+    "Height": "60%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 26,
+    "To": 28,
+    "Top": "20%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "70%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 27,
+    "To": 28,
+    "Top": "30%",
+    "Left": "42%",
+    "Width": "20%",
+    "Height": "60%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 25,
+    "To": 27,
+    "Top": "20%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "70%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 28,
+    "To": 29,
+    "Top": "30%",
+    "Left": "42%",
+    "Width": "20%",
+    "Height": "60%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 29,
+    "To": 0,
+    "Top": "20%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "70%",
+    "Condition": null,
+    "SpecialPage": "BeforeBoss"
   }
+
+
 ]
