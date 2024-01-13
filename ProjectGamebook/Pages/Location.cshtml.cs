@@ -57,14 +57,18 @@ namespace ProjectGamebook.Pages
 
             if (GS.PreviousLocation == 666666)
             {
-                Weapons = new Dictionary<int, Weapon> { { 2, new Weapon("Baguette Sword", "/imgs/weapons/baguette.png", 20, 50, "/imgs/weapons/baguette_equipped.png", 2) }, { 5, new Weapon("Baguette Sword", "/imgs/weapons/baguette.png", 20, 50, "/imgs/weapons/baguette_equipped.png", 5) }, { 30, new Weapon("Cheesy Dagger with a cheesy name", "/imgs/weapons/cheese.png", 25, 60, "/imgs/weapons/cheese_equipped.png", 30) } };
+                Weapons = new Dictionary<int, Weapon> { { 2, new Weapon("Baguette Sword", "/imgs/weapons/baguette.png", 20, 50, "/imgs/weapons/baguette_equipped.png", 2) }, { 5, new Weapon("Baguette Sword", "/imgs/weapons/baguette.png", 20, 40, "/imgs/weapons/baguette_equipped.png", 5) }, { 30, new Weapon("Cheesy Dagger with a cheesy name", "/imgs/weapons/cheese.png", 25, 50, "/imgs/weapons/cheese_equipped.png", 30) },
+                { 32, new Weapon("Ascia Per La Pizza", "/imgs/weapons/pizza.png", 30, 60, "/imgs/weapons/pizza_equipped.png", 32) }, { 33, new Weapon("Throwing Pretzel", "/imgs/weapons/shuriken.png", 30, 60, "/imgs/weapons/shuriken_equipped.png", 33) } };
                 Monsters = new Dictionary<int, Monster> { { 0, new Monster("Donut Infantryman", 20, 10, 10, "/imgs/enemies/donut.png") }, { 3, new Monster("Donut Infantryman", 20, 25, 25, "/imgs/enemies/donut.png") }, { 4, new Monster("Donut Infantryman", 20, 25, 25, "/imgs/enemies/donut.png") },
-                { 9, new Monster("Candy Knight", 40, 25, 25, "/imgs/enemies/candy.png") }, { 10, new Monster("Candy Knight", 40, 25, 25, "/imgs/enemies/candy.png") }};
-                Shields = new Dictionary<int, Shield> { {6, new Shield("Whole-grain Shield", "/imgs/shields/cookie.png", 50, "/imgs/shields/cookie_equipped.png", 6) } };
-                Salties = new Dictionary<int, SaltyConsumable> { {8, new SaltyConsumable(10, "Slice of half-baked toast", "/imgs/consumables/toast.png", 8) }, { 11, new SaltyConsumable(10, "Slice of half-baked toast", "/imgs/consumables/toast.png", 11) } };
-                Sweets = new Dictionary<int, SweetConsumable> { {18, new SweetConsumable(12, "Sweet Bachi", "/imgs/bachi.jpg", 18) } };
+                { 9, new Monster("Candy Knight", 40, 25, 25, "/imgs/enemies/candy.png") }, { 10, new Monster("Candy Knight", 40, 25, 25, "/imgs/enemies/candy.png") }, {13, new Monster("Donut Squad", 50, 15, 15, "imgs/enemies/donut_army.png") },
+                { 18, new Monster("Candy Butler", 50, 20, 25, "/imgs/enemies/candy.png") }, { 19, new Monster("Candy Butler", 50, 20, 25, "/imgs/enemies/candy.png") }, { 20, new Monster("Donut Infantryman", 40, 30, 25, "/imgs/enemies/donut.png") } };
+                Shields = new Dictionary<int, Shield> { {6, new Shield("Whole-grain Shield", "/imgs/shields/cookie.png", 40, "/imgs/shields/cookie_equipped.png", 6) }, { 31, new Shield("Holey Shield", "/imgs/shields/cheese.png", 50, "/imgs/shields/cheese_equipped.png", 31) }, { 22, new Shield("Mobile Cracker Barrier", "/imgs/shields/cracker.png", 60, "/imgs/shields/cracker_equipped.png", 22) } };
+                Salties = new Dictionary<int, SaltyConsumable> { {8, new SaltyConsumable(10, "Slice of half-baked toast", "/imgs/consumables/toast.png", 8) }, { 11, new SaltyConsumable(10, "Slice of half-baked toast", "/imgs/consumables/toast.png", 11) },
+                {14, new SaltyConsumable(10, "Leftover Chips", "/imgs/consumables/chips.png", 14) }, {16, new SaltyConsumable(20, "Pizza Mozarella", "/imgs/consumables/pizza.png", 16) }, {21, new SaltyConsumable(20, "Vegan Burger with Meat", "/imgs/consumables/burger.png", 21) } };
+                Sweets = new Dictionary<int, SweetConsumable> { {12, new SweetConsumable(15, "Saliva Collector", "/imgs/consumables/lolli.png", 12) }, {17, new SweetConsumable(20, "Suspicious Pack of Sweets", "/imgs/consumables/pack.png", 17) } };
                 GS.HP = 100;
                 GS.DL = 0;
+                GS.Boss = null;
                 GS.Inventory = new Inventory();
                 GS.EquippedWeapon = StartingWeapon;
                 GS.EquippedShield = StartingShield;

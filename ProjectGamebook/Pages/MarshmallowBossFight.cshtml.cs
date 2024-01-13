@@ -5,7 +5,7 @@ using ProjectGamebook.Services;
 
 namespace ProjectGamebook.Pages
 {
-    public class ChocoBossFightModel : PageModel
+    public class MarshmallowBossFightModel : PageModel
     {
         private string KEY;
         private readonly ISessionStorage<GameState> _ss;
@@ -15,11 +15,11 @@ namespace ProjectGamebook.Pages
         public GameState GS { get; set; }
         public string jsonString;
 
-        public List<string> Texts { get; set; } = new List<string> { "Did someone say boss? Well, sorry, I jinxed you. The real boss is this guy right here.", "Since he was just a little kid, he’s been bullied by the white chocolate folks. Immense rage lies deep within him and now he wants to take it all out on you.", "Well, it’s nothing but a minor inconvenience.", "Kill him." };
+        public List<string> Texts { get; set; } = new List<string> { "Finally, you encountered one of the nobles.", "He’s a masochist. He likes to set himself on fire and then eating pieces of himself. And now, he wants you to stab him with that beautiful weapon of yours.", "Keep in mind that you cannot use critical attacks during this fight. The archduke would be very sad if you ended up not hitting him at all, you know?" };
 
-        Boss Chocolate { get; set; } = new Boss("The #1 racist jokes victim", "Mr. Brown", 50, 30, 40, "/imgs/enemies/choco.png");
+        Boss Mello { get; set; } = new Boss("Has a burning passion", "Archduke Mello Jr.", 100, 20, 20, "/imgs/enemies/mallow.png");
 
-        public ChocoBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
+        public MarshmallowBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
             _config = config;
             _ss = ss;
@@ -30,7 +30,7 @@ namespace ProjectGamebook.Pages
             GS = _ss.LoadOrCreate(KEY);
             if (GS.Boss == null)
             {
-                GS.Boss = Chocolate;
+                GS.Boss = Mello;
             }
             _ss.Save(KEY, GS);
         }
@@ -52,7 +52,7 @@ namespace ProjectGamebook.Pages
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
-                return RedirectToPage("Location", new { id = 30 });
+                return RedirectToPage("Location", new { id = 32 });
             }
 
             jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Texts);

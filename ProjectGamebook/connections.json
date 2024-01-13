@@ -138,5 +138,175 @@
     "Height": "50%",
     "Condition": null,
     "SpecialPage": "ChocoBossFight"
+  },
+  {
+    "From": 30,
+    "To": 12,
+    "Top": "40%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": "SecondFloor"
+  },
+  {
+    "From": 12,
+    "To": 13,
+    "Top": "20%",
+    "Left": "0",
+    "Width": "30%",
+    "Height": "80%",
+    "Condition": null,
+    "SpecialPage": "Lore1"
+  },
+  {
+    "From": 12,
+    "To": 13,
+    "Top": "20%",
+    "Left": "70%",
+    "Width": "30%",
+    "Height": "80%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 13,
+    "To": 14,
+    "Top": "25%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "60%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 14,
+    "To": 31,
+    "Top": "20%",
+    "Left": "0",
+    "Width": "30%",
+    "Height": "80%",
+    "Condition": null,
+    "SpecialPage": "CreamBossFight"
+  },
+  {
+    "From": 14,
+    "To": 31,
+    "Top": "20%",
+    "Left": "70%",
+    "Width": "30%",
+    "Height": "80%",
+    "Condition": null,
+    "SpecialPage": "Lore2"
+  },
+  {
+    "From": 31,
+    "To": 15,
+    "Top": "5%",
+    "Left": "25%",
+    "Width": "30%",
+    "Height": "70%",
+    "Condition": null,
+    "SpecialPage": "ThirdFloor"
+  },
+  {
+    "From": 15,
+    "To": 17,
+    "Top": "30%",
+    "Left": "0",
+    "Width": "35%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 15,
+    "To": 16,
+    "Top": "30%",
+    "Left": "65%",
+    "Width": "35%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 17,
+    "To": 18,
+    "Top": "50%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 16,
+    "To": 19,
+    "Top": "50%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 19,
+    "To": 20,
+    "Top": "45%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 20,
+    "To": 21,
+    "Top": "50%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "50%",
+    "Condition": null,
+    "SpecialPage": "Lore3"
+  },
+  {
+    "From": 18,
+    "To": 32,
+    "Top": "45%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": "MarshmallowBossFight"
+  },
+  {
+    "From": 32,
+    "To": 22,
+    "Top": "45%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": null
+  },
+  {
+    "From": 21,
+    "To": 22,
+    "Top": "45%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": "CakeBossFight"
+  },
+  {
+    "From": 33,
+    "To": 22,
+    "Top": "45%",
+    "Left": "35%",
+    "Width": "30%",
+    "Height": "40%",
+    "Condition": null,
+    "SpecialPage": null
   }
 ]

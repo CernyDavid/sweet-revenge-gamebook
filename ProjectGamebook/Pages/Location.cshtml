@@ -45,12 +45,12 @@
                 <li>
                     @if (String.IsNullOrEmpty(c.TargetSpecialPage))
                     {
-                        <a id="connection_@c.Target" asp-page="Location" asp-route-id="@c.Target"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
+                        <a id="connection_@c.Target" asp-page="Location" asp-route-id="@c.Target"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height; z-index: 2"></div></a>
                     }
                     else
                     {
                         Console.WriteLine(c.TargetSpecialPage);
-                        <a id="connection_@c.Target" asp-page="@c.TargetSpecialPage"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height"></div></a>
+                        <a id="connection_@c.Target" asp-page="@c.TargetSpecialPage"><div style="position: absolute; top: @c.Top; left: @c.Left; width: @c.Width; height: @c.Height; z-index: 2"></div></a>
                     }
                 </li>
 
@@ -431,33 +431,41 @@
                     showFailIndicator();
 
                     setTimeout(function () {
-                        setTimeout(function () {
-                            $.ajax({
-                                type: "POST",
-                                beforeSend: function (xhr) {
-                                    xhr.setRequestHeader("XSRF-TOKEN",
-                                        $('input:hidden[name="__RequestVerificationToken"]').val());
-                                },
-                                data: {
-                                    dmg: dmg,
-                                    dlIncrease: dlIncrease
-                                },
-                                url: "Location?handler=UpdateHp",
-                                success: function (data) {
-                                    if (data[0] < 1 || data[1] > 99) {
-                                        location.reload();
-                                    }
-                                $("#hp").text("HP: " + data[0]);
-                                document.getElementById("hp-prog").value = data[0];
-                                $("#dl").text("DL: " + data[1]);
-                                document.getElementById("dl-prog").value = data[1];
-                                    hitMonsterDmg = hitMonsterDmg / 2;
-                                },
-                                error: function (error) {
-                                    console.error("Error updating HP:", error);
-                                }
-                            });
-                        }, 1000);
+                            let rand = Math.random();
+
+                            if (rand < blockChance / 100) {
+                                setTimeout(function () {
+                                    $.ajax({
+                                        type: "POST",
+                                        beforeSend: function (xhr) {
+                                            xhr.setRequestHeader("XSRF-TOKEN",
+                                                $('input:hidden[name="__RequestVerificationToken"]').val());
+                                        },
+                                        data: {
+                                            dmg: dmg,
+                                            dlIncrease: dlIncrease
+                                        },
+                                        url: "ChocoBossFight?handler=UpdateHp",
+                                        success: function (data) {
+                                            if (data[0] < 1 || data[1] > 99) {
+                                                location.reload();
+                                            }
+                                            $("#hp").text("HP: " + data[0]);
+                                            document.getElementById("hp-prog").value = data[0];
+                                            $("#dl").text("DL: " + data[1]);
+                                            document.getElementById("dl-prog").value = data[1];
+                                            hitMonsterDmg = hitMonsterDmg / 2;
+                                        },
+                                        error: function (error) {
+                                            console.error("Error updating HP:", error);
+                                        }
+                                    });
+                                }, 1000);
+                            }
+                            else {
+                                showBlockIndicator();
+                                hitMonsterDmg = hitMonsterDmg / 2;
+                            }
                     }, 500);
                 }
             });

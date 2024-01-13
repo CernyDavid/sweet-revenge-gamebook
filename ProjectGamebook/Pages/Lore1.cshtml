@@ -1,0 +1,68 @@
+﻿@page
+@model ProjectGamebook.Pages.Lore1Model
+@Html.AntiForgeryToken()
+@{
+}
+<div class="location">
+    <div class="location__main" style="background-image: url(/imgs/bgs/lore_room1);">
+        <div class="content" id="div">
+
+        </div>
+    </div>
+    <div class="inventory">
+        <div class="inventory-icon" onclick="toggleInv()">
+        </div>
+    </div>
+
+<div class="stats">
+    <div class="stats__item">
+        <p id="hp">HP: @Model.GS.HP</p>
+        <progress id="hp-prog" max="100" value="@Model.GS.HP"></progress>
+    </div>
+    <div class="stats__item">
+        <p id="dl">DL: @Model.GS.DL</p>
+        <progress id="dl-prog" max="100" value="@Model.GS.DL"></progress>
+    </div>
+</div>
+<div class="equipped-items">
+    <div class="equipped-items__item">
+        <p>Shield</p>
+        <img class="equipped" id="shield" src="@Model.GS.EquippedShield.ImageUrl" />
+    </div>
+    <div class="equipped-items__item">
+        <p>Weapon</p>
+        <img class="equipped" id="weapon" src="@Model.GS.EquippedWeapon.ImageUrl" />
+    </div>
+
+</div>
+<img class="equipped-desktop equipped-desktop--shield" id="shield-desktop" src="@Model.GS.EquippedShield.EquippedImageUrl" />
+<img class="equipped-desktop equipped-desktop--weapon" id="weapon-desktop" src="@Model.GS.EquippedWeapon.EquippedImageUrl" />
+<div class="textbox">
+    <p class="textbox__main-text" id="locationText"></p>
+    <button class="btn btn--next" id="btnNext">Next</button>
+</div>
+
+<script>
+
+    function updateText() {
+        document.getElementById("locationText").innerText = stringList[currentIndex];
+        if (currentIndex === stringList.length - 1) {
+            changeButtonVisibility();
+        }
+    }
+
+    function changeButtonVisibility() {
+        document.getElementById("btnNext").style.display = "none";
+        btnNextStyle = "none";
+
+    document.getElementById("btnNext").addEventListener("click", function () {
+        currentIndex = currentIndex + 1;
+        updateText();
+    });
+
+    updateText();
+
+</script>
+
+                        
+</div>

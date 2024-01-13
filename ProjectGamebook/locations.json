@@ -96,6 +96,118 @@
       "Well, you sure ain’t a pushover. But neither are they, so don’t let it get to your head, ‘kay?",
       "Also, you got a new weapon. Isn’t that great?"
     ],
-    "ImageUrl": "~/imgs/bg1.jpg"
+    "ImageUrl": "~/imgs/bgs/choco_room.jpg"
+  },
+  {
+    "Id": 12,
+    "Texts": [
+      "Most of the food around here is sweet, of course. But even sweet food can help you.",
+      "Eating sweets will increase your diabetes level, but it will also heal you. It’s worth the risk, trust me."
+    ],
+    "ImageUrl": "~/imgs/bgs/two_door_bg2.jpg"
+  },
+  {
+    "Id": 13,
+    "Texts": [
+      "Oh, the monsters are grouping up now.",
+      "That just means they are weak.",
+      "Wipe the floor with them and continue."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg3.jpg"
+  },
+  {
+    "Id": 14,
+    "Texts": [
+      "Just do whatever you want, I’m tired of telling you what to do.",
+      "Even the narrator needs to take a break sometimes, you know?"
+    ],
+    "ImageUrl": "~/imgs/bgs/two_door_bg2.jpg"
+  },
+  {
+    "Id": 31,
+    "Texts": [
+      "Those poor children are eternally grateful for what you did today.",
+      "And look, you got a reward for your hard work – a new shield."
+    ],
+    "ImageUrl": "~/imgs/bgs/ice_room.jpg"
+  },
+  {
+    "Id": 15,
+    "Texts": [
+      "There are two doors before you. And because I am a very generous narrator, I will tell you what lies behind each door.",
+      "The room on the left contains some sweet food. The one on the right contains something salty."
+    ],
+    "ImageUrl": "~/imgs/bgs/two_door_bg3.jpg"
+  },
+  {
+    "Id": 16,
+    "Texts": [
+      "See? I told you."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg4.jpg"
+  },
+  {
+    "Id": 17,
+    "Texts": [
+      "See? I told you."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg4.jpg"
+  },
+  {
+    "Id": 18,
+    "Texts": [
+      "Look, this poor guy is probably a servant of the nobles.",
+      "What’s the best way to piss of a noble?",
+      "Killing their servant, of course!"
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg5.jpg"
+  },
+  {
+    "Id": 19,
+    "Texts": [
+      "Look, this poor guy is probably a servant of the nobles.",
+      "What’s the best way to piss of a noble?",
+      "Killing their servant, of course!"
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg5.jpg"
+  },
+  {
+    "Id": 20,
+    "Texts": [
+      "This guy is probably guarding some special place.",
+      "Make a hole in his chest! Oh… Sorry, my bad. Just kill him."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg4.jpg"
+  },
+  {
+    "Id": 21,
+    "Texts": [
+      "You realize you took a detour. You are starting to feel exhausted and hungry.",
+      "Luckily for you, there is some food in this room. Talk about perfect timing!"
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg5.jpg"
+  },
+  {
+    "Id": 22,
+    "Texts": [
+      "You found a nice shield that goes well with your new weapon. You are such a lucky guy."
+    ],
+    "ImageUrl": "~/imgs/bgs/one_door_bg4.jpg"
+  },
+  {
+    "Id": 32,
+    "Texts": [
+      "This was the happiest moment of his life.",
+      "As a reward for making his wish come true, he gave you this fancy weapon."
+    ],
+    "ImageUrl": "~/imgs/bgs/boss34.jpg"
+  },
+  {
+    "Id": 33,
+    "Texts": [
+      "And now, he even lost his life. Pathetic.",
+      "The only thing that’s left of him is this fancy weapon."
+    ],
+    "ImageUrl": "~/imgs/bgs/boss34.jpg"
   }
 ]

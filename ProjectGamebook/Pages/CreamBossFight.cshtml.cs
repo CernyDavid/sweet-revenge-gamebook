@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjectGamebook.Models;
 using ProjectGamebook.Services;
+using System.Security.Cryptography;
 
 namespace ProjectGamebook.Pages
 {
-    public class ChocoBossFightModel : PageModel
+    public class CreamBossFightModel : PageModel
     {
         private string KEY;
         private readonly ISessionStorage<GameState> _ss;
@@ -15,11 +16,11 @@ namespace ProjectGamebook.Pages
         public GameState GS { get; set; }
         public string jsonString;
 
-        public List<string> Texts { get; set; } = new List<string> { "Did someone say boss? Well, sorry, I jinxed you. The real boss is this guy right here.", "Since he was just a little kid, he’s been bullied by the white chocolate folks. Immense rage lies deep within him and now he wants to take it all out on you.", "Well, it’s nothing but a minor inconvenience.", "Kill him." };
+        public List<string> Texts { get; set; } = new List<string> { "Looks like you reached the boss of this floor.", "We all know that children love ice cream, but did you know that ice cream also loves children? Yes, this guy right here is a dirty old pedo.", "So do something heroic for once and send him to nothingness.", "By the way, you can’t use your shield during this fight. You see, he’s not a huge fan of using protection." };
 
-        Boss Chocolate { get; set; } = new Boss("The #1 racist jokes victim", "Mr. Brown", 50, 30, 40, "/imgs/enemies/choco.png");
+        Boss Cream { get; set; } = new Boss("Created from the frozen semen of the Sweet Emperor", "Iced Cream", 30, 50, 50, "/imgs/enemies/icecream.png");
 
-        public ChocoBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
+        public CreamBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
             _config = config;
             _ss = ss;
@@ -30,7 +31,7 @@ namespace ProjectGamebook.Pages
             GS = _ss.LoadOrCreate(KEY);
             if (GS.Boss == null)
             {
-                GS.Boss = Chocolate;
+                GS.Boss = Cream;
             }
             _ss.Save(KEY, GS);
         }
@@ -52,7 +53,7 @@ namespace ProjectGamebook.Pages
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
-                return RedirectToPage("Location", new { id = 30 });
+                return RedirectToPage("Location", new { id = 31 });
             }
 
             jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Texts);
