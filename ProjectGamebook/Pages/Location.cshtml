@@ -14,12 +14,14 @@
                     </text>
                 }
             </script>
-            <div class="fight-indicators-container">
-                <p id="hit-indicator" class="hit-indicator">Hit</p>
-                <p id="block-indicator" class="block-indicator">You blocked</p>
-                <p id="fail-indicator" class="fail-indicator">Fail</p>
-                <p id="crit-indicator" class="crit-indicator">Critical hit</p>
-            </div>
+            @if (Model.Location.Monster != null) {
+                <div class="fight-indicators-container">
+                    <p id="hit-indicator" class="hit-indicator">Hit</p>
+                    <p id="block-indicator" class="block-indicator">You blocked</p>
+                    <p id="fail-indicator" class="fail-indicator">Fail</p>
+                    <p id="crit-indicator" class="crit-indicator">Critical hit</p>
+                </div>
+            }
         </div>
         <script>
             let btnNextStyle;
@@ -214,7 +216,7 @@
                             if (data > 0) {
                                 let rand = Math.random();
 
-                                if (rand < blockChance / 100) {
+                                if (rand > blockChance / 100) {
                                     setTimeout(function () {
                                         $.ajax({
                                             type: "POST",
@@ -355,7 +357,7 @@
 
                 let rand = Math.random();
 
-                if (rand < critChance / 100) {
+                if (rand > critChance / 100) {
                     $.ajax({
                         type: "POST",
                         beforeSend: function (xhr) {
@@ -386,7 +388,7 @@
                                 if (data > 0) {
                                     let rand = Math.random();
 
-                                    if (rand < blockChance / 100) {
+                                    if (rand > blockChance / 100) {
                                         setTimeout(function () {
                                                 $.ajax({
                                                     type: "POST",
@@ -433,7 +435,7 @@
                     setTimeout(function () {
                             let rand = Math.random();
 
-                            if (rand < blockChance / 100) {
+                            if (rand > blockChance / 100) {
                                 setTimeout(function () {
                                     $.ajax({
                                         type: "POST",
@@ -474,7 +476,7 @@
 
             slots.forEach(function (slot, index) {
                 slot.addEventListener("click", function () {
-                    if (document.getElementById("inv-slot-" + (index + 1)).childNodes.length !== 0) {
+                if (document.getElementById("inv-item-" + (index + 1)).src !== 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7') {
                         toggleItemOptions(index);
                     }
                 });

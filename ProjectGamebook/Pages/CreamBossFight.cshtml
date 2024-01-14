@@ -196,7 +196,7 @@
 
                 let rand = Math.random();
 
-                if (rand < critChance / 100) {
+                if (rand > critChance / 100) {
                     $.ajax({
                         type: "POST",
                         beforeSend: function (xhr) {

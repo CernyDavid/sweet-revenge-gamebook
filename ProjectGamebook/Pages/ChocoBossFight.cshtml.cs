@@ -54,7 +54,10 @@ namespace ProjectGamebook.Pages
                 _ss.Save(KEY, GS);
                 return RedirectToPage("Location", new { id = 30 });
             }
-
+            if (GS.Boss != Chocolate)
+            {
+                GS.Boss = Chocolate;
+            }
             jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Texts);
             return Page();
 

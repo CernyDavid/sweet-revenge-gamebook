@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjectGamebook.Models;
 using ProjectGamebook.Services;
+using System.IO;
 
 namespace ProjectGamebook.Pages
 {
@@ -48,13 +49,16 @@ namespace ProjectGamebook.Pages
         public IActionResult OnGet()
         {
             if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
-            if (GS.Boss.HP < 0)
+            if (GS.Boss.HP < 1)
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
                 return RedirectToPage("Location", new { id = 33 });
             }
-
+            if (GS.Boss != Jack)
+            {
+                GS.Boss = Jack;
+            }
             jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Texts);
             return Page();
 

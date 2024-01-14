@@ -4,16 +4,24 @@
 @{
 }
 <div class="location">
-    <div class="location__main" style="background-image: url(/imgs/bgs/lore_room1);">
-        <div class="content" id="div">
-
+    <div class="location__main" style="background-image: url(/imgs/bgs/lore_room1.jpg);">
+        <div style="position: absolute; top: 50%; left: 10%;" onclick="showBook()">
+            <img src="/imgs/books/book1.png" class="book-img" />
         </div>
+        <a asp-page="Location" asp-route-id="13"><div style="position: absolute; top: 20%; left: 40%; width: 25%; height: 70%; z-index: 2"></div></a>
+    </div>
+    <div id="book" class="book">
+        <h1>History of the Labyrinth Castle</h1>
+        <p>The Labyrinth Castle was built in 1683 by the 19th Sweet Emperor. At the time, it was much smaller than today and had only three floors.</p>
+        <p>The fourth floor was added by the 21st Sweet Emperor in 1795, who also added the left wing two years later. The right wing was constructed by his heir in 1866.</p>
+        <p>The whole castle was reconstructed in 1902 by the 23rd Sweet Emperor, which greatly increased its defensive capabilities and led to increased military might of the whole empire.</p>
+        <p>Both the 24th and the 25th Emperor continued the 23rd Emperor’s efforts and the Labyrinth Castle became an embodiment of the empire’s influence and overwhelming power.</p>
+        <button class="btn btn--next" onclick="hideBook()">Close</button>
     </div>
     <div class="inventory">
-        <div class="inventory-icon" onclick="toggleInv()">
+        <div class="inventory-icon">
         </div>
     </div>
-
 <div class="stats">
     <div class="stats__item">
         <p id="hp">HP: @Model.GS.HP</p>
@@ -43,6 +51,8 @@
 </div>
 
 <script>
+     let currentIndex = 0;
+     var stringList = @Html.Raw(@Model.jsonString);
 
     function updateText() {
         document.getElementById("locationText").innerText = stringList[currentIndex];
@@ -53,7 +63,7 @@
 
     function changeButtonVisibility() {
         document.getElementById("btnNext").style.display = "none";
-        btnNextStyle = "none";
+    }
 
     document.getElementById("btnNext").addEventListener("click", function () {
         currentIndex = currentIndex + 1;
@@ -61,6 +71,14 @@
     });
 
     updateText();
+
+    function showBook() {
+        console.log("opened book");
+        document.getElementById("book").style.display = "block";
+    }
+    function hideBook() {
+        document.getElementById("book").style.display = "none";
+    }
 
 </script>
 

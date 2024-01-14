@@ -48,14 +48,18 @@ namespace ProjectGamebook.Pages
 
         public IActionResult OnGet()
         {
+            _ss.Save(KEY, GS);
             if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
-            if (GS.Boss.HP < 0)
+            if (GS.Boss.HP < 1)
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
                 return RedirectToPage("Location", new { id = 31 });
             }
-
+            if (GS.Boss != Cream)
+            {
+                GS.Boss = Cream;
+            }
             jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Texts);
             return Page();
 

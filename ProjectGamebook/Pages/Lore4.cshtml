@@ -1,4 +1,85 @@
 ﻿@page
 @model ProjectGamebook.Pages.Lore4Model
+@Html.AntiForgeryToken()
 @{
 }
+<div class="location">
+    <div class="location__main" style="background-image: url(/imgs/bgs/lore_room1.jpg);">
+        <div style="position: absolute; top: 50%; left: 10%;" onclick="showBook()">
+            <img src="/imgs/books/book4.png" class="book-img" />
+        </div>
+        <a asp-page="Location" asp-route-id="25"><div style="position: absolute; top: 20%; left: 40%; width: 25%; height: 70%; z-index: 2"></div></a>
+    </div>
+    <div id="book" class="book">
+        <h1>Royal Guards</h1>
+        <p>The Royal Guards, also known as Imperial Guards, Lollipop Guards or “the Lollies”, are a group of elite warriors that protect the emperor. There is exactly 50 of them in total.</p>
+        <p>They are trained in a secret facility called Crimson Cake. Nobody knows where exactly is this place located or what exactly happens in there.</p>
+        <p>About 100 lollipops undergo the training each year, but only about 5-10 successfully make it and join the royal guards. What happens to those who fail is unknown.</p>
+        <button class="btn btn--next" onclick="hideBook()">Close</button>
+    </div>
+    <div class="inventory">
+        <div class="inventory-icon">
+        </div>
+    </div>
+    <div class="stats">
+        <div class="stats__item">
+            <p id="hp">HP: @Model.GS.HP</p>
+            <progress id="hp-prog" max="100" value="@Model.GS.HP"></progress>
+        </div>
+        <div class="stats__item">
+            <p id="dl">DL: @Model.GS.DL</p>
+            <progress id="dl-prog" max="100" value="@Model.GS.DL"></progress>
+        </div>
+    </div>
+    <div class="equipped-items">
+        <div class="equipped-items__item">
+            <p>Shield</p>
+            <img class="equipped" id="shield" src="@Model.GS.EquippedShield.ImageUrl" />
+        </div>
+        <div class="equipped-items__item">
+            <p>Weapon</p>
+            <img class="equipped" id="weapon" src="@Model.GS.EquippedWeapon.ImageUrl" />
+        </div>
+
+    </div>
+    <img class="equipped-desktop equipped-desktop--shield" id="shield-desktop" src="@Model.GS.EquippedShield.EquippedImageUrl" />
+    <img class="equipped-desktop equipped-desktop--weapon" id="weapon-desktop" src="@Model.GS.EquippedWeapon.EquippedImageUrl" />
+    <div class="textbox">
+        <p class="textbox__main-text" id="locationText"></p>
+        <button class="btn btn--next" id="btnNext">Next</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        var stringList = @Html.Raw(@Model.jsonString);
+
+        function updateText() {
+            document.getElementById("locationText").innerText = stringList[currentIndex];
+            if (currentIndex === stringList.length - 1) {
+                changeButtonVisibility();
+            }
+        }
+
+        function changeButtonVisibility() {
+            document.getElementById("btnNext").style.display = "none";
+        }
+
+        document.getElementById("btnNext").addEventListener("click", function () {
+            currentIndex = currentIndex + 1;
+            updateText();
+        });
+
+        updateText();
+
+        function showBook() {
+            console.log("opened book");
+            document.getElementById("book").style.display = "block";
+        }
+        function hideBook() {
+            document.getElementById("book").style.display = "none";
+        }
+
+    </script>
+
+
+</div>

@@ -3,5 +3,13 @@
 @{
     ViewData["Title"] = "GameOver";
 }
-<h1>Game Over</h1>
-<a asp-page="Index">Home</a>
+<div class="narration">
+    <div class="narration__textbox">
+        <h1>Game Over</h1>
+        <p>You died.</p>
+        <p style="font-style: italic">Clown music starts playing.</p>
+        <div class="narration__buttons-container">
+            <a class="btn btn--next btn--narration" asp-page="Index">Restart</a>
+        </div>
+    </div>
+</div>

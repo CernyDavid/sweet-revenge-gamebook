@@ -19,8 +19,8 @@ namespace ProjectGamebook.Pages
         public GameState GS { get; set; }
         public string jsonString;
 
-        public Weapon StartingWeapon { get; set; } = new Weapon("Fist", null, 13, 50, null, 0);
-        public Shield StartingShield { get; set; } = new Shield("Your mom's fat ass", null, 25, null, 0);
+        public Weapon StartingWeapon { get; set; } = new Weapon("Fist", null, 13, 30, null, 0);
+        public Shield StartingShield { get; set; } = new Shield("Your mom's fat ass", null, 15, null, 0);
 
         public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster>();
         public static Dictionary<int, Weapon> Weapons = new Dictionary<int, Weapon>();
@@ -58,7 +58,7 @@ namespace ProjectGamebook.Pages
             if (GS.PreviousLocation == 666666)
             {
                 Weapons = new Dictionary<int, Weapon> { { 2, new Weapon("Baguette Sword", "/imgs/weapons/baguette.png", 20, 50, "/imgs/weapons/baguette_equipped.png", 2) }, { 5, new Weapon("Baguette Sword", "/imgs/weapons/baguette.png", 20, 40, "/imgs/weapons/baguette_equipped.png", 5) }, { 30, new Weapon("Cheesy Dagger with a cheesy name", "/imgs/weapons/cheese.png", 25, 50, "/imgs/weapons/cheese_equipped.png", 30) },
-                { 32, new Weapon("Ascia Per La Pizza", "/imgs/weapons/pizza.png", 30, 60, "/imgs/weapons/pizza_equipped.png", 32) }, { 33, new Weapon("Throwing Pretzel", "/imgs/weapons/shuriken.png", 30, 60, "/imgs/weapons/shuriken_equipped.png", 33) }, { 29, new Weapon("Baguettecalibur", "/imgs/weapons/excalibur.png", 40, 70, "/imgs/weapons/excalibur_equipped.png", 33) } };
+                { 32, new Weapon("Ascia Per La Pizza", "/imgs/weapons/pizza.png", 30, 60, "/imgs/weapons/pizza_equipped.png", 32) }, { 33, new Weapon("Throwing Pretzel", "/imgs/weapons/shuriken.png", 30, 60, "/imgs/weapons/shuriken_equipped.png", 33) }, { 29, new Weapon("Baguettecalibur", "/imgs/weapons/excalibur.png", 40, 70, "/imgs/weapons/excalibur_equipped.png", 29) } };
                 Monsters = new Dictionary<int, Monster> { { 0, new Monster("Donut Infantryman", 20, 10, 10, "/imgs/enemies/donut.png") }, { 3, new Monster("Donut Infantryman", 20, 25, 25, "/imgs/enemies/donut.png") }, { 4, new Monster("Donut Infantryman", 20, 25, 25, "/imgs/enemies/donut.png") },
                 { 9, new Monster("Candy Knight", 40, 25, 25, "/imgs/enemies/candy.png") }, { 10, new Monster("Candy Knight", 40, 25, 25, "/imgs/enemies/candy.png") }, {13, new Monster("Donut Squad", 50, 15, 15, "imgs/enemies/donut_army.png") },
                 { 18, new Monster("Candy Butler", 50, 20, 25, "/imgs/enemies/candy.png") }, { 19, new Monster("Candy Butler", 50, 20, 25, "/imgs/enemies/candy.png") }, { 20, new Monster("Donut Infantryman", 40, 30, 25, "/imgs/enemies/donut.png") },

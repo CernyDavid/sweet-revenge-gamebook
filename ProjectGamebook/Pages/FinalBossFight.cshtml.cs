@@ -6,7 +6,7 @@ using System.IO;
 
 namespace ProjectGamebook.Pages
 {
-    public class MarshmallowBossFightModel : PageModel
+    public class FinalBossFightModel : PageModel
     {
         private string KEY;
         private readonly ISessionStorage<GameState> _ss;
@@ -16,11 +16,11 @@ namespace ProjectGamebook.Pages
         public GameState GS { get; set; }
         public string jsonString;
 
-        public List<string> Texts { get; set; } = new List<string> { "Finally, you encountered one of the nobles.", "He’s a masochist. He likes to set himself on fire and then eating pieces of himself. And now, he wants you to stab him with that beautiful weapon of yours.", "Keep in mind that you cannot use critical attacks during this fight. The archduke would be very sad if you ended up not hitting him at all, you know?" };
+        public List<string> Texts { get; set; } = new List<string> { "That’s him. Doesn’t he look kind of funny?" };
 
-        Boss Mello { get; set; } = new Boss("Has a burning passion", "Archduke Mello Jr.", 90, 20, 20, "/imgs/enemies/mallow.png");
+        Boss Emperor { get; set; } = new Boss("The Sweet Emperor", "Yummy, tummy, funny, lucky Gummy Bear", 100, 40, 20, "/imgs/enemies/bear.png");
 
-        public MarshmallowBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
+        public FinalBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
             _config = config;
             _ss = ss;
@@ -31,7 +31,7 @@ namespace ProjectGamebook.Pages
             GS = _ss.LoadOrCreate(KEY);
             if (GS.Boss == null)
             {
-                GS.Boss = Mello;
+                GS.Boss = Emperor;
             }
             _ss.Save(KEY, GS);
         }
@@ -53,11 +53,11 @@ namespace ProjectGamebook.Pages
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
-                return RedirectToPage("Location", new { id = 32 });
+                return RedirectToPage("GameEnd");
             }
-            if (GS.Boss != Mello)
+            if (GS.Boss != Emperor)
             {
-                GS.Boss = Mello;
+                GS.Boss = Emperor;
             }
             jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(Texts);
             return Page();

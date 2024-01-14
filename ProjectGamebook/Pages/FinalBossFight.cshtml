@@ -1,10 +1,10 @@
 ﻿@page
-@model ProjectGamebook.Pages.CakeBossFightModel
+@model ProjectGamebook.Pages.FinalBossFightModel
 @Html.AntiForgeryToken()
 @{
 }
 <div class="location">
-    <div class="location__main" style="background-image: url(/imgs/bgs/boss34.jpg);">
+    <div class="location__main" style="background-image: url(/imgs/bgs/jelly_room.jpg);">
         <div class="content content--boss" id="div">
             @Html.Raw(Model.GS.Boss.ReturnMonster())
             <div class="fight-indicators-container">
@@ -52,6 +52,7 @@
         <p class="textbox__main-text" id="locationText"></p>
         <button class="btn btn--next" id="btnNext">Next</button>
         <div id="buttons" class="button-container">
+            <button class="btn btn--kill" id="kill">Hit</button>
             <button class="btn btn--crit" id="critical">Attempt critical</button>
         </div>
     </div>
@@ -92,6 +93,70 @@
             let critChance = @Model.GS.EquippedWeapon.CriticalChance;
             let blockChance = @Model.GS.EquippedShield.BlockChance;
             console.log(hitMonsterDmg);
+            $("#kill").on("click", function () {
+
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: {
+                        dmg: hitMonsterDmg
+                    },
+                    url: "FinalBossFight?handler=HitMonster",
+                    success: function (data) {
+                        $("#monsterHP").text("HP: " + data);
+                        if (data < 1) {
+                            location.reload();
+                        }
+
+
+                        showHitIndicator();
+
+                        setTimeout(function () {
+                            if (data > 0) {
+                                let rand = Math.random();
+
+                                if (rand > blockChance / 100) {
+                                    setTimeout(function () {
+                                        $.ajax({
+                                            type: "POST",
+                                            beforeSend: function (xhr) {
+                                                xhr.setRequestHeader("XSRF-TOKEN",
+                                                    $('input:hidden[name="__RequestVerificationToken"]').val());
+                                            },
+                                            data: {
+                                                dmg: dmg,
+                                                dlIncrease: dlIncrease
+                                            },
+                                            url: "FinalBossFight?handler=UpdateHp",
+                                            success: function (data) {
+                                                if (data[0] < 1 || data[1] > 99) {
+                                                    location.reload();
+                                                }
+                                                $("#hp").text("HP: " + data[0]);
+                                                document.getElementById("hp-prog").value = data[0];
+                                                $("#dl").text("DL: " + data[1]);
+                                                document.getElementById("dl-prog").value = data[1];
+                                            },
+                                            error: function (error) {
+                                                console.error("Error updating HP:", error);
+                                            }
+                                        });
+                                    }, 1000);
+                                }
+                                else {
+                                    showBlockIndicator();
+                                }
+                            }
+                        }, 500);
+                    },
+                    error: function (error) {
+                        console.error("Error updating HP:", error);
+                    }
+                });
+            });
 
             function showHitIndicator() {
                 const hit = document.getElementById("hit-indicator");
@@ -138,7 +203,7 @@
 
                 let rand = Math.random();
 
-                if (rand < critChance / 100) {
+                if (rand > critChance / 100) {
                     $.ajax({
                         type: "POST",
                         beforeSend: function (xhr) {
@@ -148,7 +213,7 @@
                         data: {
                             dmg: hitMonsterDmg
                         },
-                        url: "CakeBossFight?handler=HitMonster",
+                        url: "FinalBossFight?handler=HitMonster",
                         success: function (data) {
                             $("#monsterHP").text("HP: " + data);
                             if (data < 1) {
@@ -161,7 +226,7 @@
                                 if (data > 0) {
                                     let rand = Math.random();
 
-                                    if (rand > blockChance / 100) {
+                                    if (rand < blockChance / 100) {
                                         setTimeout(function () {
                                             $.ajax({
                                                 type: "POST",
@@ -173,7 +238,7 @@
                                                     dmg: dmg,
                                                     dlIncrease: dlIncrease
                                                 },
-                                                url: "CakeBossFight?handler=UpdateHp",
+                                                url: "FinalBossFight?handler=UpdateHp",
                                                 success: function (data) {
                                                     if (data[0] < 1 || data[1] > 99) {
                                                         location.reload();
@@ -220,7 +285,7 @@
                                         dmg: dmg,
                                         dlIncrease: dlIncrease
                                     },
-                                    url: "CakeBossFight?handler=UpdateHp",
+                                    url: "FinalBossFight?handler=UpdateHp",
                                     success: function (data) {
                                         if (data[0] < 1 || data[1] > 99) {
                                             location.reload();

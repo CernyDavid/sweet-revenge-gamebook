@@ -118,7 +118,7 @@
                         if (data > 0) {
                             let rand = Math.random();
 
-                            if (rand < blockChance / 100) {
+                            if (rand > blockChance / 100) {
                                 setTimeout(function () {
                                     $.ajax({
                                         type: "POST",
@@ -226,7 +226,7 @@
                             if (data > 0) {
                                 let rand = Math.random();
 
-                                if (rand < blockChance / 100) {
+                                if (rand > blockChance / 100) {
                                     setTimeout(function () {
                                         $.ajax({
                                             type: "POST",
@@ -273,7 +273,7 @@
                 setTimeout(function () {
                         let rand = Math.random();
 
-                        if (rand < blockChance / 100) {
+                        if (rand > blockChance / 100) {
                             setTimeout(function () {
                                 $.ajax({
                                     type: "POST",
