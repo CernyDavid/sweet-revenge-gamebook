@@ -26,6 +26,9 @@ namespace ProjectGamebook.Pages
 
         public void OnGet()
         {
+            GS.PreviousLocation = 666666;
+            GS.Location = 0;
+            _ss.Save(KEY, GS);
             ErrorMessage = (TempData["ErrorMessage"]?.ToString() == null) ? "Unknown error" : TempData["ErrorMessage"]?.ToString();
         }
     }

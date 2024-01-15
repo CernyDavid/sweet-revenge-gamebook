@@ -370,6 +370,35 @@ background-color: limegreen
 .book h1 {
     font-size: 28px;
 }
+.menu__image {
+    width: 90vw;
+}
+.menu {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(/imgs/bgs/one_door_bg1.jpeg);
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+}
+.menu__button {
+    font-size: 48px;
+    display: inline-block;
+    width: 200px;
+    border-top: 5px solid #EACC60;
+    border-bottom: 5px solid #EACC60;
+    color: #EACC60;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+}
+    .menu__button:hover {
+        color: #947C26;
+        border-color: #947C26;
+    }
 @media (min-width: 960px) {
     p {
         font-size: 20px;
@@ -378,6 +407,27 @@ background-color: limegreen
     h1 {
         font-size: 48px;
         margin-bottom: 24px;
+    }
+
+    .menu__image {
+        width: 35vw;
+    }
+
+    .menu {
+        padding-top: 40px;
+
+    }
+
+    .menu {
+        background-size: 75%;
+    }
+
+    .menu__button {
+        font-size: 60px;
+        width: 300px;
+        font-weight: 500;
+        border-width: 8px;
+        padding: 8px;
     }
 
     progress {
