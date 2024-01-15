@@ -66,7 +66,7 @@ namespace ProjectGamebook.Pages
                 { 28, new Monster("The Imperial Guard", 80, 35, 30, "/imgs/enemies/guard_army.png") } };
                 Shields = new Dictionary<int, Shield> { {6, new Shield("Whole-grain Shield", "/imgs/shields/cookie.png", 40, "/imgs/shields/cookie_equipped.png", 6) }, { 31, new Shield("Holey Shield", "/imgs/shields/cheese.png", 50, "/imgs/shields/cheese_equipped.png", 31) }, { 22, new Shield("Mobile Cracker Barrier", "/imgs/shields/cracker.png", 60, "/imgs/shields/cracker_equipped.png", 22) } };
                 Salties = new Dictionary<int, SaltyConsumable> { {8, new SaltyConsumable(10, "Slice of half-baked toast", "/imgs/consumables/toast.png", 8) }, { 11, new SaltyConsumable(10, "Slice of half-baked toast", "/imgs/consumables/toast.png", 11) },
-                {14, new SaltyConsumable(10, "Leftover Chips", "/imgs/consumables/chips.png", 14) }, {16, new SaltyConsumable(20, "Pizza Mozarella", "/imgs/consumables/pizza.png", 16) }, {21, new SaltyConsumable(20, "Vegan Burger with Meat", "/imgs/consumables/burger.png", 21) } };
+                {14, new SaltyConsumable(10, "Leftover Chips", "/imgs/consumables/chips.png", 14) }, {16, new SaltyConsumable(25, "Pizza Mozarella", "/imgs/consumables/pizza.png", 16) }, {21, new SaltyConsumable(25, "Vegan Burger with Meat", "/imgs/consumables/burger.png", 21) } };
                 Sweets = new Dictionary<int, SweetConsumable> { {12, new SweetConsumable(15, "Saliva Collector", "/imgs/consumables/lolli.png", 12) }, {17, new SweetConsumable(20, "Suspicious Pack of Sweets", "/imgs/consumables/pack.png", 17) },
                 {24, new SweetConsumable(25, "Mr. Brown's Remains", "/imgs/consumables/chocolate.png", 24) }, {27, new SweetConsumable(25, "Mr. Brown's Remains", "/imgs/consumables/chocolate.png", 27) } };
                 GS.HP = 100;
@@ -79,6 +79,7 @@ namespace ProjectGamebook.Pages
             }
             else
             {
+                if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
                 try
                 {
                     _lp.IsNavigationLegitimate(GS.PreviousLocation, id, GS);
