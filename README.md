@@ -14,7 +14,7 @@ You have but a single goal ahead of you: Kill the Sweet Emperor and put an end t
 - Status box
 - Inventory
 - Text box - contains narration or dialogue, also contains action buttons
-- Equipped weapons visible on the screen - can be hovered for stat info
+- Equipped weapons visible on the screen
 ## Stats
 - Health (HP)
 - Diabetes level (DL)
@@ -38,15 +38,14 @@ You have but a single goal ahead of you: Kill the Sweet Emperor and put an end t
 - Turn-based combat
 - Two attack options:
     - Normal atttack: always hits, deals moderate damage
-    - Attempt critical hit: can either succeed or fail (depends on weapon stats, base chance 50%), deals great damage if it lands
+    - Attempt critical hit: can either succeed or fail (depends on weapon stats), deals great damage if it lands
 - Enemies attack automatically
 - Chance to block enemy attacks (depends on shield stats)
 ## Enemies
 - Regular monsters
 - Bosses - Each boss is unique, drops items
 ## Navigation
-- Moving to new locations by clicking on doors (or other things)
-- Clickable things marked by arrows
+- Moving to new locations by clicking on doors
 ## Inventory
 - Max four items (not counting equipped items)
 - Items can be used or dropped (item is lost forever if dropped)
