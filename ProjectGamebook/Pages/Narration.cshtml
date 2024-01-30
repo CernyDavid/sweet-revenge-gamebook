@@ -1,0 +1,61 @@
+﻿@page
+@model ProjectGamebook.Pages.NarrationModel
+@{
+}
+
+<div class="narration">
+    <div class="narration__textbox">
+        @if (Model.GS.PreviousLocation == 30)
+        {
+            <h1>Second Floor</h1>
+            <p>You got to the second floor.</p>
+            <p>At first, it seems to be no different from the first floor. The rooms are all the same and you haven’t found anything useful.</p>
+            <p>But the air sure seems different around here. It’s as if you can physically feel the danger.</p>
+            <p>You know you shouldn’t be here. You know you could die at any moment.</p>
+            <p>But you can’t just give up.</p>
+            <p>You continue to move forward...</p>
+            <div class="narration__buttons-container">
+                <a class="btn btn--next btn--narration" asp-page="./Location" asp-route-id="12">Next</a>
+            </div>
+        }
+        else if (Model.GS.PreviousLocation == 31)
+        {
+            <h1>Third Floor</h1>
+            <p>You successfully cleared the entirety of the second floor and moved to the third.</p>
+            <p>It looks different from the previous two. The rooms are decorated with all sorts of expensive stuff. You can smell a lot of high-quality sweets. You quickly deduce that this is where the nobility resides.</p>
+            <p>But the Sweet Emperor is not here. He probably has a floor all to himself. You will have to make your way through the nobles and find it.</p>
+            <p>Well, good luck, I guess…</p>
+            <div class="narration__buttons-container">
+                <a class="btn btn--next btn--narration" asp-page="./Location" asp-route-id="15">Next</a>
+            </div>
+        }
+        else if (Model.GS.PreviousLocation == 22)
+        {
+            <h1>Fourth Floor</h1>
+            <p>You finally reached the fourth floor. The Sweet Emperor’s turf.</p>
+            <p>The previous floors were a paradise compared to this nightmarish place. You feel like your nose is about to burst from this awful sugary smell. Death awaits you behind every corner. With every step you take, you move closer to your demise.</p>
+            <p>But you aren’t scared. You remain firm and continue moving forward.</p>
+            <p>This buffoonery will soon end, one way or another…</p>
+            <div class="narration__buttons-container">
+                <a class="btn btn--next btn--narration" asp-page="./Location" asp-route-id="23">Next</a>
+            </div>
+        }
+        else if (Model.GS.PreviousLocation == 29)
+        {
+            <h1>The Emperor's chamber</h1>
+            <p>As you were running through the castle, you came across huge steel doors. They aren’t locked. You could open them right away, but you hesitate for a moment.</p>
+            <p>Behind those doors… yes, that’s him. The Sweet Emperor. There is no doubt about it, it’s really him, in the flesh. And he’s waiting behind those doors.</p>
+            <p>You take a deep breath and slowly open the doors…</p>
+            <div class="narration__buttons-container">
+                <a class="btn btn--next btn--narration" asp-page="./FinalBossFight">Next</a>
+            </div>
+        }
+        else
+        {
+            <p>You can't cheat your way through this game, buddy.</p>
+            <div class="narration__buttons-container">
+                <a class="btn btn--next btn--narration" asp-page="./Index">I'm sorry</a>
+            </div>
+        }
+    </div>
+</div>

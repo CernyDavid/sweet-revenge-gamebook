@@ -18,7 +18,7 @@ namespace ProjectGamebook.Pages
 
         public List<string> Texts { get; set; } = new List<string> { "Looks like you reached the boss of this floor.", "We all know that children love ice cream, but did you know that ice cream also loves children? Yes, this guy right here is a dirty old pedo.", "So do something heroic for once and send him to nothingness.", "By the way, you can’t use your shield during this fight. You see, he’s not a huge fan of using protection." };
 
-        Boss Cream { get; set; } = new Boss("Created from the frozen semen of the Sweet Emperor", "Iced Cream", 30, 50, 50, "/imgs/enemies/icecream.png");
+        Boss Cream { get; set; } = new Boss("Created from the frozen semen of the Sweet Emperor", "Iced Cream", 30, 50, 50, "../imgs/enemies/icecream.png");
 
         public CreamBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
@@ -49,12 +49,12 @@ namespace ProjectGamebook.Pages
         public IActionResult OnGet()
         {
             _ss.Save(KEY, GS);
-            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
+            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("./GameOver");
             if (GS.Boss.HP < 1)
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
-                return RedirectToPage("Location", new { id = 31 });
+                return RedirectToPage("./Location", new { id = 31 });
             }
             if (GS.Boss != Cream)
             {

@@ -18,7 +18,7 @@ namespace ProjectGamebook.Pages
 
         public List<string> Texts { get; set; } = new List<string> { "Finally, you encountered one of the nobles.", "He’s a masochist. He likes to set himself on fire and then eating pieces of himself. And now, he wants you to stab him with that beautiful weapon of yours.", "Keep in mind that you cannot use critical attacks during this fight. The archduke would be very sad if you ended up not hitting him at all, you know?" };
 
-        Boss Mello { get; set; } = new Boss("Has a burning passion", "Archduke Mello Jr.", 90, 20, 20, "/imgs/enemies/mallow.png");
+        Boss Mello { get; set; } = new Boss("Has a burning passion", "Archduke Mello Jr.", 90, 20, 20, "../imgs/enemies/mallow.png");
 
         public MarshmallowBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
@@ -48,12 +48,12 @@ namespace ProjectGamebook.Pages
 
         public IActionResult OnGet()
         {
-            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
+            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("./GameOver");
             if (GS.Boss.HP < 1)
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
-                return RedirectToPage("Location", new { id = 32 });
+                return RedirectToPage("./Location", new { id = 32 });
             }
             if (GS.Boss != Mello)
             {

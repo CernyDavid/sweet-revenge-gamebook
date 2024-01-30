@@ -4,7 +4,7 @@
 @{
 }
 <div class="location">
-    <div class="location__main" style="background-image: url(/imgs/bgs/boss34.jpg);">
+    <div class="location__main" style="background-image: url(../imgs/bgs/boss34.jpg);">
         <div class="content content--boss" id="div">
             @Html.Raw(Model.GS.Boss.ReturnMonster())
             <div class="fight-indicators-container">
@@ -19,10 +19,6 @@
             let currentIndex = 0;
             var stringList = @Html.Raw(@Model.jsonString);
         </script>
-    </div>
-    <div class="inventory">
-        <div class="inventory-icon">
-        </div>
     </div>
 
     <div class="stats">
@@ -156,46 +152,6 @@
                     }
                 });
             });
-
-            function showHitIndicator() {
-                const hit = document.getElementById("hit-indicator");
-
-                hit.style.display = "block";
-
-                setTimeout(function () {
-                    hit.style.display = "none";
-                }, 500);
-            }
-
-            function showCritIndicator() {
-                const crit = document.getElementById("crit-indicator");
-
-                crit.style.display = "block";
-
-                setTimeout(function () {
-                    crit.style.display = "none";
-                }, 500);
-            }
-
-            function showFailIndicator() {
-                const fail = document.getElementById("fail-indicator");
-
-                fail.style.display = "block";
-
-                setTimeout(function () {
-                    fail.style.display = "none";
-                }, 500);
-            }
-
-            function showBlockIndicator() {
-                const block = document.getElementById("block-indicator");
-
-                block.style.display = "block";
-
-                setTimeout(function () {
-                    block.style.display = "none";
-                }, 500);
-            }
 
         });
     </script>

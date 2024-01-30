@@ -16,9 +16,9 @@ namespace ProjectGamebook.Pages
         public GameState GS { get; set; }
         public string jsonString;
 
-        public List<string> Texts { get; set; } = new List<string> { "That’s him. Doesn’t he look kind of funny?" };
+        public List<string> Texts { get; set; } = new List<string> { "That’s him. Doesn’t he look kind of funny?", "The cool thing about this fight is that you can spam your attacks.", "Well, good luck, I guess..." };
 
-        Boss Emperor { get; set; } = new Boss("The Sweet Emperor", "Yummy, tummy, funny, lucky Gummy Bear", 100, 40, 20, "/imgs/enemies/bear.png");
+        Boss Emperor { get; set; } = new Boss("The Sweet Emperor", "Yummy, tummy, funny, lucky Gummy Bear", 1000, 40, 20, "../imgs/enemies/bear.png");
 
         public FinalBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
@@ -48,12 +48,12 @@ namespace ProjectGamebook.Pages
 
         public IActionResult OnGet()
         {
-            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
+            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("./GameOver");
             if (GS.Boss.HP < 1)
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
-                return RedirectToPage("GameEnd");
+                return RedirectToPage("./GameEnd");
             }
             if (GS.Boss != Emperor)
             {

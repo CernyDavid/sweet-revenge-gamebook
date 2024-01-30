@@ -17,7 +17,7 @@ namespace ProjectGamebook.Pages
 
         public List<string> Texts { get; set; } = new List<string> { "Did someone say boss? Well, sorry, I jinxed you. The real boss is this guy right here.", "Since he was just a little kid, he’s been bullied by the white chocolate folks. Immense rage lies deep within him and now he wants to take it all out on you.", "Well, it’s nothing but a minor inconvenience.", "Kill him." };
 
-        Boss Chocolate { get; set; } = new Boss("The #1 racist jokes victim", "Mr. Brown", 50, 30, 40, "/imgs/enemies/choco.png");
+        Boss Chocolate { get; set; } = new Boss("The #1 racist jokes victim", "Mr. Brown", 50, 30, 30, "../imgs/enemies/choco.png");
 
         public ChocoBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
@@ -47,12 +47,12 @@ namespace ProjectGamebook.Pages
 
         public IActionResult OnGet()
         {
-            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
+            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("./GameOver");
             if (GS.Boss.HP < 0)
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
-                return RedirectToPage("Location", new { id = 30 });
+                return RedirectToPage("./Location", new { id = 30 });
             }
             if (GS.Boss != Chocolate)
             {

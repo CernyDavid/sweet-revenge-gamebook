@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProjectGamebook.Middlewares;
 
 namespace ProjectGamebook
 {
@@ -57,6 +58,8 @@ namespace ProjectGamebook
 
             app.UseAuthorization();
             app.UseSession();
+
+            //app.UseRestrictingPathBase("/ProjectGamebook"); pokud tohle odkomentujete, celý se to zesere, takže nedìlat
 
             app.UseEndpoints(endpoints =>
             {

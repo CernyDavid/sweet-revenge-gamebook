@@ -18,7 +18,7 @@ namespace ProjectGamebook.Pages
 
         public List<string> Texts { get; set; } = new List<string> { "Finally, you encountered one of the nobles.", "This one is a gambling addict. However, he sucks at gambling. He lost his private mansion, his wife and kids and even his left nut. He is furious. He is going to kill you.", "Unless you kill him first.", "However, since he loves gambling, it’s to be expected that this fight is not about skill, but about luck. For that reason, you can only perform critical attacks." };
 
-        Boss Jack { get; set; } = new Boss("The worst gambler in history", "Archduke Jack Pot", 80, 25, 20, "/imgs/enemies/cupcake.png");
+        Boss Jack { get; set; } = new Boss("The worst gambler in history", "Archduke Jack Pot", 80, 25, 20, "../imgs/enemies/cupcake.png");
 
         public CakeBossFightModel(ISessionStorage<GameState> ss, ILocationProvider lp, IConfiguration config)
         {
@@ -48,12 +48,12 @@ namespace ProjectGamebook.Pages
 
         public IActionResult OnGet()
         {
-            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("GameOver");
+            if (GS.HP <= 0 || GS.DL >= 100) return RedirectToPage("./GameOver");
             if (GS.Boss.HP < 1)
             {
                 GS.Boss = null;
                 _ss.Save(KEY, GS);
-                return RedirectToPage("Location", new { id = 33 });
+                return RedirectToPage("./Location", new { id = 33 });
             }
             if (GS.Boss != Jack)
             {

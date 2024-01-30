@@ -147,7 +147,7 @@
     "Width": "30%",
     "Height": "50%",
     "Condition": null,
-    "SpecialPage": "SecondFloor"
+    "SpecialPage": "Narration"
   },
   {
     "From": 12,
@@ -157,7 +157,7 @@
     "Width": "30%",
     "Height": "80%",
     "Condition": null,
-    "SpecialPage": "Lore1"
+    "SpecialPage": "Lore"
   },
   {
     "From": 12,
@@ -197,7 +197,7 @@
     "Width": "30%",
     "Height": "80%",
     "Condition": null,
-    "SpecialPage": "Lore2"
+    "SpecialPage": "Lore"
   },
   {
     "From": 31,
@@ -207,7 +207,7 @@
     "Width": "30%",
     "Height": "70%",
     "Condition": null,
-    "SpecialPage": "ThirdFloor"
+    "SpecialPage": "Narration"
   },
   {
     "From": 15,
@@ -267,7 +267,7 @@
     "Width": "30%",
     "Height": "50%",
     "Condition": null,
-    "SpecialPage": "Lore3"
+    "SpecialPage": "Lore"
   },
   {
     "From": 18,
@@ -317,7 +317,7 @@
     "Width": "30%",
     "Height": "50%",
     "Condition": null,
-    "SpecialPage": "FourthFloor"
+    "SpecialPage": "Narration"
   },
   {
     "From": 23,
@@ -337,7 +337,7 @@
     "Width": "30%",
     "Height": "60%",
     "Condition": null,
-    "SpecialPage": "Lore4"
+    "SpecialPage": "Lore"
   },
   {
     "From": 24,
@@ -397,7 +397,7 @@
     "Width": "30%",
     "Height": "70%",
     "Condition": null,
-    "SpecialPage": "BeforeBoss"
+    "SpecialPage": "Narration"
   }
 
 
